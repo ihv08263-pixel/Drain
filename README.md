@@ -1,25 +1,8 @@
-# NovaCard — frontend starter
+# CardTW V3
 
-Frontend statique responsive inspiré du langage visuel fourni en capture, avec identité fictive et sans connexion de wallet.
+Interface personnelle de démonstration, sans connexion à un portefeuille réel. Menus, FAQ, modale, activité locale et préférences fonctionnent côté frontend.
 
-## Fichiers
-- index.html
-- styles.css
-- script.js
 
-## Tester localement
-Ouvrir `index.html` dans un navigateur.
-
-Pour un vrai serveur local :
-`python3 -m http.server 8080`
-
-## Déploiement Nginx
-Copier les trois fichiers dans `/var/www/monsite/`, puis configurer Nginx avec `root /var/www/monsite;`.
-
-## À personnaliser
-- nom et logo
-- textes
-- couleurs
-- illustrations/assets
-- liens des boutons
-- pages Cartes / Compte / Support
+## GitHub Pages
+Repository: `cardtw`
+Pages path: `https://<TON-USERNAME>.github.io/cardtw/`
