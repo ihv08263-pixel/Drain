@@ -1,0 +1,12 @@
+const toast=m=>{const t=document.querySelector('#toast');t.textContent=m;t.classList.add('show');clearTimeout(window.x);window.x=setTimeout(()=>t.classList.remove('show'),2000)};
+document.querySelector('#account').onclick=()=>location.hash='account';
+document.querySelector('#lang').onclick=()=>toast('FR est la langue active.');
+document.querySelectorAll('.manage').forEach(b=>b.onclick=()=>toast('Options de carte ouvertes.'));
+document.querySelectorAll('[data-msg]').forEach(b=>b.onclick=()=>toast(b.dataset.msg));
+document.querySelector('#help').onclick=()=>toast('Centre d’aide — ajoute ton contact ici.');
+document.querySelector('#profile').onclick=()=>toast('Édition du profil — à connecter à ton backend si besoin.');
+const modal=document.querySelector('#modal');document.querySelector('#add').onclick=()=>modal.classList.add('open');document.querySelector('#close').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+document.querySelector('#create').onclick=()=>{let n=document.querySelector('#name').value.trim()||'Nouvelle carte';modal.classList.remove('open');document.querySelector('#name').value='';toast(n+' créée dans la démo.')};
+document.querySelector('#clear').onclick=()=>{document.querySelector('#activityList').innerHTML='<div><b>✓</b><span><strong>Démo effacée</strong><small>Historique local supprimé.</small></span><strong>—</strong></div>';toast('Activité effacée.')};
+document.querySelector('#compact').onchange=e=>document.body.classList.toggle('compact',e.target.checked);
+document.querySelector('#motion').onchange=e=>document.body.classList.toggle('no-motion',!e.target.checked);
