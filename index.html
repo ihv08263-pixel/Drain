@@ -1,166 +1,89 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="NovaCard — carte numérique pour vos paiements du quotidien.">
-  <title>NovaCard — Carte numérique</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NovaCard — Carte numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#accueil">NOVA<span>CARD</span></a>
-    <nav class="desktop-nav">
-      <a href="#fonctionnement">Comment ça marche</a>
-      <a href="#avantages">Avantages</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div class="top-actions">
-      <button class="lang">🇫🇷 FR <span>⌄</span></button>
-      <a class="btn btn-primary" href="#cartes">Découvrir les cartes</a>
-    </div>
-  </header>
+<header class="header">
+  <a class="logo" href="#home">NOVA<span>CARD</span></a>
+  <nav><a href="#how">Comment ça marche</a><a href="#benefits">Avantages</a><a href="#faq">FAQ</a></nav>
+  <div class="header-actions"><button class="language">🇫🇷 <b>FR</b>⌄</button><a class="cta" href="#cards">Découvrir les cartes</a></div>
+</header>
 
-  <main>
-    <section id="accueil" class="hero section">
-      <div class="hero-copy">
-        <div class="eyebrow">CARTE NUMÉRIQUE</div>
-        <h1>Votre carte.<br><span>Votre liberté.</span></h1>
-        <p>Une expérience de paiement moderne, simple et pensée pour le quotidien.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#cartes">Découvrir les cartes</a>
-          <a class="btn btn-outline btn-lg" href="#fonctionnement">En savoir plus</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="glow"></div>
-        <div class="card-3d">
-          <div class="card-logo">NOVA</div>
-          <div class="card-chip"></div>
-          <div class="card-number">••••  ••••  ••••  0927</div>
-          <div class="card-name">NOVA MEMBER</div>
-        </div>
-        <div class="coin coin-a">N</div>
-        <div class="coin coin-b">N</div>
-      </div>
-    </section>
+<main>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <div class="tag">CARTE NUMÉRIQUE</div>
+    <h1>Une carte pensée<br>pour <em>aujourd’hui.</em></h1>
+    <p>Une expérience simple, moderne et mobile-first pour gérer vos paiements au quotidien.</p>
+    <div class="actions"><a class="cta large" href="#cards">Découvrir les cartes</a><a class="outline large" href="#how">En savoir plus</a></div>
+  </div>
+  <div class="hero-visual">
+    <div class="orb"></div>
+    <div class="coin coin1">N</div><div class="coin coin2">N</div>
+    <div class="hero-card"><div class="brandmark">NOVA</div><div class="chip"></div><div class="waves">)))</div><div class="digits">••••  ••••  ••••  0927</div><small>NOVA MEMBER</small></div>
+  </div>
+</section>
 
-    <section id="fonctionnement" class="section pale">
-      <div class="section-heading">
-        <span class="pill">FLOW</span>
-        <h2>Comment ça marche</h2>
-        <p>Une expérience simple en trois étapes, conçue pour aller à l'essentiel.</p>
-      </div>
+<section id="how" class="light">
+<div class="wrap">
+  <div class="heading"><span class="tag">FLOW</span><h2>Comment ça marche</h2><p>Une expérience simple en trois étapes.</p></div>
+  <div class="steps">
+    <article><b>01</b><i>↗</i><h3>Créez votre espace</h3><p>Commencez en quelques instants et retrouvez vos informations au même endroit.</p></article>
+    <article><b>02</b><i>▣</i><h3>Choisissez votre carte</h3><p>Comparez les options disponibles et choisissez le format qui vous convient.</p></article>
+    <article><b>03</b><i>✓</i><h3>Activez et payez</h3><p>Activez votre carte et utilisez-la pour vos achats du quotidien.</p></article>
+  </div>
+  <div class="ready"><div><h3>Prêt à démarrer ?</h3><p>Découvrez les options disponibles et choisissez votre formule.</p><div class="chips"><span>⚡ Activation rapide</span><span>◈ Paiements sécurisés</span></div></div><a class="cta large" href="#cards">Découvrir les cartes</a></div>
+</div>
+</section>
 
-      <div class="steps">
-        <article class="step-card">
-          <span class="step-number">01</span>
-          <div class="icon-box">↗</div>
-          <h3>Créez votre espace</h3>
-          <p>Commencez en quelques instants et choisissez le format de carte qui vous convient.</p>
-        </article>
-        <article class="step-card">
-          <span class="step-number">02</span>
-          <div class="icon-box">▣</div>
-          <h3>Choisissez votre carte</h3>
-          <p>Comparez les caractéristiques et sélectionnez votre carte depuis votre espace.</p>
-        </article>
-        <article class="step-card">
-          <span class="step-number">03</span>
-          <div class="icon-box">✓</div>
-          <h3>Activez et payez</h3>
-          <p>Activez votre carte et utilisez-la pour vos achats en ligne ou en magasin.</p>
-        </article>
-      </div>
+<section class="trust wrap"><p>Une expérience pensée pour le quotidien</p><strong>200M <span>utilisateurs</span></strong><div class="stats"><div><small>Fondé en</small><b>2017</b></div><div><small>Disponible</small><b>24/7</b></div><div><small>Protection</small><b>Renforcée</b></div></div><div class="stars">★ ★ ★ ★ ★</div></section>
 
-      <div class="ready-card">
-        <div>
-          <h3>Prêt à démarrer ?</h3>
-          <p>Découvrez les cartes disponibles et choisissez la formule adaptée à vos besoins.</p>
-          <div class="chips"><span>⚡ Activation rapide</span><span>◈ Paiements sécurisés</span></div>
-        </div>
-        <a class="btn btn-primary btn-lg" href="#cartes">Découvrir les cartes</a>
-      </div>
-    </section>
+<section class="blue">
+<div class="blue-copy"><span class="tag white">NOVA CARD</span><h2>Une carte numérique pour la vie quotidienne</h2><p>Une interface claire, une expérience fluide et des fonctionnalités conçues pour le mobile.</p><a class="white-btn" href="#cards">Découvrir les cartes →</a></div>
+<div class="blue-art"><div class="stack-card back"></div><div class="stack-card front"><b>NOVA</b><span>•••• 0927</span></div><div class="big-n">N</div></div>
+</section>
 
-    <section class="trust section">
-      <p>Ils nous font confiance</p>
-      <div class="trust-number">200M <span>utilisateurs</span></div>
-      <div class="trust-grid">
-        <div><small>Fondé en</small><strong>2017</strong></div>
-        <div><small>Disponible</small><strong>24/7</strong></div>
-        <div><small>Protection</small><strong>Renforcée</strong></div>
-      </div>
-    </section>
+<section class="feature wrap">
+<div><span class="tag">MOBILE FIRST</span><h2>Tout ce dont vous avez besoin, au même endroit.</h2><p>Une interface inspirée des meilleures applications mobiles : lisible, rapide et agréable à utiliser.</p></div>
+<div class="phone"><div class="screen"><div class="screen-top"><b>NOVA</b><span>9:41</span></div><div class="balance">1 228,20 €</div><div class="small-card"></div><div class="row"><span>Disponible</span><b>1 228,20 €</b></div><div class="row"><span>Carte</span><b>•••• 0927</b></div><div class="row"><span>Statut</span><b class="green">Active</b></div></div></div>
+</section>
 
-    <section id="cartes" class="blue-cta section">
-      <div>
-        <span class="pill pill-light">NOVA CARD</span>
-        <h2>Une carte numérique pour la vie quotidienne</h2>
-        <p>Une interface claire, des paiements pratiques et une expérience pensée pour le mobile.</p>
-        <a class="btn btn-white btn-lg" href="#avantages">Voir les avantages →</a>
-      </div>
-      <div class="blue-art" aria-hidden="true">
-        <div class="floating-card"></div>
-        <div class="floating-text">PAY</div>
-      </div>
-    </section>
+<section id="benefits" class="light">
+<div class="wrap"><div class="heading"><h2>Pourquoi NovaCard ?</h2><p>Les fonctionnalités essentielles réunies dans une expérience moderne.</p></div>
+<div class="benefits">
+<article><div class="art green">✦</div><h3>Démarrage rapide</h3><p>Une mise en route claire et une interface pensée pour aller à l'essentiel.</p></article>
+<article><div class="art blue">◒</div><h3>Gestion centralisée</h3><p>Retrouvez vos informations et vos cartes au même endroit.</p></article>
+<article><div class="art pink">◇</div><h3>Sécurité renforcée</h3><p>Des contrôles et bonnes pratiques pour protéger votre espace.</p></article>
+<article><div class="art mix">N</div><h3>Tarification claire</h3><p>Des informations lisibles pour comprendre chaque formule.</p></article>
+<article><div class="art green">↗</div><h3>Programme partenaire</h3><p>Découvrez les avantages disponibles dans votre espace.</p></article>
+<article><div class="art blue">✦</div><h3>Service disponible</h3><p>Une expérience conçue pour rester simple, rapide et accessible.</p></article>
+</div></div>
+</section>
 
-    <section class="feature section">
-      <div class="feature-copy">
-        <h2>Une expérience pensée pour le mobile</h2>
-        <p>Gérez vos cartes, consultez vos informations et retrouvez les fonctionnalités essentielles depuis une interface rapide et claire.</p>
-      </div>
-      <div class="phone-mockup" aria-hidden="true">
-        <div class="phone-screen">
-          <div class="phone-top">NOVA</div>
-          <div class="balance">1 228,20 €</div>
-          <div class="mini-card"></div>
-          <div class="phone-row"><span>Disponible</span><b>1 228,20 €</b></div>
-          <div class="phone-row"><span>Carte</span><b>•••• 0927</b></div>
-        </div>
-      </div>
-    </section>
+<section id="cards" class="cards-section wrap">
+<div class="heading"><span class="tag">CARTES</span><h2>Choisissez votre carte</h2><p>Des options claires pour différents usages.</p></div>
+<div class="cards-grid">
+<article class="product-card"><div class="product-visual card-v1"><div>NOVA</div><span>VIRTUAL</span></div><h3>Nova Virtual</h3><p>Une carte virtuelle pour vos achats en ligne.</p><div class="product-meta"><b>À partir de 1 €</b><a href="#faq">Voir les détails</a></div></article>
+<article class="product-card"><div class="product-visual card-v2"><div>NOVA</div><span>PREMIUM</span></div><h3>Nova Premium</h3><p>Une carte premium pour un usage quotidien.</p><div class="product-meta"><b>À partir de 1 €</b><a href="#faq">Voir les détails</a></div></article>
+</div>
+</section>
 
-    <section id="avantages" class="section">
-      <div class="section-heading">
-        <h2>Pourquoi NovaCard ?</h2>
-        <p>Les fonctionnalités essentielles réunies dans une expérience moderne.</p>
-      </div>
-      <div class="benefits">
-        <article><div class="benefit-art art-lock">◈</div><h3>Démarrage rapide</h3><p>Une mise en route claire, avec une interface conçue pour éviter les étapes inutiles.</p></article>
-        <article><div class="benefit-art art-wallet">◒</div><h3>Gestion centralisée</h3><p>Retrouvez vos informations et vos cartes au même endroit.</p></article>
-        <article><div class="benefit-art art-shield">◇</div><h3>Sécurité renforcée</h3><p>Des contrôles et bonnes pratiques pour protéger votre espace.</p></article>
-        <article><div class="benefit-art art-cost">N</div><h3>Tarification claire</h3><p>Des informations lisibles pour comprendre les conditions de chaque formule.</p></article>
-        <article><div class="benefit-art art-ref">↗</div><h3>Programme partenaire</h3><p>Invitez vos proches et découvrez les avantages disponibles dans votre espace.</p></article>
-        <article><div class="benefit-art art-service">✦</div><h3>Service disponible</h3><p>Une expérience conçue pour rester simple, rapide et accessible.</p></article>
-      </div>
-    </section>
+<section id="faq" class="light faq-section"><div class="wrap"><div class="heading"><h2>FAQ</h2><p>Trouvez les réponses aux questions les plus fréquentes.</p></div>
+<div class="faq">
+<details><summary>Comment fonctionne NovaCard ? <span>⌄</span></summary><p>NovaCard est une interface de démonstration. Les fonctionnalités finales dépendent de votre service et de votre intégration.</p></details>
+<details><summary>Quelles cartes sont disponibles ? <span>⌄</span></summary><p>Les cartes affichées sont des exemples de présentation. Vous pouvez remplacer leurs informations par vos offres réelles.</p></details>
+<details><summary>Comment connaître les frais ? <span>⌄</span></summary><p>Les conditions et frais doivent être affichés clairement avant toute souscription.</p></details>
+</div></div></section>
+</main>
 
-    <section id="faq" class="section pale">
-      <div class="section-heading">
-        <h2>FAQ</h2>
-        <p>Trouvez les réponses aux questions les plus fréquentes.</p>
-      </div>
-      <div class="faq">
-        <details><summary>Comment fonctionne NovaCard ? <span>⌄</span></summary><p>NovaCard est une interface de démonstration. Les fonctionnalités réelles dépendent de votre intégration et de votre prestataire de paiement.</p></details>
-        <details><summary>La carte est-elle disponible sur mobile ? <span>⌄</span></summary><p>Oui, cette interface est conçue en priorité pour les écrans mobiles et reste responsive sur ordinateur.</p></details>
-        <details><summary>Comment connaître les frais ? <span>⌄</span></summary><p>Les tarifs doivent être affichés clairement sur la page correspondant à votre offre avant toute souscription.</p></details>
-      </div>
-    </section>
-  </main>
-
-  <nav class="mobile-nav">
-    <a class="active" href="#accueil"><span>⌂</span>Accueil</a>
-    <a href="#cartes"><span>▣</span>Cartes</a>
-    <a href="#avantages"><span>▪▪</span>Plus</a>
-    <a href="#faq"><span>◉</span>Compte</a>
-    <button type="button" onclick="alert('Support : ajoute ici ton lien de contact.')">◌</button>
-  </nav>
-
-  <script src="script.js"></script>
+<nav class="bottom-nav"><a class="active" href="#home">⌂<small>Accueil</small></a><a href="#cards">▣<small>Cartes</small></a><a href="#benefits">▪▪<small>Plus</small></a><a href="#faq">◉<small>Compte</small></a><button onclick="alert('Ajoute ici ton lien de support.')">◌</button></nav>
+<script src="script.js"></script>
 </body>
 </html>
