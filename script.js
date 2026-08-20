@@ -1,30 +1,4 @@
-document.querySelectorAll('.mobile-nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.mobile-nav a').forEach(x => x.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, {threshold: .12});
-
-document.querySelectorAll('.step-card,.benefits article,.ready-card,.feature').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(18px)';
-  el.style.transition = 'opacity .65s ease, transform .65s ease';
-  observer.observe(el);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.visible').forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
-});
-
-const style = document.createElement('style');
-style.textContent = '.visible{opacity:1!important;transform:none!important}';
-document.head.appendChild(style);
+const items=document.querySelectorAll('.steps article,.benefits article,.product-card,.ready,.feature,.hero-card');
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+items.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%3)*70+'ms';obs.observe(el)});
+document.querySelectorAll('.bottom-nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.bottom-nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
