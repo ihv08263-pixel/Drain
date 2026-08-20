@@ -1,11 +1,9 @@
-# CardTW V3
+# CardTW
 
-Interface personnelle de démonstration, sans connexion à un portefeuille réel. Menus, FAQ, modale, activité locale et préférences fonctionnent côté frontend.
-
-\n## Assets CardTW
-Le dossier `assets/` contient les visuels CardTW prêts à être publiés avec le frontend.
-\nGitHub Pages : `https://<TON-USERNAME>.github.io/cardtw/`
-
+Frontend statique CardTW, pensé pour GitHub Pages.
 
 ## Wallet
-CardTW utilise l'API de wallet injectée (EIP-1193) lorsqu'elle est disponible. Aucune clé privée ou seed phrase n'est demandée ou stockée. Les transactions sont signées dans le wallet de l'utilisateur.
+La connexion utilise l'API wallet injectée (EIP-1193) lorsqu'elle est disponible. CardTW ne demande ni ne stocke de clé privée ou de phrase de récupération. Les transactions sont confirmées/signées dans le wallet de l'utilisateur.
+
+## Déploiement
+Uploader `index.html`, `styles.css`, `script.js` et `assets/` à la racine du dépôt GitHub Pages.

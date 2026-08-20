@@ -1,92 +1,75 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CardTW — Espace personnel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
-<header><a class="logo" href="#home">CARDTW</a><nav><a href="#home">Accueil</a><a href="#wallet">Wallet</a><a href="#cards">Cartes</a><a href="#activity">Activité</a><a href="#faq">Aide</a></nav><div class="actions"><button id="lang">🇫🇷 FR⌄</button><button id="account">H</button></div></header>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CardTW — Votre espace crypto</title>
+<meta name="description" content="CardTW — interface personnelle pour visualiser vos cartes et connecter un wallet compatible.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="brand-mark">C</span><span>Card<span>TW</span></span></a>
+  <nav class="desktop-nav"><a href="#home">Accueil</a><a href="#wallet">Wallet</a><a href="#cards">Cartes</a><a href="#how">Comment ça marche</a><a href="#faq">Aide</a></nav>
+  <div class="top-actions"><button class="lang" id="lang">FR⌄</button><button class="avatar" id="account">H</button></div>
+</header>
+
 <main>
-<section id="home" class="hero"><div><small>ESPACE PERSONNEL</small><h1>Votre carte.<br><em>Votre espace.</em></h1><p>Une interface privée pour gérer vos cartes, consulter votre activité et personnaliser votre expérience.</p><a class="primary" href="#cards">Voir mes cartes</a> <a class="secondary" href="#activity">Voir l’activité</a></div><div class="visual"><img src="assets/cardtw-hero.png" alt="CardTW — wallet et carte crypto" class="asset-hero"></div></section>
-<section id="cards" class="section"><div class="head"><div><small>MES CARTES</small><h2>Vos cartes</h2><p>Gérez les cartes de votre espace personnel.</p></div><button class="primary" id="add">+ Ajouter une carte</button></div><div class="grid"><article class="box"><div class="mini blue"><b>CARDTW</b><span>•••• 0927</span></div><div class="row"><div><h3>CardTW Personal</h3><small class="green">● Active</small></div><button class="secondary manage">Gérer</button></div><div class="stats"><div>Solde<strong>1 228,20 €</strong></div><div>Statut<strong>Active</strong></div><div>Dernière activité<strong>Aujourd’hui</strong></div></div></article><article class="box"><div class="mini greenCard"><b>CARDTW</b><span>•••• 4418</span></div><div class="row"><div><h3>CardTW Virtual</h3><small>● Disponible</small></div><button class="secondary manage">Gérer</button></div><div class="stats"><div>Type<strong>Virtuelle</strong></div><div>Activation<strong>Instantanée</strong></div><div>Statut<strong>Prête</strong></div></div></article></div></section>
-<section class="section visual-showcase">
-  <div class="head">
-    <div><small>IDENTITÉ CARDTW</small><h2>Un univers visuel cohérent.</h2><p>Cartes, wallet et éléments graphiques prêts à être utilisés dans l’interface.</p></div>
+<section id="home" class="hero section-wide">
+  <div class="hero-copy">
+    <span class="eyebrow">ESPACE PERSONNEL</span>
+    <h1>Votre carte.<br><span>Votre espace.</span></h1>
+    <p>Une interface claire et moderne pour visualiser vos cartes, connecter votre wallet et garder toutes vos fonctions au même endroit.</p>
+    <div class="hero-actions"><a class="btn primary" href="#wallet">Connecter mon wallet</a><a class="btn ghost" href="#how">En savoir plus</a></div>
   </div>
-  <div class="asset-grid">
-    <img src="assets/cardtw-card-dark.png" alt="Carte CardTW sombre">
-    <img src="assets/cardtw-card-light.png" alt="Carte CardTW claire">
-    <img src="assets/cardtw-dashboard.png" alt="Dashboard wallet CardTW">
-    <img src="assets/cardtw-phone.png" alt="Application mobile CardTW">
+  <div class="hero-art">
+    <div class="glow"></div><img src="assets/cardtw-hero.png" alt="Illustration CardTW" loading="eager">
   </div>
 </section>
 
-<section id="wallet" class="section wallet-section">
-  <div class="head">
-    <div>
-      <small>MON WALLET</small>
-      <h2>Votre wallet</h2>
-      <p>Connectez un wallet compatible. CardTW ne demande ni ne stocke votre clé privée ou votre phrase de récupération.</p>
+<section id="how" class="soft-section">
+  <div class="section-inner">
+    <div class="section-title"><span class="eyebrow">FLOW</span><h2>Comment ça marche</h2><p>Une expérience pensée pour rester simple : connecter, choisir et utiliser.</p></div>
+    <div class="steps">
+      <article class="step"><span>01</span><div class="step-icon">⌁</div><h3>Connectez votre wallet</h3><p>Ouvrez votre wallet compatible et approuvez la connexion. CardTW ne demande jamais votre clé privée.</p></article>
+      <article class="step"><span>02</span><div class="step-icon">▣</div><h3>Choisissez votre carte</h3><p>Consultez vos cartes et leurs informations depuis une interface claire et adaptée au mobile.</p></article>
+      <article class="step"><span>03</span><div class="step-icon">✓</div><h3>Confirmez dans votre wallet</h3><p>Lorsqu'une action nécessite une signature, la confirmation reste effectuée dans votre wallet.</p></article>
     </div>
-    <button class="primary" id="connectWallet">Connecter le wallet</button>
-  </div>
-
-  <div class="wallet-grid">
-    <article class="wallet-card wallet-main">
-      <div class="wallet-top">
-        <span class="wallet-status"><i id="walletDot"></i><span id="walletStatus">Non connecté</span></span>
-        <button class="secondary wallet-small" id="disconnectWallet" hidden>Déconnecter</button>
-      </div>
-      <div class="wallet-address-wrap">
-        <small>ADRESSE PUBLIQUE</small>
-        <div class="wallet-address" id="walletAddress">—</div>
-        <button class="secondary" id="copyAddress" disabled>Copier l’adresse</button>
-      </div>
-      <div class="wallet-balance">
-        <small>SOLDE NATIF</small>
-        <strong id="walletBalance">—</strong>
-        <span id="walletNetwork">Réseau —</span>
-      </div>
-    </article>
-
-    <article class="wallet-card">
-      <div class="wallet-card-head"><span>Actions</span><small>SIGNATURE DANS LE WALLET</small></div>
-      <div class="wallet-actions">
-        <button class="wallet-action" id="receiveBtn"><b>↓</b><span><strong>Recevoir</strong><small>Afficher votre adresse</small></span></button>
-        <button class="wallet-action" id="sendBtn"><b>↑</b><span><strong>Envoyer</strong><small>Préparer une transaction</small></span></button>
-        <button class="wallet-action" id="refreshWallet"><b>↻</b><span><strong>Actualiser</strong><small>Solde et réseau</small></span></button>
-      </div>
-    </article>
-  </div>
-
-  <div class="wallet-note">
-    <strong>🔐 Vos clés restent dans votre wallet.</strong>
-    <span>CardTW utilise uniquement l’interface du wallet pour demander une connexion ou une signature. Ne saisissez jamais votre seed phrase ou votre clé privée dans ce site.</span>
   </div>
 </section>
 
-<section id="activity" class="section pale"><div class="head"><div><small>ACTIVITÉ</small><h2>Dernières opérations</h2><p>Historique local de démonstration.</p></div><button class="secondary" id="clear">Effacer la démo</button></div><div id="activityList" class="activity"><div><b>U</b><span><strong>Uber</strong><small>Aujourd’hui · 16:40</small></span><strong>-16,40 €</strong></div><div><b>N</b><span><strong>Netflix</strong><small>Hier · 19:19</small></span><strong>-13,95 €</strong></div><div><b>B</b><span><strong>Booking</strong><small>18 août · 12:12</small></span><strong>-215,40 €</strong></div></div></section>
-<section class="section"><div class="panel"><div><small>ESPACE PRIVÉ</small><h2>Tout contrôler au même endroit.</h2><p>Cette version est une interface frontend personnelle de démonstration. Les actions ne connectent aucun portefeuille et ne manipulent aucun fonds.</p></div><div class="quick"><button data-msg="Carte verrouillée pour la démo">🔒 Verrouiller</button><button data-msg="Préférences ouvertes">⚙️ Préférences</button><button data-msg="Support ouvert">◌ Support</button></div></div></section>
-<section id="faq" class="section"><div class="head"><div><small>AIDE</small><h2>FAQ</h2><p>Les contenus peuvent être remplacés par tes informations.</p></div></div><div class="faq"><details><summary>Comment fonctionne cet espace ? <span>⌄</span></summary><p>Les menus naviguent entre les sections et les actions de démonstration fonctionnent localement dans le navigateur.</p></details><details><summary>Mes données sont-elles envoyées ? <span>⌄</span></summary><p>Cette version ne connecte aucun portefeuille et n’envoie aucune donnée financière.</p></details><details><summary>Comment modifier les cartes ? <span>⌄</span></summary><p>Les cartes sont définies dans index.html et pourront être reliées plus tard à une API légitime.</p></details></div></section>
-<section id="account" class="section pale"><div class="head"><div><small>COMPTE</small><h2>Mon espace</h2><p>Préférences de l’interface.</p></div></div><div class="settings"><div class="profile"><b>H</b><span><strong>Compte personnel</strong><small>Interface privée</small></span><button class="secondary" id="profile">Modifier</button></div><label>Mode compact <input id="compact" type="checkbox"></label><label>Animations <input id="motion" type="checkbox" checked></label></div></section>
-</main><footer><div class="logo">CARDTW</div><p>Interface personnelle de démonstration.</p></footer>
-<nav class="bottom"><a href="#home">⌂<small>Accueil</small></a><a href="#wallet">◈<small>Wallet</small></a><a href="#activity">◫<small>Activité</small></a><a href="#account">◉<small>Compte</small></a><button id="help">◌<small>Aide</small></button></nav>
-<div id="modal" class="modal"><div><button id="close">×</button><small>NOUVELLE CARTE</small><h2>Ajouter une carte</h2><p>Action locale de démonstration.</p><input id="name" placeholder="Nom de la carte"><button class="primary" id="create">Créer la carte</button></div></div>
-<div id="sendModal" class="modal">
-  <div>
-    <button class="modal-close" data-close="sendModal">×</button>
-    <small>TRANSACTION</small>
-    <h2>Envoyer</h2>
-    <p>La transaction sera préparée puis confirmée dans votre wallet.</p>
-    <label class="field-label">Adresse destinataire</label>
-    <input id="sendTo" placeholder="0x..." autocomplete="off">
-    <label class="field-label">Montant natif</label>
-    <input id="sendAmount" type="number" min="0" step="any" placeholder="0.00">
-    <button class="primary full" id="confirmSend">Ouvrir la confirmation</button>
+<section id="wallet" class="section-inner wallet-area">
+  <div class="section-title row-title"><div><span class="eyebrow">MON WALLET</span><h2>Votre wallet</h2><p>Connexion non custodiale : vos clés restent dans votre wallet.</p></div><button class="btn primary" id="connectWallet">Connecter le wallet</button></div>
+  <div class="wallet-grid">
+    <article class="wallet-card dark-card"><div class="wallet-status"><i id="walletDot"></i><span id="walletStatus">Non connecté</span><button class="mini-btn" id="disconnectWallet" hidden>Déconnecter</button></div><div class="address-label">ADRESSE PUBLIQUE</div><div class="address" id="walletAddress">—</div><button class="btn light-btn" id="copyAddress" disabled>Copier l'adresse</button><div class="balance"><small>SOLDE NATIF</small><strong id="walletBalance">—</strong><span id="walletNetwork">Réseau —</span></div></article>
+    <article class="wallet-card action-card"><div class="action-head"><h3>Actions</h3><small>SIGNATURE DANS LE WALLET</small></div><button class="action-row" id="receiveBtn"><b>↓</b><span><strong>Recevoir</strong><small>Afficher votre adresse publique</small></span><em>›</em></button><button class="action-row" id="sendBtn"><b>↑</b><span><strong>Envoyer</strong><small>Préparer une transaction</small></span><em>›</em></button><button class="action-row" id="refreshWallet"><b>↻</b><span><strong>Actualiser</strong><small>Solde et réseau</small></span><em>›</em></button></article>
   </div>
-</div>
-<div id="receiveModal" class="modal">
-  <div>
-    <button class="modal-close" data-close="receiveModal">×</button>
-    <small>RECEVOIR</small>
-    <h2>Votre adresse</h2>
-    <p>Partagez cette adresse publique pour recevoir des fonds sur le réseau connecté.</p>
-    <div class="receive-address" id="receiveAddress">—</div>
-    <button class="primary full" id="copyReceive">Copier l’adresse</button>
+  <div class="security-note"><strong>Protection par conception</strong><span>CardTW ne vous demande pas de saisir une seed phrase ou une clé privée. Les signatures sont effectuées par le wallet.</span></div>
+</section>
+
+<section id="cards" class="section-inner cards-section">
+  <div class="section-title row-title"><div><span class="eyebrow">MES CARTES</span><h2>Une carte pour chaque usage.</h2><p>Une présentation simple, inspirée des interfaces fintech modernes.</p></div><button class="btn primary" id="add">+ Ajouter une carte</button></div>
+  <div class="cards-grid">
+    <article class="product-card"><img src="assets/cardtw-card-dark.png" alt="Carte CardTW sombre"><div class="product-info"><div><span class="status">● Active</span><h3>CardTW Personal</h3><p>Carte principale de votre espace.</p></div><button class="btn ghost manage">Gérer</button></div></article>
+    <article class="product-card"><img src="assets/cardtw-card-light.png" alt="Carte CardTW claire"><div class="product-info"><div><span class="status">● Disponible</span><h3>CardTW Virtual</h3><p>Carte virtuelle pour vos usages en ligne.</p></div><button class="btn ghost manage">Gérer</button></div></article>
   </div>
-</div>
-<div id="toast"></div><script src="script.js"></script></body></html>
+</section>
+
+<section class="feature-section">
+ <div class="section-inner feature-grid"><div class="feature-copy"><span class="eyebrow">UNE VUE CLAIRE</span><h2>Tout ce dont vous avez besoin, au même endroit.</h2><p>Un espace personnel avec une hiérarchie visuelle simple, des actions accessibles et une navigation pensée pour mobile.</p><div class="pill-list"><span>⚡ Accès rapide</span><span>◈ Wallet compatible</span><span>✓ Confirmation sécurisée</span></div></div><div class="device-frame"><img src="assets/cardtw-phone.png" alt="Interface mobile CardTW"></div></div>
+</section>
+
+<section class="section-inner benefits"><div class="section-title"><span class="eyebrow">POURQUOI CARDTW</span><h2>Simple. Clair. Personnel.</h2><p>Le design reste volontairement léger pour mettre les actions importantes au premier plan.</p></div><div class="benefit-grid"><article><div class="benefit-art">⌁</div><h3>Connexion directe</h3><p>Utilisez votre wallet compatible sans transmettre vos informations sensibles à l'interface.</p></article><article><div class="benefit-art">◒</div><h3>Interface moderne</h3><p>Cartes, solde et actions regroupés dans une expérience cohérente sur ordinateur et mobile.</p></article><article><div class="benefit-art">↗</div><h3>Actions contrôlées</h3><p>Les opérations sensibles passent par la confirmation de votre wallet avant exécution.</p></article></div></section>
+
+<section id="faq" class="soft-section"><div class="section-inner"><div class="section-title"><span class="eyebrow">AIDE</span><h2>Questions fréquentes</h2><p>Les réponses essentielles pour utiliser l'interface.</p></div><div class="faq"><details><summary>CardTW récupère-t-il ma clé privée ? <span>⌄</span></summary><p>Non. Cette interface ne demande ni clé privée ni phrase de récupération. Le wallet conserve les clés.</p></details><details><summary>Que se passe-t-il quand je fais une transaction ? <span>⌄</span></summary><p>CardTW prépare la demande et le wallet affiche la confirmation à signer.</p></details><details><summary>Ma connexion est-elle conservée ? <span>⌄</span></summary><p>L'interface peut mémoriser l'adresse publique localement, mais la signature reste contrôlée par le wallet.</p></details></div></div></section>
+
+<section id="activity" class="section-inner activity-section"><div class="section-title row-title"><div><span class="eyebrow">ACTIVITÉ</span><h2>Dernières opérations</h2><p>Historique local de démonstration.</p></div><button class="btn ghost" id="clear">Effacer la démo</button></div><div id="activityList" class="activity"><div><b>U</b><span><strong>Uber</strong><small>Aujourd'hui · 16:40</small></span><strong>-16,40 €</strong></div><div><b>N</b><span><strong>Netflix</strong><small>Hier · 19:19</small></span><strong>-13,95 €</strong></div><div><b>B</b><span><strong>Booking</strong><small>18 août · 12:12</small></span><strong>-215,40 €</strong></div></div></section>
+</main>
+<footer><div class="brand"><span class="brand-mark">C</span><span>Card<span>TW</span></span></div><p>Interface personnelle CardTW.</p></footer>
+<nav class="bottom"><a href="#home">⌂<small>Accueil</small></a><a href="#wallet">◈<small>Wallet</small></a><a href="#cards">▣<small>Cartes</small></a><a href="#activity">◫<small>Activité</small></a><button id="help">◌<small>Aide</small></button></nav>
+<div id="sendModal" class="modal"><div><button class="modal-close" data-close="sendModal">×</button><span class="eyebrow">TRANSACTION</span><h2>Envoyer</h2><p>La transaction sera préparée puis confirmée dans votre wallet.</p><label>Adresse destinataire</label><input id="sendTo" placeholder="0x..." autocomplete="off"><label>Montant natif</label><input id="sendAmount" type="number" min="0" step="any" placeholder="0.00"><button class="btn primary full" id="confirmSend">Ouvrir la confirmation</button></div></div>
+<div id="receiveModal" class="modal"><div><button class="modal-close" data-close="receiveModal">×</button><span class="eyebrow">RECEVOIR</span><h2>Votre adresse</h2><p>Partagez cette adresse publique pour recevoir des fonds.</p><div class="receive-address" id="receiveAddress">—</div><button class="btn primary full" id="copyReceive">Copier l'adresse</button></div></div>
+<div id="modal" class="modal"><div><button id="close">×</button><span class="eyebrow">NOUVELLE CARTE</span><h2>Ajouter une carte</h2><p>Action locale de démonstration.</p><input id="name" placeholder="Nom de la carte"><button class="btn primary full" id="create">Créer la carte</button></div></div>
+<div id="toast"></div><script src="script.js"></script>
+</body></html>
