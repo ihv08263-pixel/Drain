@@ -1,19 +1,29 @@
 # CardTW
 
-CardTW est une interface frontend qui regroupe la présentation des cartes et la connexion d'un wallet crypto.
+CardTW est une interface frontend pour présenter des cartes et connecter un wallet crypto.
 
-## Fonctionnement
+## Connexion wallet
 
-1. **Connecter le wallet** : ouvre le sélecteur Reown/WalletConnect.
-2. **Choisir une carte** : compare les cartes et leurs limites.
-3. **Consulter le wallet** : une fois connecté, l'adresse publique est affichée.
+Le bouton **Connecter le wallet** ouvre Reown AppKit et son sélecteur multi-wallet. La connexion utilise uniquement l'adresse publique. Aucune clé privée ou phrase de récupération n'est demandée.
 
-À cette étape, CardTW ne demande ni clé privée ni phrase de récupération et n'effectue aucune autorisation de dépense.
+## Langues
+
+Interface disponible en :
+- Français
+- English
+- Español
+- Deutsch
+- Português
+- Русский
+- Türkçe
+- 中文
+- 日本語
+- 한국어
+- العربية
+- हिन्दी
 
 ## GitHub Pages
 
-Le projet utilise Vite et GitHub Actions pour publier `dist/` sur GitHub Pages.
+Le projet utilise Vite et un seul workflow GitHub Pages : `.github/workflows/pages.yml`.
 
-
-## Card visuals
-Premium 3D treatment for the card carousel: layered gradients, chip, reflections, depth and hover motion.
+**Important : supprime l'ancien workflow GitHub Pages dynamique dans le repository avant de tester cette version, afin d'éviter deux déploiements concurrents.**
