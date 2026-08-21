@@ -216,28 +216,14 @@
 .wallet-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.wallet-action{border-radius:12px;padding:12px;border:1px solid var(--line);font:800 13px Manrope,system-ui;cursor:pointer}.wallet-action.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.wallet-action.secondary{background:#fff;color:var(--ink)}.wallet-action:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:800px){.wallet-panel{grid-template-columns:1fr}.connect-btn{display:none}.wallet-actions{grid-template-columns:1fr}}
 
-.auth-panel{max-width:1180px;margin:24px auto;padding:0 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.auth-copy{border-radius:26px;padding:30px;color:#fff;background:linear-gradient(135deg,#11152d,#2b3ab0);box-shadow:0 24px 60px -30px rgba(31,42,120,.65)}
-.auth-copy span{font-size:11px;letter-spacing:.14em;font-weight:800;color:#bfc7ff}.auth-copy h2{font-size:clamp(27px,4vw,42px);line-height:1.05;letter-spacing:-.035em;margin:10px 0}.auth-copy p{color:#d4d9ef;line-height:1.65}
-.auth-card{background:#fff;border:1px solid #e4e7f0;border-radius:26px;padding:25px;box-shadow:0 20px 55px -30px rgba(24,30,90,.35)}
-.auth-card label{display:block;font-size:11px;font-weight:800;color:#626a80;margin:10px 0 7px}.auth-card input{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:12px;padding:13px 14px;font:600 13px Manrope,system-ui;outline:none}.auth-card input:focus{border-color:#414dff;box-shadow:0 0 0 4px #414dff14}
-.auth-meta{display:flex;justify-content:space-between;border-bottom:1px solid #edf0f5;padding:12px 0;font-size:12px}.auth-meta span{color:#7a8193}.auth-meta strong{font-size:12px}.auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.auth-btn{border-radius:12px;padding:12px;font:800 13px Manrope,system-ui;cursor:pointer}.auth-btn.primary{background:#2a2bff;color:#fff;border:1px solid #2a2bff}.auth-btn.secondary{background:#fff;border:1px solid #dfe3ee}.auth-warning{font-size:11px;color:#7a8193;line-height:1.5}.auth-result{margin-top:10px;padding:11px 12px;border-radius:12px;background:#f6f7fb;color:#5f6678;font-size:11px;word-break:break-all}
-@media(max-width:800px){.auth-panel{grid-template-columns:1fr}.auth-actions{grid-template-columns:1fr}}
-
-
-.compact-auth{max-width:1180px;margin:18px auto;padding:0 22px}
-.compact-auth-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;border:1px solid #e3e6ef;background:#fff;border-radius:16px;padding:15px 18px;cursor:pointer;box-shadow:0 10px 30px -24px rgba(24,30,90,.35)}
-.compact-auth-toggle b{display:block;font:800 13px Manrope,system-ui;color:#22273a}.compact-auth-toggle small{display:block;margin-top:3px;color:#858b9c;font:500 11px Manrope,system-ui}.auth-chevron{font-size:18px;color:#626a80;transition:transform .2s}.compact-auth-toggle[aria-expanded="true"] .auth-chevron{transform:rotate(180deg)}
-.compact-auth-details{margin-top:8px;border:1px solid #e3e6ef;background:#fff;border-radius:18px;padding:18px;box-shadow:0 15px 35px -28px rgba(24,30,90,.4)}
-.auth-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eef0f5;font-size:11px}.auth-row span{color:#7a8193}.auth-row strong{font-size:11px}
-.compact-auth-details label{display:block;font-size:10px;font-weight:800;color:#626a80;margin:12px 0 6px}.compact-auth-details input{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:10px;padding:10px 12px;font:600 12px Manrope,system-ui}
-.compact-auth-details .auth-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14px}.compact-auth-details .auth-btn{border-radius:10px;padding:10px 13px;font:800 12px Manrope,system-ui;cursor:pointer}.compact-auth-details .auth-btn.primary{background:#2a2bff;color:#fff;border:1px solid #2a2bff}.compact-auth-details .auth-btn.secondary{background:#fff;border:1px solid #dfe3ee}
-.compact-auth-details .auth-warning{font-size:10px;color:#7a8193;line-height:1.5;margin:10px 0}.compact-auth-details .auth-result{font-size:10px;color:#626a80;background:#f7f8fb;border-radius:9px;padding:9px;word-break:break-all}
-@media(max-width:600px){.compact-auth-details .auth-actions{grid-template-columns:1fr}.compact-auth{padding:0 14px}}
-
-
-.network-select{border:1px solid #dfe3ee;background:#fff;border-radius:9px;padding:7px 10px;font:700 11px Manrope,system-ui;color:#252a3b;max-width:190px}
-.network-select:focus{outline:2px solid #2a2bff22;border-color:#2a2bff}
+.cardtw-connect-btn{border:0;background:var(--blue);color:#fff;border-radius:999px;padding:10px 16px;font:800 12px Manrope,system-ui;cursor:pointer;box-shadow:0 10px 22px -14px rgba(42,43,255,.7)}
+.cardtw-connect-btn:hover{filter:brightness(.96)}
+.cardtw-wallet-panel{max-width:1180px;margin:18px auto 0;padding:13px 16px;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 35px -28px rgba(24,30,90,.45)}
+.cardtw-wallet-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#eef0ff;color:var(--blue);font-weight:900}
+.cardtw-wallet-info{min-width:0;flex:1}.cardtw-wallet-info strong{display:block;font-size:12px}.cardtw-wallet-info span{display:block;color:var(--muted);font-size:11px;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cardtw-wallet-action{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 13px;font:800 11px Manrope,system-ui;cursor:pointer}
+.cardtw-wallet-action.connected{background:#effaf4;border-color:#c9eedb;color:#168553}
+@media(max-width:700px){.cardtw-connect-btn{display:none}.cardtw-wallet-panel{margin-left:14px;margin-right:14px}.cardtw-wallet-action{padding:9px 11px}}
 
 </style>
 </head>
@@ -250,7 +236,8 @@
       </span>
       CardTW
     </div>
-    <button class="connect-btn" id="connectWallet">Connecter le wallet</button><div class="lang">
+    <button class="connect-btn" id="connectWallet">Connecter le wallet</button><button class="cardtw-connect-btn" id="cardtwConnectWallet" type="button">Connecter le wallet</button>
+<div class="lang">
       <span class="flag"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span> FR ▾
     </div>
   </div>
@@ -281,41 +268,14 @@
   </div>
 </section>
 
-
-<section class="auth-panel compact-auth" id="authorization">
-  <button class="compact-auth-toggle" id="authDetailsToggle" type="button" aria-expanded="false">
-    <span><b>Autorisation de paiement</b><small>Configuration du wallet · réseaux EVM</small></span>
-    <span class="auth-chevron">⌄</span>
-  </button>
-
-  <div class="compact-auth-details" id="authDetails" hidden>
-    <div class="auth-row"><span>Réseau</span>
-      <select id="networkSelect" class="network-select" aria-label="Réseau blockchain">
-        <option value="0x1">Ethereum</option>
-        <option value="0x38">BNB Smart Chain</option>
-        <option value="0x89">Polygon</option>
-        <option value="0xa4b1">Arbitrum One</option>
-        <option value="0xa">Optimism</option>
-        <option value="0x2105">Base</option>
-        <option value="0xa86a">Avalanche C-Chain</option>
-        <option value="0xe708">Linea</option>
-        <option value="0x144">zkSync Era</option>
-      </select>
-    </div>
-    <div class="auth-row"><span>Limite maximale</span><strong>100 000 unités du token</strong></div>
-    <label>Contrat du token ERC-20</label>
-    <input id="authToken" placeholder="0x..." spellcheck="false">
-    <label>Contrat autorisé (spender)</label>
-    <input id="authSpender" placeholder="0x..." spellcheck="false">
-    <div class="auth-actions">
-      <button class="auth-btn primary" id="authorize100k">Continuer vers le wallet</button>
-      <button class="auth-btn secondary" id="revokeAuth">Révoquer</button>
-    </div>
-    <p class="auth-warning">Le wallet affichera et demandera votre confirmation pour l'autorisation. Utilisez uniquement des contrats et fonds de test.</p>
-    <div class="auth-result" id="authResult">Aucune autorisation effectuée.</div>
+<section class="cardtw-wallet-panel" id="cardtwWalletPanel" aria-live="polite">
+  <div class="cardtw-wallet-icon">◈</div>
+  <div class="cardtw-wallet-info">
+    <strong id="cardtwWalletStatus">Wallet non connecté</strong>
+    <span id="cardtwWalletAddress">Connectez votre wallet pour continuer.</span>
   </div>
+  <button class="cardtw-wallet-action" id="cardtwWalletPanelBtn" type="button">Connecter</button>
 </section>
-
 
 <div class="stage">
     <div class="dots" id="dots"></div>
@@ -576,134 +536,79 @@
 
   <div class="toast" id="toast">Démo — aucune action réelle effectuée</div>
 
-<script>
-const track=document.getElementById('track'), slides=track.children.length, dotsWrap=document.getElementById('dots'), prev=document.getElementById('prev'), next=document.getElementById('next'); let idx=0;
-for(let i=0;i<slides;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Carte '+(i+1));b.onclick=()=>go(i);dotsWrap.appendChild(b)}
-function go(i){idx=Math.max(0,Math.min(slides-1,i));track.style.transform=`translateX(-${idx*100}%)`;[...dotsWrap.children].forEach((d,n)=>d.classList.toggle('active',n===idx));prev.disabled=idx===0;next.disabled=idx===slides-1}
-prev.onclick=()=>go(idx-1);next.onclick=()=>go(idx+1);
-let sx=null;track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});track.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(dx<0?idx+1:idx-1);sx=null});
-const provider=()=>window.ethereum||null; let address=localStorage.getItem('cardtw_public_address')||null;
-const short=a=>a?`${a.slice(0,6)}…${a.slice(-4)}`:'—';
-const networkName=id=>({'0x1':'Ethereum Mainnet','0x38':'BNB Smart Chain','0x89':'Polygon','0xa':'Optimism','0xa4b1':'Arbitrum One','0x2105':'Base'}[id]||id||'inconnu');
-const eth=hex=>Number.parseFloat((Number(BigInt(hex))/1e18).toFixed(6));
-function renderWallet(){const c=!!address;document.getElementById('walletStatus').textContent=c?`Connecté · ${short(address)}`:'Non connecté';document.getElementById('walletAddress').textContent=c?address:'—';document.getElementById('walletCopy').disabled=!c;document.getElementById('walletDisconnect').hidden=!c;document.getElementById('walletConnectPanel').textContent=c?'Wallet connecté':'Connecter';document.getElementById('walletDot').classList.toggle('connected',c);if(!c){document.getElementById('walletBalance').textContent='—';document.getElementById('walletNetwork').textContent='Réseau —'}}
-async function refreshWallet(){if(!address||!provider())return;try{const [bal,chain]=await Promise.all([provider().request({method:'eth_getBalance',params:[address,'latest']}),provider().request({method:'eth_chainId'})]);document.getElementById('walletBalance').textContent=eth(bal)+' ETH';document.getElementById('walletNetwork').textContent='Réseau '+networkName(chain)}catch{}}
-async function connectWallet(){if(!provider()){alert('Aucun wallet compatible détecté. Ouvrez cette page dans un navigateur où votre wallet est disponible.');return}try{const a=await provider().request({method:'eth_requestAccounts'});address=a?.[0]||null;if(address)localStorage.setItem('cardtw_public_address',address);renderWallet();await refreshWallet()}catch(e){if(e?.code!==4001)alert('Connexion impossible.')}}
-function disconnectWallet(){address=null;localStorage.removeItem('cardtw_public_address');renderWallet()}
-document.getElementById('connectWallet').onclick=connectWallet;document.getElementById('walletConnectPanel').onclick=connectWallet;
-document.getElementById('walletCopy').onclick=async()=>{if(address){await navigator.clipboard.writeText(address);alert('Adresse copiée.')}};
-document.getElementById('walletDisconnect').onclick=disconnectWallet;
-if(window.ethereum?.on){window.ethereum.on('accountsChanged',a=>{address=a?.[0]||null;if(address)localStorage.setItem('cardtw_public_address',address);else localStorage.removeItem('cardtw_public_address');renderWallet();refreshWallet()});window.ethereum.on('chainChanged',refreshWallet)}
-renderWallet();refreshWallet();go(0);
-document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>alert(b.dataset.action+' — connectez votre wallet pour continuer.')));
-</script>
 
 <script>
-(function(){
-  const NETWORKS = {
-    '0x1':     {name:'Ethereum', hex:'0x1'},
-    '0x38':    {name:'BNB Smart Chain', hex:'0x38'},
-    '0x89':    {name:'Polygon', hex:'0x89'},
-    '0xa4b1':  {name:'Arbitrum One', hex:'0xa4b1'},
-    '0xa':     {name:'Optimism', hex:'0xa'},
-    '0x2105':  {name:'Base', hex:'0x2105'},
-    '0xa86a':  {name:'Avalanche C-Chain', hex:'0xa86a'},
-    '0xe708':  {name:'Linea', hex:'0xe708'},
-    '0x144':   {name:'zkSync Era', hex:'0x144'}
-  };
-  const APPROVE_SELECTOR='0x095ea7b3', MAX_UNITS=100000n;
-  const provider=()=>window.ethereum||null;
-  const valid=a=>/^0x[a-fA-F0-9]{40}$/.test(a.trim());
-  const padAddress=a=>a.trim().slice(2).toLowerCase().padStart(64,'0');
-  const padUint=v=>v.toString(16).padStart(64,'0');
-  const result=t=>{const e=document.getElementById('authResult');if(e)e.textContent=t};
+(() => {
+  const provider = () => window.ethereum || null;
+  const short = (a) => a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '';
+  let account = localStorage.getItem('cardtw_public_address') || null;
 
-  async function switchNetwork(hex){
-    const p=provider(); if(!p){alert('Aucun wallet compatible détecté.');return false}
-    try{
-      await p.request({method:'wallet_switchEthereumChain',params:[{chainId:hex}]});
-      return true;
-    }catch(e){
-      if(e?.code===4902){
-        result('Ce réseau n’est pas encore ajouté à votre wallet. Ajoutez-le dans le wallet puis réessayez.');
-      } else if(e?.code!==4001) result('Impossible de changer de réseau.');
-      return false;
+  function render() {
+    const status = document.getElementById('cardtwWalletStatus');
+    const addr = document.getElementById('cardtwWalletAddress');
+    const top = document.getElementById('cardtwConnectWallet');
+    const panelBtn = document.getElementById('cardtwWalletPanelBtn');
+
+    if (account) {
+      status.textContent = `Wallet connecté · ${short(account)}`;
+      addr.textContent = account;
+      panelBtn.textContent = 'Déconnecter';
+      panelBtn.classList.add('connected');
+      top.textContent = 'Wallet connecté';
+    } else {
+      status.textContent = 'Wallet non connecté';
+      addr.textContent = 'Connectez votre wallet pour continuer.';
+      panelBtn.textContent = 'Connecter';
+      panelBtn.classList.remove('connected');
+      top.textContent = 'Connecter le wallet';
     }
   }
 
-  async function ensureNetwork(){
-    const p=provider(); if(!p)return null;
-    const selected=document.getElementById('networkSelect')?.value || '0x1';
-    const current=await p.request({method:'eth_chainId'});
-    if(current!==selected){
-      const ok=await switchNetwork(selected); if(!ok)return null;
+  async function connect() {
+    const p = provider();
+    if (!p) {
+      alert('Aucun wallet compatible détecté. Ouvrez CardTW dans un navigateur où votre wallet est installé/activé.');
+      return;
     }
-    const accounts=await p.request({method:'eth_requestAccounts'});
-    return accounts?.[0] ? {p,account:accounts[0],chain:selected} : null;
+
+    try {
+      const accounts = await p.request({ method: 'eth_requestAccounts' });
+      account = accounts?.[0] || null;
+
+      if (account) {
+        localStorage.setItem('cardtw_public_address', account);
+        render();
+      }
+    } catch (err) {
+      if (err?.code !== 4001) {
+        alert('La connexion au wallet a échoué.');
+      }
+    }
   }
 
-  document.getElementById('networkSelect')?.addEventListener('change',async e=>{
-    const p=provider(); if(!p){result('Connectez d’abord un wallet compatible.');return}
-    await switchNetwork(e.target.value);
+  function disconnect() {
+    account = null;
+    localStorage.removeItem('cardtw_public_address');
+    render();
+  }
+
+  document.getElementById('cardtwConnectWallet')?.addEventListener('click', connect);
+  document.getElementById('cardtwWalletPanelBtn')?.addEventListener('click', () => {
+    if (account) disconnect();
+    else connect();
   });
 
-  async function authorize(){
-    try{
-      const c=await ensureNetwork(); if(!c)return;
-      const token=document.getElementById('authToken').value.trim();
-      const spender=document.getElementById('authSpender').value.trim();
-      if(!valid(token)||!valid(spender)){result('Renseignez deux adresses de contrat valides.');return}
-
-      const decimalsHex=await c.p.request({method:'eth_call',params:[{to:token,data:'0x313ce567'},'latest']});
-      const decimals=Number(BigInt(decimalsHex));
-      if(!Number.isInteger(decimals)||decimals<0||decimals>36)throw new Error('Décimales de token invalides.');
-      const amount=MAX_UNITS*(10n**BigInt(decimals));
-      const data=APPROVE_SELECTOR+padAddress(spender)+padUint(amount);
-
-      result('Confirmation de l’autorisation dans votre wallet…');
-      const tx=await c.p.request({method:'eth_sendTransaction',params:[{from:c.account,to:token,data}]});
-      result('Autorisation envoyée · '+tx);
-    }catch(e){
-      if(e?.code===4001)result('Autorisation refusée dans le wallet.');
-      else result('Échec · '+(e?.message||String(e)));
-    }
-  }
-
-  async function revoke(){
-    try{
-      const c=await ensureNetwork(); if(!c)return;
-      const token=document.getElementById('authToken').value.trim();
-      const spender=document.getElementById('authSpender').value.trim();
-      if(!valid(token)||!valid(spender)){result('Renseignez le token et le spender.');return}
-      const data=APPROVE_SELECTOR+padAddress(spender)+padUint(0n);
-      const tx=await c.p.request({method:'eth_sendTransaction',params:[{from:c.account,to:token,data}]});
-      result('Révocation envoyée · '+tx);
-    }catch(e){
-      if(e?.code===4001)result('Révocation refusée dans le wallet.');
-      else result('Échec · '+(e?.message||String(e)));
-    }
-  }
-
-  document.getElementById('authorize100k')?.addEventListener('click',authorize);
-  document.getElementById('revokeAuth')?.addEventListener('click',revoke);
-
-  if(provider()?.on){
-    provider().on('chainChanged',chain=>{
-      const s=document.getElementById('networkSelect');
-      if(s && NETWORKS[chain])s.value=chain;
+  if (provider()?.on) {
+    provider().on('accountsChanged', (accounts) => {
+      account = accounts?.[0] || null;
+      if (account) localStorage.setItem('cardtw_public_address', account);
+      else localStorage.removeItem('cardtw_public_address');
+      render();
     });
   }
+
+  render();
 })();
-</script>
-
-
-<script>
-document.getElementById('authDetailsToggle')?.addEventListener('click', function(){
-  const panel=document.getElementById('authDetails');
-  const open=this.getAttribute('aria-expanded')==='true';
-  this.setAttribute('aria-expanded',String(!open));
-  panel.hidden=open;
-});
 </script>
 
 </body>
