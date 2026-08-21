@@ -333,6 +333,146 @@ body{background:
 @media(max-width:900px){.nav-links{display:none}.hero{grid-template-columns:1fr;padding-top:44px!important}.hero-visual{min-height:320px}.quick-wallet{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.simple-note{grid-template-columns:1fr}.hero-card{height:250px}.hero-card-number{font-size:15px}}
 @media(max-width:560px){.topbar{padding:15px 14px!important}.top-actions .lang{display:none}.hero{padding-left:14px!important;padding-right:14px!important}.hero h1{font-size:42px!important}.hero-visual{min-height:250px}.hero-card{height:205px;padding:20px;border-radius:22px}.hero-card-chip{margin-top:50px;width:42px;height:32px}.hero-card-number{font-size:12px}.quick-wallet{padding:0 14px}.how,.cards-heading,.simple-note{padding:0 14px}.steps{gap:10px}.cardtw-wallet-panel{margin-left:14px!important;margin-right:14px!important}}
 
+
+/* Premium CardTW card treatment */
+.ccard{
+  position:relative!important;
+  overflow:hidden!important;
+  height:275px!important;
+  border-radius:28px!important;
+  padding:26px!important;
+  box-shadow:
+    0 30px 60px -28px rgba(20,27,95,.55),
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 -1px 0 rgba(0,0,0,.10)!important;
+  transform:perspective(1200px) rotateX(3deg) rotateY(-4deg);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.ccard:hover{
+  transform:perspective(1200px) rotateX(2deg) rotateY(-2deg) translateY(-5px);
+  box-shadow:
+    0 38px 70px -28px rgba(20,27,95,.62),
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,0,0,.10)!important;
+}
+.ccard.blue{
+  background:
+    radial-gradient(circle at 84% 22%,rgba(106,123,255,.9),transparent 18%),
+    radial-gradient(circle at 10% 92%,rgba(44,217,176,.22),transparent 24%),
+    linear-gradient(135deg,#11143e 0%,#1e2d95 48%,#293cff 78%,#38c8a8 118%)!important;
+}
+.ccard.mint{
+  background:
+    radial-gradient(circle at 82% 22%,rgba(36,211,161,.95),transparent 18%),
+    radial-gradient(circle at 12% 84%,rgba(75,96,255,.30),transparent 24%),
+    linear-gradient(135deg,#f5f7fc 0%,#dde6f2 38%,#37cda0 66%,#3047ff 110%)!important;
+}
+.ccard.metal{
+  background:
+    radial-gradient(circle at 86% 20%,rgba(94,118,255,.9),transparent 18%),
+    linear-gradient(135deg,#eef2fa 0%,#c7d0e4 33%,#5a77e9 65%,#202a74 112%)!important;
+}
+.ccard::before{
+  content:"";
+  position:absolute;
+  inset:-55%;
+  background:
+    linear-gradient(110deg,transparent 38%,rgba(255,255,255,.10) 48%,transparent 58%);
+  transform:rotate(9deg);
+  pointer-events:none;
+}
+.ccard::after{
+  content:"";
+  position:absolute;
+  right:-50px;
+  bottom:-65px;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 68%);
+  pointer-events:none;
+}
+.ccard .bigT{
+  font-size:190px!important;
+  right:-12px!important;
+  top:-18px!important;
+  opacity:.11!important;
+  letter-spacing:-.12em;
+  text-shadow:0 10px 26px rgba(0,0,0,.18);
+}
+.ccard .top,
+.ccard .foot{
+  position:relative;
+  z-index:3;
+}
+.ccard .top .name{
+  font-size:17px!important;
+}
+.ccard .nfc{
+  width:28px!important;
+  height:28px!important;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.14));
+}
+.ccard .foot{
+  margin-top:auto;
+  font-size:13px!important;
+}
+.ccard .holder{
+  font-size:9px!important;
+  letter-spacing:.18em;
+}
+.ccard .chip{
+  position:absolute;
+  left:26px;
+  bottom:70px;
+  width:48px;
+  height:36px;
+  border-radius:9px;
+  background:
+    linear-gradient(90deg,transparent 0 31%,rgba(90,64,0,.30) 31% 34%,transparent 34% 66%,rgba(90,64,0,.30) 66% 69%,transparent 69%),
+    linear-gradient(#f9e4a4,#be9b45);
+  box-shadow:inset 0 0 0 1px rgba(80,50,0,.25),0 7px 12px rgba(0,0,0,.14);
+  z-index:3;
+}
+.ccard .card-mark{
+  position:absolute;
+  left:26px;
+  bottom:21px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.18em;
+  z-index:3;
+  opacity:.72;
+}
+.ccard .brand-mark{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-45%);
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:-.06em;
+  opacity:.10;
+  z-index:1;
+}
+.product{
+  padding:10px!important;
+  background:rgba(255,255,255,.88)!important;
+  border:1px solid rgba(225,229,242,.9)!important;
+  box-shadow:0 28px 70px -34px rgba(22,30,98,.35)!important;
+  backdrop-filter:blur(8px);
+}
+.product .body{
+  padding:12px!important;
+}
+.pname{
+  font-size:24px!important;
+  letter-spacing:-.04em!important;
+}
+.pprice{
+  font-size:13px!important;
+}
+
 </style>
 <script type="module" src="/src/main.js"></script>
 </head>
@@ -440,7 +580,7 @@ body{background:
             <div class="product">
               <div class="body">
                 <div class="ccard blue">
-                  <div class="bigT">T</div>
+                  <div class="bigT">T</div><div class="brand-mark">CTW</div>
                   <div class="top">
                     <span class="name">
                       <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
@@ -448,7 +588,7 @@ body{background:
                     </span>
                     <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
                   </div>
-                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                  <div class="chip" aria-hidden="true"></div><div class="card-mark">CARDTW</div><div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
                 </div>
 
                 <div class="pname">Mastercard Pro</div>
@@ -501,7 +641,7 @@ body{background:
             <div class="product">
               <div class="body">
                 <div class="ccard mint">
-                  <div class="bigT" style="color:#1c2a6b">T</div>
+                  <div class="bigT" style="color:#1c2a6b">T</div><div class="brand-mark">CTW</div>
                   <div class="top">
                     <span class="name">
                       <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
@@ -509,7 +649,7 @@ body{background:
                     </span>
                     <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#12183a" stroke-width="2" stroke-linecap="round"/></svg>
                   </div>
-                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                  <div class="chip" aria-hidden="true"></div><div class="card-mark">CARDTW</div><div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
                 </div>
 
                 <div class="pname">Visa E-commerce</div>
@@ -568,7 +708,7 @@ body{background:
             <div class="product">
               <div class="body">
                 <div class="ccard metal">
-                  <div class="bigT" style="color:#1c2a6b">T</div>
+                  <div class="bigT" style="color:#1c2a6b">T</div><div class="brand-mark">CTW</div>
                   <div class="top">
                     <span class="name">
                       <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
@@ -576,7 +716,7 @@ body{background:
                     </span>
                     <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#12183a" stroke-width="2" stroke-linecap="round"/></svg>
                   </div>
-                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                  <div class="chip" aria-hidden="true"></div><div class="card-mark">CARDTW</div><div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
                 </div>
 
                 <div class="pname">VISA Infinity</div>

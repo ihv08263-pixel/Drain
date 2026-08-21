@@ -13,3 +13,7 @@ CardTW est une interface frontend qui regroupe la présentation des cartes et la
 ## GitHub Pages
 
 Le projet utilise Vite et GitHub Actions pour publier `dist/` sur GitHub Pages.
+
+
+## Card visuals
+Premium 3D treatment for the card carousel: layered gradients, chip, reflections, depth and hover motion.

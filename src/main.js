@@ -12,15 +12,7 @@ import {
 
 const projectId = '17c85e8f03aeb086abdd0f20c6070032'
 
-const networks = [
-  mainnet,
-  arbitrum,
-  base,
-  polygon,
-  optimism,
-  bsc,
-  avalanche
-]
+const networks = [mainnet, arbitrum, base, polygon, optimism, bsc, avalanche]
 
 const metadata = {
   name: 'CardTW',
@@ -29,10 +21,7 @@ const metadata = {
   icons: ['https://ihv08263-pixel.github.io/cardtw/assets/cardtw-logo.png']
 }
 
-const wagmiAdapter = new WagmiAdapter({
-  projectId,
-  networks
-})
+const wagmiAdapter = new WagmiAdapter({ projectId, networks })
 
 const modal = createAppKit({
   adapters: [wagmiAdapter],
@@ -53,7 +42,6 @@ const shortAddress = (address) =>
 function renderWallet() {
   const status = document.getElementById('cardtwWalletStatus')
   const addressEl = document.getElementById('cardtwWalletAddress')
-  const buttons = document.querySelectorAll('[data-wallet-connect]')
 
   if (!status || !addressEl) return
 
@@ -64,27 +52,9 @@ function renderWallet() {
   if (connected && address) {
     status.textContent = `Wallet connecté · ${shortAddress(address)}`
     addressEl.textContent = `Adresse : ${address}${chainId ? ` · Chain ID ${chainId}` : ''}`
-
-    buttons.forEach((button) => {
-      button.textContent =
-        button.dataset.walletRole === 'primary'
-          ? 'Wallet connecté'
-          : button.textContent.includes('émettre') || button.textContent.includes('précommander')
-            ? button.textContent
-            : 'Gérer le wallet'
-    })
   } else {
     status.textContent = 'Wallet non connecté'
     addressEl.textContent = 'Connectez votre wallet pour continuer.'
-
-    buttons.forEach((button) => {
-      const role = button.dataset.walletRole
-      if (role === 'primary') {
-        button.textContent = 'Connecter le wallet'
-      } else if (button.dataset.walletAction === 'card') {
-        button.textContent = button.dataset.originalLabel || 'Connecter pour continuer'
-      }
-    })
   }
 }
 
@@ -92,22 +62,23 @@ function openConnect() {
   modal.open({ view: 'Connect', namespace: 'eip155' })
 }
 
+function openAccount() {
+  modal.open({ view: 'Account' })
+}
+
+// Every wallet-related button uses the same handler.
 document.querySelectorAll('[data-wallet-connect]').forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault()
     if (modal.getIsConnected()) {
-      modal.open({ view: 'Account' })
+      openAccount()
     } else {
       openConnect()
     }
   })
 })
 
-modal.subscribeProvider(() => {
-  renderWallet()
-})
-
-modal.subscribeState(() => {
-  renderWallet()
-})
+modal.subscribeProvider(() => renderWallet())
+modal.subscribeState(() => renderWallet())
 
 renderWallet()
