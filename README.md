@@ -1,9 +1,9 @@
-# CardTW
+# CardTW — multi-chain EVM
 
-Frontend statique CardTW, pensé pour GitHub Pages.
+Interface CardTW avec sélection de réseaux EVM courants et connexion via un provider EIP-1193.
 
-## Wallet
-La connexion utilise l'API wallet injectée (EIP-1193) lorsqu'elle est disponible. CardTW ne demande ni ne stocke de clé privée ou de phrase de récupération. Les transactions sont confirmées/signées dans le wallet de l'utilisateur.
+Réseaux inclus : Ethereum, BNB Smart Chain, Polygon, Arbitrum One, Optimism, Base, Avalanche C-Chain, Linea et zkSync Era.
 
-## Déploiement
-Uploader `index.html`, `styles.css`, `script.js` et `assets/` à la racine du dépôt GitHub Pages.
+Le réseau actif est sélectionné dans le wallet. Le site demande au wallet de changer de chaîne lorsque nécessaire. Les clés privées et phrases de récupération restent dans le wallet.
+
+Les autorisations ERC-20 sont propres à chaque token, contrat et réseau ; elles ne sont pas globales à toutes les chaînes.
