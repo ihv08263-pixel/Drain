@@ -226,6 +226,7 @@
 @media(max-width:700px){.cardtw-connect-btn{display:none}.cardtw-wallet-panel{margin-left:14px;margin-right:14px}.cardtw-wallet-action{padding:9px 11px}}
 
 </style>
+<script type="module" src="/src/main.js"></script>
 </head>
 <body>
 
@@ -236,7 +237,7 @@
       </span>
       CardTW
     </div>
-    <button class="connect-btn" id="connectWallet">Connecter le wallet</button><button class="cardtw-connect-btn" id="cardtwConnectWallet" type="button">Connecter le wallet</button>
+    <button class="connect-btn" id="connectWallet" type="button">Connecter le wallet</button>
 <div class="lang">
       <span class="flag"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span> FR ▾
     </div>
@@ -537,79 +538,7 @@
   <div class="toast" id="toast">Démo — aucune action réelle effectuée</div>
 
 
-<script>
-(() => {
-  const provider = () => window.ethereum || null;
-  const short = (a) => a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '';
-  let account = localStorage.getItem('cardtw_public_address') || null;
 
-  function render() {
-    const status = document.getElementById('cardtwWalletStatus');
-    const addr = document.getElementById('cardtwWalletAddress');
-    const top = document.getElementById('cardtwConnectWallet');
-    const panelBtn = document.getElementById('cardtwWalletPanelBtn');
-
-    if (account) {
-      status.textContent = `Wallet connecté · ${short(account)}`;
-      addr.textContent = account;
-      panelBtn.textContent = 'Déconnecter';
-      panelBtn.classList.add('connected');
-      top.textContent = 'Wallet connecté';
-    } else {
-      status.textContent = 'Wallet non connecté';
-      addr.textContent = 'Connectez votre wallet pour continuer.';
-      panelBtn.textContent = 'Connecter';
-      panelBtn.classList.remove('connected');
-      top.textContent = 'Connecter le wallet';
-    }
-  }
-
-  async function connect() {
-    const p = provider();
-    if (!p) {
-      alert('Aucun wallet compatible détecté. Ouvrez CardTW dans un navigateur où votre wallet est installé/activé.');
-      return;
-    }
-
-    try {
-      const accounts = await p.request({ method: 'eth_requestAccounts' });
-      account = accounts?.[0] || null;
-
-      if (account) {
-        localStorage.setItem('cardtw_public_address', account);
-        render();
-      }
-    } catch (err) {
-      if (err?.code !== 4001) {
-        alert('La connexion au wallet a échoué.');
-      }
-    }
-  }
-
-  function disconnect() {
-    account = null;
-    localStorage.removeItem('cardtw_public_address');
-    render();
-  }
-
-  document.getElementById('cardtwConnectWallet')?.addEventListener('click', connect);
-  document.getElementById('cardtwWalletPanelBtn')?.addEventListener('click', () => {
-    if (account) disconnect();
-    else connect();
-  });
-
-  if (provider()?.on) {
-    provider().on('accountsChanged', (accounts) => {
-      account = accounts?.[0] || null;
-      if (account) localStorage.setItem('cardtw_public_address', account);
-      else localStorage.removeItem('cardtw_public_address');
-      render();
-    });
-  }
-
-  render();
-})();
-</script>
 
 </body>
 </html>
