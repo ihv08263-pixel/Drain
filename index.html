@@ -225,6 +225,61 @@
 .cardtw-wallet-action.connected{background:#effaf4;border-color:#c9eedb;color:#168553}
 @media(max-width:700px){.cardtw-connect-btn{display:none}.cardtw-wallet-panel{margin-left:14px;margin-right:14px}.cardtw-wallet-action{padding:9px 11px}}
 
+
+/* CardTW clean visual pass */
+:root{
+  --ink:#11162f;
+  --muted:#6c7490;
+  --line:#e8ebf4;
+  --blue:#2a2bff;
+  --blue-dark:#2021d8;
+}
+body{
+  background:
+    radial-gradient(800px 420px at 78% 5%, rgba(91,102,255,.10), transparent 72%),
+    linear-gradient(180deg,#f8f9ff 0%,#eef2ff 46%,#fff 100%);
+}
+.topbar{padding-top:20px!important;padding-bottom:14px!important}
+.brand{letter-spacing:-.03em}
+.hero{padding-top:26px!important}
+.hero h1{letter-spacing:-.045em!important}
+.hero .sub{max-width:640px!important}
+.wallet-section-kicker{
+  max-width:1180px;margin:18px auto 0;padding:0 22px;
+  font-size:10px;letter-spacing:.18em;font-weight:800;color:#7d85a2;
+}
+.cardtw-wallet-panel{
+  margin-top:8px!important;margin-bottom:4px;
+  padding:12px 14px!important;border-radius:18px!important;
+  background:rgba(255,255,255,.86)!important;
+  box-shadow:0 14px 38px -28px rgba(24,30,90,.48)!important;
+  backdrop-filter:blur(10px);
+}
+.cardtw-wallet-icon{width:34px!important;height:34px!important;border-radius:10px!important}
+.stage{margin-top:16px!important}
+.product{
+  max-width:620px!important;
+  border-radius:28px!important;
+  box-shadow:0 28px 70px -34px rgba(27,33,100,.34)!important;
+}
+.product .body{padding:20px 20px 22px!important}
+.ccard{
+  height:250px!important;
+  border-radius:24px!important;
+  box-shadow:0 20px 42px -22px rgba(24,30,100,.55), inset 0 1px rgba(255,255,255,.25)!important;
+}
+.pname{font-size:22px!important}
+.infobox,.desc,.limits,.note{border-radius:15px!important}
+.cryptos{margin-top:30px!important}
+.demo-banner{margin-top:18px!important}
+@media(max-width:760px){
+  .topbar{padding-left:14px!important;padding-right:14px!important}
+  .hero{padding-left:14px!important;padding-right:14px!important}
+  .wallet-section-kicker{padding:0 14px}
+  .product .body{padding:16px!important}
+  .ccard{height:215px!important}
+}
+
 </style>
 <script type="module" src="/src/main.js"></script>
 </head>
@@ -248,27 +303,6 @@
     <h1>Choisissez un produit</h1>
     <p class="sub">Une carte crypto rapide et pratique. Sélectionnez le format qui correspond à vos besoins.</p>
   </header>
-
-  
-<section class="wallet-panel" id="wallet">
-  <div class="wallet-panel-copy">
-    <span class="wallet-kicker">VOTRE WALLET</span>
-    <h2>Connectez votre wallet</h2>
-    <p>Connectez un wallet compatible pour afficher votre adresse publique et votre solde. CardTW ne demande jamais de clé privée ou de phrase de récupération.</p>
-  </div>
-  <div class="wallet-state">
-    <div class="wallet-state-top"><span class="status-dot" id="walletDot"></span><strong id="walletStatus">Non connecté</strong></div>
-    <div class="wallet-address" id="walletAddress">—</div>
-    <div class="wallet-balance"><span>Solde</span><strong id="walletBalance">—</strong></div>
-    <div class="wallet-network" id="walletNetwork">Réseau —</div>
-    <div class="wallet-actions">
-      <button class="wallet-action primary" id="walletConnectPanel">Connecter</button>
-      <button class="wallet-action secondary" id="walletCopy" disabled>Copier l'adresse</button>
-      <button class="wallet-action secondary" id="walletDisconnect" hidden>Déconnecter</button>
-    </div>
-  </div>
-</section>
-
 <section class="cardtw-wallet-panel" id="cardtwWalletPanel" aria-live="polite">
   <div class="cardtw-wallet-icon">◈</div>
   <div class="cardtw-wallet-info">
@@ -278,6 +312,7 @@
   <button class="cardtw-wallet-action" id="cardtwWalletPanelBtn" type="button">Connecter</button>
 </section>
 
+<div class="wallet-section-kicker">WALLET</div>
 <div class="stage">
     <div class="dots" id="dots"></div>
 

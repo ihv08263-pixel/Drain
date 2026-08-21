@@ -16,3 +16,7 @@ Cette version utilise Vite et le workflow `.github/workflows/pages.yml`.
 Le `base` Vite est configuré pour `/cardtw/`.
 
 Le Project ID Reown est utilisé côté frontend. Aucun secret Reown n'est nécessaire ici.
+
+
+## Clean UI pass
+Espacements et hiérarchie visuelle affinés sans modifier la connexion Reown/AppKit.
