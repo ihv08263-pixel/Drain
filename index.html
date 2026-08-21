@@ -365,6 +365,14 @@ body{background:
 .product .body{padding:12px!important}
 
 
+appkit-button{display:inline-block}
+#cardtwHeaderConnect,#cardtwHeroConnect,#cardtwPanelConnect{--w3m-color-mix:#2a2bff}
+
+
+[data-wallet-connect]{position:relative;z-index:20;pointer-events:auto;cursor:pointer}
+.connect-btn{display:inline-flex!important;align-items:center;justify-content:center}
+.primary-hero{display:inline-flex!important}
+.wallet-main-btn{display:inline-flex!important;align-items:center;justify-content:center}
 
 </style>
 <script type="module" src="./src/main.js"></script>
@@ -386,7 +394,7 @@ body{background:
     <a href="#wallet" data-i18n="navWallet">Wallet</a>
   </nav>
   <div class="top-actions">
-    <button class="connect-btn wallet-trigger" id="cardtwHeaderConnect" type="button" data-wallet-connect>Connecter le wallet</button>
+    <button id="cardtwHeaderConnect" class="connect-btn wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
     <label class="lang-selector">
       <span aria-hidden="true">🌐</span>
       <select id="languageSelect" aria-label="Language">
@@ -413,7 +421,7 @@ body{background:
     <h1><span data-i18n="heroTitle">Une carte simple.<br><span>Un wallet connecté.</span></span></h1>
     <p class="sub"><span data-i18n="heroSub">CardTW regroupe vos cartes, votre wallet et vos paiements dans une interface claire. Connectez votre wallet, choisissez une carte et gardez une vue simple sur votre activité.</span></p>
     <div class="hero-actions">
-      <button class="primary-hero wallet-trigger" id="cardtwHeroConnect" type="button" data-wallet-connect>Connecter le wallet</button>
+      <button id="cardtwHeroConnect" class="primary-hero wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
       <a class="secondary-hero" href="#how"><span data-i18n="howLink">Découvrir le fonctionnement</span></a>
     </div>
     <div class="hero-trust">
@@ -444,7 +452,7 @@ body{background:
   <div class="quick-wallet-card">
     <div class="wallet-status"><span class="status-dot" id="walletDot"></span><strong id="cardtwWalletStatus"><span data-i18n="walletDisconnected">Wallet non connecté</span></strong></div>
     <div class="wallet-address" id="cardtwWalletAddress"><span data-i18n="walletPrompt">Connectez votre wallet pour continuer.</span></div>
-    <button class="wallet-main-btn wallet-trigger" id="cardtwPanelConnect" type="button" data-wallet-connect>Connecter le wallet</button>
+    <button id="cardtwPanelConnect" class="wallet-main-btn wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
   </div>
 </section>
 
