@@ -1,75 +1,655 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CardTW — Votre espace crypto</title>
-<meta name="description" content="CardTW — interface personnelle pour visualiser vos cartes et connecter un wallet compatible.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CardTW — Choisissez votre carte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2a2bff;
+    --blue-dark:#1a1bd6;
+    --ink:#0e1330;
+    --muted:#6b7192;
+    --bg:#eef2ff;
+    --card:#ffffff;
+    --line:#e6e9f5;
+    --green:#16b364;
+    --radius:22px;
+    --shadow:0 20px 45px -20px rgba(24,28,90,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Manrope',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#f3f6ff 0%,#eaf0ff 40%,#ffffff 100%);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    padding-bottom:120px;
+  }
+
+  /* top bar */
+  .topbar{
+    max-width:1180px;margin:0 auto;padding:26px 22px 8px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+  .brand .logo{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),#6b6cff);
+    display:grid;place-items:center;color:#fff;
+    box-shadow:0 8px 18px -6px rgba(42,43,255,.6);
+  }
+  .brand .logo svg{width:19px;height:19px}
+  .lang{
+    display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:9px 16px;font-weight:700;font-size:14px;box-shadow:var(--shadow);
+  }
+  .lang .flag{width:20px;height:14px;border-radius:3px;overflow:hidden;display:inline-flex}
+  .lang .flag i{flex:1}
+  .flag .b1{background:#2440d9}.flag .b2{background:#fff}.flag .b3{background:#e11d2e}
+
+  /* header */
+  header.hero{max-width:1180px;margin:0 auto;padding:18px 22px 6px}
+  header.hero .kicker{
+    text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:800;color:var(--muted);
+  }
+  header.hero h1{
+    font-size:clamp(34px,6vw,52px);line-height:1.03;letter-spacing:-.03em;margin-top:10px;
+  }
+  header.hero p.sub{color:var(--muted);margin-top:14px;font-size:17px;max-width:520px}
+
+  /* carousel */
+  .stage{max-width:1180px;margin:26px auto 0;padding:0 22px;position:relative}
+  .dots{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+  .dot{width:9px;height:9px;border-radius:999px;background:#c8cef0;transition:.25s;border:none;cursor:pointer;padding:0}
+  .dot.active{width:26px;background:var(--blue)}
+
+  .viewport{overflow:hidden;border-radius:26px}
+  .track{display:flex;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+  .slide{min-width:100%;padding:6px}
+
+  .product{
+    background:var(--card);border:1px solid var(--line);border-radius:26px;
+    box-shadow:var(--shadow);overflow:hidden;
+    max-width:560px;margin:0 auto;
+  }
+  .product .body{padding:26px 24px 28px}
+
+  /* card visual */
+  .ccard{
+    position:relative;border-radius:20px;padding:22px;height:210px;
+    color:#fff;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .ccard.blue{background:linear-gradient(120deg,#1c1dff 0%,#3a3bff 55%,#5a5bff 100%)}
+  .ccard.mint{background:linear-gradient(115deg,#e9eef7 0%,#dfe6f2 34%,#25d09a 60%,#2740ff 100%)}
+  .ccard.metal{background:linear-gradient(120deg,#dfe6f5 0%,#c3cde6 30%,#3a5bff 88%)}
+  .ccard .bigT{position:absolute;right:-6px;top:8px;font-size:150px;font-weight:800;opacity:.10;line-height:1}
+  .ccard .top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+  .ccard .top .name{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.02em}
+  .ccard .top .name svg{width:20px;height:20px}
+  .ccard.mint .top .name,.ccard.metal .top .name{color:#12183a}
+  .ccard .nfc{width:24px;height:24px;opacity:.9}
+  .ccard .foot{position:relative;z-index:2;font-size:12px;letter-spacing:.14em;font-weight:700;opacity:.9}
+  .ccard.mint .foot,.ccard.metal .foot{color:#12183a}
+  .ccard .holder{font-size:10px;opacity:.75;margin-bottom:3px}
+
+  .arrows{display:flex;justify-content:space-between;position:absolute;inset:0;align-items:center;pointer-events:none}
+  .arrow{
+    pointer-events:auto;width:44px;height:44px;border-radius:999px;border:1px solid var(--line);
+    background:rgba(255,255,255,.92);backdrop-filter:blur(6px);cursor:pointer;
+    display:grid;place-items:center;color:var(--blue);box-shadow:var(--shadow);transition:.2s;
+    position:absolute;top:88px;
+  }
+  .arrow:hover{transform:scale(1.06)}
+  .arrow.prev{left:-6px}.arrow.next{right:-6px}
+  .arrow:disabled{opacity:.35;cursor:default}
+  .stage-card{position:relative}
+
+  .pname{font-size:24px;font-weight:800;text-align:center;margin-top:22px;letter-spacing:-.02em}
+  .pprice{text-align:center;color:var(--muted);font-weight:600;margin-top:4px}
+  .pprice b{color:var(--ink)}
+
+  .infobox{
+    background:#f4f6ff;border:1px solid #e4e8ff;border-radius:16px;padding:16px 18px;margin-top:18px;
+  }
+  .infobox .h{font-weight:800;font-size:15px}
+  .infobox .r{display:flex;gap:10px;margin-top:8px;color:var(--muted);font-size:14px;line-height:1.5}
+  .infobox .r svg{flex:none;width:18px;height:18px;color:var(--blue);margin-top:1px}
+
+  .desc{
+    border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:14px;
+    color:var(--muted);font-size:14.5px;line-height:1.6;
+  }
+  .desc p+p{margin-top:10px}
+  .desc b{color:var(--ink)}
+
+  .cta{
+    width:100%;border:none;cursor:pointer;margin-top:18px;
+    background:var(--blue);color:#fff;font-weight:800;font-size:16px;
+    padding:16px;border-radius:14px;transition:.2s;font-family:inherit;
+    box-shadow:0 14px 26px -12px rgba(42,43,255,.7);
+  }
+  .cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+  /* limits */
+  .limits{border:1px solid var(--line);border-radius:16px;margin-top:16px;overflow:hidden}
+  .limits summary{
+    list-style:none;cursor:pointer;padding:16px 18px;display:flex;
+    align-items:center;justify-content:space-between;font-weight:800;font-size:16px;
+  }
+  .limits summary::-webkit-details-marker{display:none}
+  .limits summary .chev{transition:.25s;color:var(--blue)}
+  .limits[open] summary .chev{transform:rotate(180deg)}
+  .limits .rows{padding:4px 18px 18px}
+  .lrow{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px dashed #e7eaf6}
+  .lrow:first-child{border-top:none}
+  .lrow .ic{flex:none;width:22px;height:22px;color:var(--green)}
+  .lrow .lab{color:var(--muted);font-size:15px}
+  .lrow .val{margin-left:auto;font-weight:800;text-align:right}
+  .lrow ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px;line-height:1.7}
+  .lrow.stack{flex-direction:column;gap:2px}
+
+  .pays{display:flex;gap:12px;margin-top:16px}
+  .pay{
+    flex:1;border:1px solid var(--line);border-radius:14px;padding:13px;
+    display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;background:#fff;
+  }
+  .pay svg{width:20px;height:20px}
+  .note{
+    display:flex;gap:10px;background:#f4f8ff;border:1px solid #e2ecff;border-radius:14px;
+    padding:14px 16px;margin-top:16px;color:var(--muted);font-size:13px;line-height:1.55;
+  }
+  .note svg{flex:none;width:18px;height:18px;color:var(--blue);margin-top:1px}
+
+  /* accepted cryptos */
+  .cryptos{max-width:1180px;margin:44px auto 0;padding:0 22px;text-align:center}
+  .cryptos h2{font-size:clamp(24px,4vw,32px);letter-spacing:-.02em}
+  .cryptos p.lead{color:var(--muted);margin-top:8px;font-size:16px}
+  .coingrid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:26px;
+  }
+  .coin{
+    background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 12px;
+    box-shadow:0 12px 30px -22px rgba(24,28,90,.4);transition:.22s;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .coin:hover{transform:translateY(-3px);box-shadow:0 20px 36px -20px rgba(24,28,90,.45)}
+  .coin .ico{width:46px;height:46px}
+  .coin .cname{font-weight:800;font-size:15px}
+  .coin .csym{color:var(--muted);font-size:12.5px;font-weight:600;letter-spacing:.04em}
+  @media(max-width:860px){.coingrid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:420px){.coingrid{grid-template-columns:repeat(2,1fr)}}
+
+  .demo-banner{
+    max-width:1180px;margin:34px auto 0;padding:0 22px;
+  }
+  .demo-banner div{
+    background:#fff8e6;border:1px solid #ffe6a1;color:#8a6412;
+    border-radius:14px;padding:12px 16px;font-size:13px;font-weight:600;text-align:center;
+  }
+
+  /* toast */
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);
+    background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;font-weight:700;
+    box-shadow:0 18px 40px -12px rgba(0,0,0,.4);transition:.35s;z-index:50;font-size:14px;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  @media(max-width:560px){
+    header.hero h1{font-size:32px}
+    .arrow.prev{left:-2px}.arrow.next{right:-2px}
+  }
+
+.connect-btn{border:0;background:var(--blue);color:#fff;border-radius:999px;padding:11px 17px;font:800 13px Manrope,system-ui;cursor:pointer;box-shadow:0 10px 24px -12px rgba(42,43,255,.7)}
+.wallet-panel{max-width:1180px;margin:28px auto 0;padding:0 22px;display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.wallet-panel-copy{background:linear-gradient(135deg,#111633,#2736a5);color:#fff;border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+.wallet-kicker{font-size:11px;letter-spacing:.16em;font-weight:800;color:#bfc7ff}.wallet-panel-copy h2{font-size:clamp(26px,4vw,38px);line-height:1.08;margin-top:9px}.wallet-panel-copy p{color:#d0d6f2;line-height:1.6;margin-top:12px}
+.wallet-state{background:#fff;border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:var(--shadow)}.wallet-state-top{display:flex;align-items:center;gap:9px}
+.status-dot{width:9px;height:9px;border-radius:50%;background:#9ca3b8}.status-dot.connected{background:var(--green);box-shadow:0 0 12px rgba(22,179,100,.55)}
+.wallet-address{margin-top:20px;padding:13px 14px;border:1px solid var(--line);background:#f7f8ff;border-radius:13px;word-break:break-all;font-size:13px;font-weight:700;min-height:44px}
+.wallet-balance{display:flex;justify-content:space-between;align-items:baseline;margin-top:17px}.wallet-balance span,.wallet-network{color:var(--muted);font-size:13px}.wallet-balance strong{font-size:22px}.wallet-network{margin-top:5px}
+.wallet-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.wallet-action{border-radius:12px;padding:12px;border:1px solid var(--line);font:800 13px Manrope,system-ui;cursor:pointer}.wallet-action.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.wallet-action.secondary{background:#fff;color:var(--ink)}.wallet-action:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:800px){.wallet-panel{grid-template-columns:1fr}.connect-btn{display:none}.wallet-actions{grid-template-columns:1fr}}
+
+.auth-panel{max-width:1180px;margin:24px auto;padding:0 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.auth-copy{border-radius:26px;padding:30px;color:#fff;background:linear-gradient(135deg,#11152d,#2b3ab0);box-shadow:0 24px 60px -30px rgba(31,42,120,.65)}
+.auth-copy span{font-size:11px;letter-spacing:.14em;font-weight:800;color:#bfc7ff}.auth-copy h2{font-size:clamp(27px,4vw,42px);line-height:1.05;letter-spacing:-.035em;margin:10px 0}.auth-copy p{color:#d4d9ef;line-height:1.65}
+.auth-card{background:#fff;border:1px solid #e4e7f0;border-radius:26px;padding:25px;box-shadow:0 20px 55px -30px rgba(24,30,90,.35)}
+.auth-card label{display:block;font-size:11px;font-weight:800;color:#626a80;margin:10px 0 7px}.auth-card input{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:12px;padding:13px 14px;font:600 13px Manrope,system-ui;outline:none}.auth-card input:focus{border-color:#414dff;box-shadow:0 0 0 4px #414dff14}
+.auth-meta{display:flex;justify-content:space-between;border-bottom:1px solid #edf0f5;padding:12px 0;font-size:12px}.auth-meta span{color:#7a8193}.auth-meta strong{font-size:12px}.auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.auth-btn{border-radius:12px;padding:12px;font:800 13px Manrope,system-ui;cursor:pointer}.auth-btn.primary{background:#2a2bff;color:#fff;border:1px solid #2a2bff}.auth-btn.secondary{background:#fff;border:1px solid #dfe3ee}.auth-warning{font-size:11px;color:#7a8193;line-height:1.5}.auth-result{margin-top:10px;padding:11px 12px;border-radius:12px;background:#f6f7fb;color:#5f6678;font-size:11px;word-break:break-all}
+@media(max-width:800px){.auth-panel{grid-template-columns:1fr}.auth-actions{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#home"><span class="brand-mark">C</span><span>Card<span>TW</span></span></a>
-  <nav class="desktop-nav"><a href="#home">Accueil</a><a href="#wallet">Wallet</a><a href="#cards">Cartes</a><a href="#how">Comment ça marche</a><a href="#faq">Aide</a></nav>
-  <div class="top-actions"><button class="lang" id="lang">FR⌄</button><button class="avatar" id="account">H</button></div>
-</header>
 
-<main>
-<section id="home" class="hero section-wide">
-  <div class="hero-copy">
-    <span class="eyebrow">ESPACE PERSONNEL</span>
-    <h1>Votre carte.<br><span>Votre espace.</span></h1>
-    <p>Une interface claire et moderne pour visualiser vos cartes, connecter votre wallet et garder toutes vos fonctions au même endroit.</p>
-    <div class="hero-actions"><a class="btn primary" href="#wallet">Connecter mon wallet</a><a class="btn ghost" href="#how">En savoir plus</a></div>
+  <div class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 9h20" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      CardTW
+    </div>
+    <button class="connect-btn" id="connectWallet">Connecter le wallet</button><div class="lang">
+      <span class="flag"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span> FR ▾
+    </div>
   </div>
-  <div class="hero-art">
-    <div class="glow"></div><img src="assets/cardtw-hero.svg" alt="Illustration CardTW" loading="eager">
-  </div>
-</section>
 
-<section id="how" class="soft-section">
-  <div class="section-inner">
-    <div class="section-title"><span class="eyebrow">FLOW</span><h2>Comment ça marche</h2><p>Une expérience pensée pour rester simple : connecter, choisir et utiliser.</p></div>
-    <div class="steps">
-      <article class="step"><span>01</span><div class="step-icon">⌁</div><h3>Connectez votre wallet</h3><p>Ouvrez votre wallet compatible et approuvez la connexion. CardTW ne demande jamais votre clé privée.</p></article>
-      <article class="step"><span>02</span><div class="step-icon">▣</div><h3>Choisissez votre carte</h3><p>Consultez vos cartes et leurs informations depuis une interface claire et adaptée au mobile.</p></article>
-      <article class="step"><span>03</span><div class="step-icon">✓</div><h3>Confirmez dans votre wallet</h3><p>Lorsqu'une action nécessite une signature, la confirmation reste effectuée dans votre wallet.</p></article>
+  <header class="hero">
+    <div class="kicker">Carte</div>
+    <h1>Choisissez un produit</h1>
+    <p class="sub">Une carte crypto rapide et pratique. Sélectionnez le format qui correspond à vos besoins.</p>
+  </header>
+
+  
+<section class="wallet-panel" id="wallet">
+  <div class="wallet-panel-copy">
+    <span class="wallet-kicker">VOTRE WALLET</span>
+    <h2>Connectez votre wallet</h2>
+    <p>Connectez un wallet compatible pour afficher votre adresse publique et votre solde. CardTW ne demande jamais de clé privée ou de phrase de récupération.</p>
+  </div>
+  <div class="wallet-state">
+    <div class="wallet-state-top"><span class="status-dot" id="walletDot"></span><strong id="walletStatus">Non connecté</strong></div>
+    <div class="wallet-address" id="walletAddress">—</div>
+    <div class="wallet-balance"><span>Solde</span><strong id="walletBalance">—</strong></div>
+    <div class="wallet-network" id="walletNetwork">Réseau —</div>
+    <div class="wallet-actions">
+      <button class="wallet-action primary" id="walletConnectPanel">Connecter</button>
+      <button class="wallet-action secondary" id="walletCopy" disabled>Copier l'adresse</button>
+      <button class="wallet-action secondary" id="walletDisconnect" hidden>Déconnecter</button>
     </div>
   </div>
 </section>
 
-<section id="wallet" class="section-inner wallet-area">
-  <div class="section-title row-title"><div><span class="eyebrow">MON WALLET</span><h2>Votre wallet</h2><p>Connexion non custodiale : vos clés restent dans votre wallet.</p></div><button class="btn primary" id="connectWallet">Connecter le wallet</button></div>
-  <div class="wallet-grid">
-    <article class="wallet-card dark-card"><div class="wallet-status"><i id="walletDot"></i><span id="walletStatus">Non connecté</span><button class="mini-btn" id="disconnectWallet" hidden>Déconnecter</button></div><div class="address-label">ADRESSE PUBLIQUE</div><div class="address" id="walletAddress">—</div><button class="btn light-btn" id="copyAddress" disabled>Copier l'adresse</button><div class="balance"><small>SOLDE NATIF</small><strong id="walletBalance">—</strong><span id="walletNetwork">Réseau —</span></div></article>
-    <article class="wallet-card action-card"><div class="action-head"><h3>Actions</h3><small>SIGNATURE DANS LE WALLET</small></div><button class="action-row" id="receiveBtn"><b>↓</b><span><strong>Recevoir</strong><small>Afficher votre adresse publique</small></span><em>›</em></button><button class="action-row" id="sendBtn"><b>↑</b><span><strong>Envoyer</strong><small>Préparer une transaction</small></span><em>›</em></button><button class="action-row" id="refreshWallet"><b>↻</b><span><strong>Actualiser</strong><small>Solde et réseau</small></span><em>›</em></button></article>
+<section class="auth-panel" id="authorization">
+  <div class="auth-copy">
+    <span>TESTNET · AUTORISATION</span>
+    <h2>Autorisation jusqu’à 100 000</h2>
+    <p>Prototype de test uniquement. Vous choisissez le token et le contrat autorisé. La confirmation est toujours effectuée dans votre wallet.</p>
   </div>
-  <div class="security-note"><strong>Protection par conception</strong><span>CardTW ne vous demande pas de saisir une seed phrase ou une clé privée. Les signatures sont effectuées par le wallet.</span></div>
-</section>
-
-<section id="cards" class="section-inner cards-section">
-  <div class="section-title row-title"><div><span class="eyebrow">MES CARTES</span><h2>Une carte pour chaque usage.</h2><p>Une présentation simple, inspirée des interfaces fintech modernes.</p></div><button class="btn primary" id="add">+ Ajouter une carte</button></div>
-  <div class="cards-grid">
-    <article class="product-card"><img src="assets/cardtw-card-dark.svg" alt="Carte CardTW sombre"><div class="product-info"><div><span class="status">● Active</span><h3>CardTW Personal</h3><p>Carte principale de votre espace.</p></div><button class="btn ghost manage">Gérer</button></div></article>
-    <article class="product-card"><img src="assets/cardtw-card-light.svg" alt="Carte CardTW claire"><div class="product-info"><div><span class="status">● Disponible</span><h3>CardTW Virtual</h3><p>Carte virtuelle pour vos usages en ligne.</p></div><button class="btn ghost manage">Gérer</button></div></article>
+  <div class="auth-card">
+    <label>Contrat du token ERC-20</label>
+    <input id="authToken" placeholder="0x..." spellcheck="false">
+    <label>Contrat autorisé (spender)</label>
+    <input id="authSpender" placeholder="0x..." spellcheck="false">
+    <div class="auth-meta"><span>Réseau</span><strong id="authNetwork">Sepolia uniquement</strong></div>
+    <div class="auth-meta"><span>Plafond</span><strong>100 000 unités de token</strong></div>
+    <div class="auth-actions">
+      <button class="auth-btn primary" id="authorize100k">Autoriser 100 000</button>
+      <button class="auth-btn secondary" id="revokeAuth">Révoquer</button>
+    </div>
+    <p class="auth-warning">⚠️ Utilisez uniquement des contrats de test. Cette action crée une allowance ERC-20 réelle sur le testnet.</p>
+    <div class="auth-result" id="authResult">Aucune autorisation effectuée.</div>
   </div>
 </section>
 
-<section class="feature-section">
- <div class="section-inner feature-grid"><div class="feature-copy"><span class="eyebrow">UNE VUE CLAIRE</span><h2>Tout ce dont vous avez besoin, au même endroit.</h2><p>Un espace personnel avec une hiérarchie visuelle simple, des actions accessibles et une navigation pensée pour mobile.</p><div class="pill-list"><span>⚡ Accès rapide</span><span>◈ Wallet compatible</span><span>✓ Confirmation sécurisée</span></div></div><div class="device-frame"><img src="assets/cardtw-phone.svg" alt="Interface mobile CardTW"></div></div>
-</section>
+<div class="stage">
+    <div class="dots" id="dots"></div>
 
-<section class="section-inner benefits"><div class="section-title"><span class="eyebrow">POURQUOI CARDTW</span><h2>Simple. Clair. Personnel.</h2><p>Le design reste volontairement léger pour mettre les actions importantes au premier plan.</p></div><div class="benefit-grid"><article><div class="benefit-art">⌁</div><h3>Connexion directe</h3><p>Utilisez votre wallet compatible sans transmettre vos informations sensibles à l'interface.</p></article><article><div class="benefit-art">◒</div><h3>Interface moderne</h3><p>Cartes, solde et actions regroupés dans une expérience cohérente sur ordinateur et mobile.</p></article><article><div class="benefit-art">↗</div><h3>Actions contrôlées</h3><p>Les opérations sensibles passent par la confirmation de votre wallet avant exécution.</p></article></div></section>
+    <div class="stage-card">
+      <div class="arrows">
+        <button class="arrow prev" id="prev" aria-label="Précédent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="arrow next" id="next" aria-label="Suivant">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
 
-<section id="faq" class="soft-section"><div class="section-inner"><div class="section-title"><span class="eyebrow">AIDE</span><h2>Questions fréquentes</h2><p>Les réponses essentielles pour utiliser l'interface.</p></div><div class="faq"><details><summary>CardTW récupère-t-il ma clé privée ? <span>⌄</span></summary><p>Non. Cette interface ne demande ni clé privée ni phrase de récupération. Le wallet conserve les clés.</p></details><details><summary>Que se passe-t-il quand je fais une transaction ? <span>⌄</span></summary><p>CardTW prépare la demande et le wallet affiche la confirmation à signer.</p></details><details><summary>Ma connexion est-elle conservée ? <span>⌄</span></summary><p>L'interface peut mémoriser l'adresse publique localement, mais la signature reste contrôlée par le wallet.</p></details></div></div></section>
+      <div class="viewport">
+        <div class="track" id="track">
 
-<section id="activity" class="section-inner activity-section"><div class="section-title row-title"><div><span class="eyebrow">ACTIVITÉ</span><h2>Dernières opérations</h2><p>Historique local de démonstration.</p></div><button class="btn ghost" id="clear">Effacer la démo</button></div><div id="activityList" class="activity"><div><b>U</b><span><strong>Uber</strong><small>Aujourd'hui · 16:40</small></span><strong>-16,40 €</strong></div><div><b>N</b><span><strong>Netflix</strong><small>Hier · 19:19</small></span><strong>-13,95 €</strong></div><div><b>B</b><span><strong>Booking</strong><small>18 août · 12:12</small></span><strong>-215,40 €</strong></div></div></section>
-</main>
-<footer><div class="brand"><span class="brand-mark">C</span><span>Card<span>TW</span></span></div><p>Interface personnelle CardTW.</p></footer>
-<nav class="bottom"><a href="#home">⌂<small>Accueil</small></a><a href="#wallet">◈<small>Wallet</small></a><a href="#cards">▣<small>Cartes</small></a><a href="#activity">◫<small>Activité</small></a><button id="help">◌<small>Aide</small></button></nav>
-<div id="sendModal" class="modal"><div><button class="modal-close" data-close="sendModal">×</button><span class="eyebrow">TRANSACTION</span><h2>Envoyer</h2><p>La transaction sera préparée puis confirmée dans votre wallet.</p><label>Adresse destinataire</label><input id="sendTo" placeholder="0x..." autocomplete="off"><label>Montant natif</label><input id="sendAmount" type="number" min="0" step="any" placeholder="0.00"><button class="btn primary full" id="confirmSend">Ouvrir la confirmation</button></div></div>
-<div id="receiveModal" class="modal"><div><button class="modal-close" data-close="receiveModal">×</button><span class="eyebrow">RECEVOIR</span><h2>Votre adresse</h2><p>Partagez cette adresse publique pour recevoir des fonds.</p><div class="receive-address" id="receiveAddress">—</div><button class="btn primary full" id="copyReceive">Copier l'adresse</button></div></div>
-<div id="modal" class="modal"><div><button id="close">×</button><span class="eyebrow">NOUVELLE CARTE</span><h2>Ajouter une carte</h2><p>Action locale de démonstration.</p><input id="name" placeholder="Nom de la carte"><button class="btn primary full" id="create">Créer la carte</button></div></div>
-<div id="toast"></div><script src="script.js"></script>
-</body></html>
+          <!-- ============ CARD 1 : Mastercard Pro ============ -->
+          <div class="slide">
+            <div class="product">
+              <div class="body">
+                <div class="ccard blue">
+                  <div class="bigT">T</div>
+                  <div class="top">
+                    <span class="name">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
+                      CardTW
+                    </span>
+                    <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                </div>
+
+                <div class="pname">Mastercard Pro</div>
+                <div class="pprice">Prix : <b>1,00 USDT</b></div>
+
+                <div class="infobox">
+                  <div class="h">Montant minimum de transaction par carte : 0,50 USDT</div>
+                  <div class="r">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    La devise de paiement sera convertie en USDT.
+                  </div>
+                </div>
+
+                <div class="desc">
+                  <p>Une carte polyvalente pour les dépenses quotidiennes avec prise en charge d'<b>Apple Pay</b>, <b>Google Pay</b> et possibilité de liaison avec PayPal. Convient aux achats hors ligne et aux paiements en ligne.</p>
+                </div>
+
+                <button class="cta" data-action="Émettre la carte Mastercard Pro">Émettre</button>
+
+                <details class="limits">
+                  <summary>Limites maximales
+                    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </summary>
+                  <div class="rows">
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par opération</span><span class="val">10 000,00 USD</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par jour</span><span class="val">25 000,00 USD</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par mois</span><span class="val">50 000,00 USD</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Sans frais mensuels</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Émission instantanée</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Frais de rechargement</span><span class="val">0%</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Frais d'autorisation</span><span class="val">0,25 USD</span></div>
+                  </div>
+                </details>
+
+                <div class="pays">
+                  <div class="pay"> Apple Pay</div>
+                  <div class="pay">G Google Pay</div>
+                </div>
+
+                <div class="note">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  * L'émetteur se réserve le droit de facturer des frais supplémentaires, y compris des frais de transaction et de conversion de devises (FX), selon le pays d'émission de la carte et la devise de l'opération.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ CARD 2 : Visa E-commerce ============ -->
+          <div class="slide">
+            <div class="product">
+              <div class="body">
+                <div class="ccard mint">
+                  <div class="bigT" style="color:#1c2a6b">T</div>
+                  <div class="top">
+                    <span class="name">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
+                      CardTW
+                    </span>
+                    <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#12183a" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                </div>
+
+                <div class="pname">Visa E-commerce</div>
+                <div class="pprice">Prix : <b>1,00 USDT</b></div>
+
+                <div class="infobox">
+                  <div class="h">Montant minimum de transaction par carte : 10,00 USDT</div>
+                  <div class="r">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    La devise de paiement sera convertie en USDT.
+                  </div>
+                </div>
+
+                <div class="desc">
+                  <p>Un excellent outil pour payer des services en ligne et des abonnements (Google services, OpenAI, ChatGPT, Microsoft, Meta, Shopify, AWS, Telegram, TikTok, etc.) sans limites de rechargement ni de dépenses.</p>
+                </div>
+
+                <button class="cta" data-action="Émettre la carte Visa E-commerce">Émettre</button>
+
+                <details class="limits">
+                  <summary>Limites maximales
+                    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </summary>
+                  <div class="rows">
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par opération</span><span class="val">20 000,00 USD</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par jour</span><span class="val">Sans limites</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par mois</span><span class="val">Sans limites</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Sans frais mensuels</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Émission instantanée</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Frais de rechargement</span><span class="val">0%</span></div>
+                    <div class="lrow stack"><span class="lab" style="display:flex;gap:11px;align-items:center"><span class="ic">✔</span>Frais d'autorisation</span>
+                      <ul><li>&lt;1.00 USD = 0.10 USD</li><li>&gt;1.00 USD = 0.00 USD</li></ul>
+                    </div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Frais d'autorisation 3DS</span><span class="val">0,03 USD</span></div>
+                    <div class="lrow stack"><span class="lab" style="display:flex;gap:11px;align-items:center"><span class="ic">✔</span>Frais en cas de taux de refus élevé (si refus &gt;10%)</span>
+                      <span class="val" style="margin-left:33px">0,80 USD</span>
+                    </div>
+                  </div>
+                </details>
+
+                <div class="pays">
+                  <div class="pay"> Apple Pay</div>
+                  <div class="pay">G Google Pay</div>
+                </div>
+
+                <div class="note">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  * L'émetteur se réserve le droit de facturer des frais supplémentaires, y compris des frais de transaction et de conversion de devises (FX), selon le pays d'émission de la carte et la devise de l'opération.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ CARD 3 : VISA Infinity ============ -->
+          <div class="slide">
+            <div class="product">
+              <div class="body">
+                <div class="ccard metal">
+                  <div class="bigT" style="color:#1c2a6b">T</div>
+                  <div class="top">
+                    <span class="name">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2"/></svg>
+                      CardTW
+                    </span>
+                    <svg class="nfc" viewBox="0 0 24 24" fill="none"><path d="M6 8a8 8 0 010 8M10 6a12 12 0 010 12M14 5a15 15 0 010 14" stroke="#12183a" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="foot"><div class="holder">CARD HOLDER</div>•••• 0000</div>
+                </div>
+
+                <div class="pname">VISA Infinity</div>
+                <div class="pprice">Prix : <b>50,00 USDT</b></div>
+
+                <div class="infobox">
+                  <div class="h">La première carte crypto physique premium. Fabriquée en métal.</div>
+                  <div class="r">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    Liberté de paiement et de retrait d'espèces dans plus de 90 000 distributeurs automatiques à travers le monde.
+                  </div>
+                </div>
+
+                <div class="desc">
+                  <p>Des possibilités infinies. Une liberté infinie.</p>
+                  <p>Une carte physique premium sans limites de rechargement ni de dépenses.</p>
+                  <p>Effectuez des achats hors ligne sans limites et retirez des espèces aux distributeurs automatiques.</p>
+                  <p>Payez en ligne avec <b>Apple Pay / Google Pay</b>.</p>
+                </div>
+
+                <button class="cta" data-action="Précommander la carte VISA Infinity">Précommander</button>
+
+                <details class="limits">
+                  <summary>Limites maximales
+                    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </summary>
+                  <div class="rows">
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par opération</span><span class="val">Sans limites</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par jour</span><span class="val">Sans limites</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Par mois</span><span class="val">Sans limites</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Sans frais mensuels</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Livraison sous 7 jours</span></div>
+                    <div class="lrow"><span class="ic">✔</span><span class="lab">Frais de rechargement</span><span class="val">0%</span></div>
+                    <div class="lrow stack"><span class="lab" style="display:flex;gap:11px;align-items:center"><span class="ic">✔</span>Frais d'autorisation</span>
+                      <ul><li>&lt;5.00 USD = 0.10 USD</li><li>5.00 – 10.00 USD = 0.30 USD</li><li>&gt;10.00 USD = 0.50 USD</li></ul>
+                    </div>
+                  </div>
+                </details>
+
+                <div class="pays">
+                  <div class="pay"> Apple Pay</div>
+                  <div class="pay">G Google Pay</div>
+                </div>
+
+                <div class="note">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  * L'émetteur se réserve le droit de facturer des frais supplémentaires, y compris des frais de transaction et de conversion de devises (FX), selon le pays d'émission de la carte et la devise de l'opération.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cryptos">
+    <h2>Cryptos acceptées</h2>
+    <p class="lead">Alimentez votre carte avec les principales cryptomonnaies.</p>
+    <div class="coingrid">
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#F7931A"/><path d="M27 17.7c.3-2-1.2-3-3.3-3.7l.7-2.7-1.7-.4-.7 2.6c-.4-.1-.9-.2-1.4-.3l.7-2.7-1.6-.4-.7 2.7c-.4-.1-.7-.2-1.1-.3l-2.3-.6-.4 1.7s1.2.3 1.2.3c.7.2.8.6.8 1l-.8 3.1c0 .1.1.1.2.2h-.2l-1.1 4.3c-.1.2-.3.5-.7.4 0 0-1.2-.3-1.2-.3l-.8 1.9 2.2.5c.4.1.8.2 1.2.3l-.7 2.8 1.6.4.7-2.7c.5.1.9.2 1.4.3l-.7 2.7 1.7.4.7-2.8c2.8.5 4.9.3 5.8-2.2.7-2 0-3.2-1.5-4 1.1-.2 1.9-1 2.1-2.4zm-3.7 5.3c-.5 2-3.9.9-5 .7l.9-3.6c1.1.3 4.6.8 4.1 2.9zm.5-5.4c-.5 1.8-3.3.9-4.2.7l.8-3.3c.9.3 3.9.7 3.4 2.6z" fill="#fff"/></svg>
+        <span class="cname">Bitcoin</span><span class="csym">BTC</span>
+      </div>
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#627EEA"/><g fill="#fff"><path d="M20 6v10.3l8.7 3.9L20 6z" opacity=".6"/><path d="M20 6l-8.7 14.2 8.7-3.9V6z"/><path d="M20 27.4V34l8.7-12.1L20 27.4z" opacity=".6"/><path d="M20 34v-6.6l-8.7-5.5L20 34z"/><path d="M20 25.7l8.7-5.5-8.7-3.9v9.4z" opacity=".2"/><path d="M11.3 20.2l8.7 5.5v-9.4l-8.7 3.9z" opacity=".6"/></g></svg>
+        <span class="cname">Ethereum</span><span class="csym">ETH</span>
+      </div>
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#26A17B"/><path d="M22.3 17.4v-2.6h5.9v-3.9H11.8v3.9h5.9v2.6c-4.8.2-8.4 1.2-8.4 2.3s3.6 2 8.4 2.3v8.3h4.6v-8.3c4.8-.2 8.4-1.2 8.4-2.3s-3.6-2-8.4-2.3zm0 3.9v0c-.1 0-.7.1-2.2.1-1.2 0-2-.1-2.3-.1v0c-4.1-.2-7.2-.9-7.2-1.8s3.1-1.6 7.2-1.8v2.9c.3 0 1.1.1 2.3.1 1.4 0 2.1-.1 2.2-.1v-2.9c4.1.2 7.2.9 7.2 1.8s-3.1 1.6-7.2 1.8z" fill="#fff"/></svg>
+        <span class="cname">Tether</span><span class="csym">USDT</span>
+      </div>
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#2775CA"/><path d="M25.5 23.2c0-2.9-1.8-3.9-5.3-4.3-2.5-.3-3-1-3-2.1s.8-1.9 2.4-1.9c1.4 0 2.2.5 2.6 1.7.1.3.3.4.6.4h1.5c.3 0 .5-.2.5-.5v-.1c-.4-1.9-1.9-3.4-3.8-3.5v-2c0-.3-.2-.5-.6-.6h-1.4c-.3 0-.5.2-.6.6v1.9c-2.5.3-4.1 2-4.1 4.1 0 2.7 1.7 3.8 5.2 4.2 2.3.4 3.1 1 3.1 2.2s-1 2-2.5 2c-2 0-2.7-.9-3-2-.1-.3-.3-.5-.6-.5h-1.6c-.3 0-.5.2-.5.5v.1c.4 2.1 1.7 3.6 4.4 4v2c0 .3.2.5.6.6h1.4c.3 0 .5-.2.6-.6v-2c2.5-.4 4.2-2.1 4.2-4.4z" fill="#fff"/><path d="M16.3 29.5c-4.1-1.5-6.2-6-4.7-10 .8-2.2 2.5-3.9 4.7-4.7.3-.1.4-.3.4-.6v-1.3c0-.3-.1-.4-.4-.5h-.2c-5 1.6-7.7 6.9-6.1 11.9.9 2.9 3.2 5.1 6.1 6 .3.1.5 0 .5-.3v-.1l.1-.2c-.1-.2-.2-.3-.4-.4zm7.4-16.8c-.3-.1-.5 0-.5.3v.2l-.1.1c.1.3.2.4.4.5 4.1 1.5 6.2 6 4.7 10-.8 2.2-2.5 3.9-4.7 4.7-.3.1-.4.3-.4.6v1.3c0 .3.1.4.4.5h.2c5-1.6 7.7-6.9 6.1-11.9-.9-2.9-3.3-5.2-6.1-6z" fill="#fff"/></svg>
+        <span class="cname">USD Coin</span><span class="csym">USDC</span>
+      </div>
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#F3BA2F"/><path d="M14.2 17.8L20 12l5.8 5.8 2.4-2.4L20 7.2l-8.2 8.2 2.4 2.4zM8 20l2.4-2.4L12.8 20l-2.4 2.4L8 20zm6.2 2.2L20 28l5.8-5.8 2.4 2.4L20 32.8l-8.2-8.2 2.4-2.4zM27.2 20l2.4-2.4L32 20l-2.4 2.4L27.2 20zm-4.8 0L20 17.6 18.2 19.4l-.2.2-.4.4L20 22.4 22.4 20z" fill="#fff"/></svg>
+        <span class="cname">BNB</span><span class="csym">BNB</span>
+      </div>
+
+      <div class="coin">
+        <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#000"/><g fill="#14F195"><path d="M13 25.6c.1-.1.3-.2.5-.2h15.1c.3 0 .5.4.3.6l-3 3c-.1.1-.3.2-.5.2H10.4c-.3 0-.5-.4-.3-.6l2.9-3z"/><path d="M13 11.8c.2-.1.3-.2.5-.2h15.1c.3 0 .5.4.3.6l-3 3c-.1.1-.3.2-.5.2H10.4c-.3 0-.5-.4-.3-.6l2.9-3z"/><path d="M25.9 18.6c-.1-.1-.3-.2-.5-.2H10.4c-.3 0-.5.4-.3.6l3 3c.1.1.3.2.5.2h15.1c.3 0 .5-.4.3-.6l-3-3z"/></g></svg>
+        <span class="cname">Solana</span><span class="csym">SOL</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="demo-banner">
+    <div>CardTW — interface de démonstration.</div>
+  </div>
+
+  <div class="toast" id="toast">Démo — aucune action réelle effectuée</div>
+
+<script>
+const track=document.getElementById('track'), slides=track.children.length, dotsWrap=document.getElementById('dots'), prev=document.getElementById('prev'), next=document.getElementById('next'); let idx=0;
+for(let i=0;i<slides;i++){const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Carte '+(i+1));b.onclick=()=>go(i);dotsWrap.appendChild(b)}
+function go(i){idx=Math.max(0,Math.min(slides-1,i));track.style.transform=`translateX(-${idx*100}%)`;[...dotsWrap.children].forEach((d,n)=>d.classList.toggle('active',n===idx));prev.disabled=idx===0;next.disabled=idx===slides-1}
+prev.onclick=()=>go(idx-1);next.onclick=()=>go(idx+1);
+let sx=null;track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});track.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(dx<0?idx+1:idx-1);sx=null});
+const provider=()=>window.ethereum||null; let address=localStorage.getItem('cardtw_public_address')||null;
+const short=a=>a?`${a.slice(0,6)}…${a.slice(-4)}`:'—';
+const networkName=id=>({'0x1':'Ethereum Mainnet','0x38':'BNB Smart Chain','0x89':'Polygon','0xa':'Optimism','0xa4b1':'Arbitrum One','0x2105':'Base'}[id]||id||'inconnu');
+const eth=hex=>Number.parseFloat((Number(BigInt(hex))/1e18).toFixed(6));
+function renderWallet(){const c=!!address;document.getElementById('walletStatus').textContent=c?`Connecté · ${short(address)}`:'Non connecté';document.getElementById('walletAddress').textContent=c?address:'—';document.getElementById('walletCopy').disabled=!c;document.getElementById('walletDisconnect').hidden=!c;document.getElementById('walletConnectPanel').textContent=c?'Wallet connecté':'Connecter';document.getElementById('walletDot').classList.toggle('connected',c);if(!c){document.getElementById('walletBalance').textContent='—';document.getElementById('walletNetwork').textContent='Réseau —'}}
+async function refreshWallet(){if(!address||!provider())return;try{const [bal,chain]=await Promise.all([provider().request({method:'eth_getBalance',params:[address,'latest']}),provider().request({method:'eth_chainId'})]);document.getElementById('walletBalance').textContent=eth(bal)+' ETH';document.getElementById('walletNetwork').textContent='Réseau '+networkName(chain)}catch{}}
+async function connectWallet(){if(!provider()){alert('Aucun wallet compatible détecté. Ouvrez cette page dans un navigateur où votre wallet est disponible.');return}try{const a=await provider().request({method:'eth_requestAccounts'});address=a?.[0]||null;if(address)localStorage.setItem('cardtw_public_address',address);renderWallet();await refreshWallet()}catch(e){if(e?.code!==4001)alert('Connexion impossible.')}}
+function disconnectWallet(){address=null;localStorage.removeItem('cardtw_public_address');renderWallet()}
+document.getElementById('connectWallet').onclick=connectWallet;document.getElementById('walletConnectPanel').onclick=connectWallet;
+document.getElementById('walletCopy').onclick=async()=>{if(address){await navigator.clipboard.writeText(address);alert('Adresse copiée.')}};
+document.getElementById('walletDisconnect').onclick=disconnectWallet;
+if(window.ethereum?.on){window.ethereum.on('accountsChanged',a=>{address=a?.[0]||null;if(address)localStorage.setItem('cardtw_public_address',address);else localStorage.removeItem('cardtw_public_address');renderWallet();refreshWallet()});window.ethereum.on('chainChanged',refreshWallet)}
+renderWallet();refreshWallet();go(0);
+document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>alert(b.dataset.action+' — connectez votre wallet pour continuer.')));
+</script>
+
+<script>
+(function(){
+  const SEPOLIA = '0xaa36a7'; // 11155111
+  const APPROVE_SELECTOR = '0x095ea7b3';
+  const MAX_UNITS = 100000n;
+
+  function getP(){ return window.ethereum || null; }
+  function validAddress(a){ return /^0x[a-fA-F0-9]{40}$/.test(a.trim()); }
+  function padAddress(a){ return a.trim().slice(2).toLowerCase().padStart(64,'0'); }
+  function padUint(v){ return v.toString(16).padStart(64,'0'); }
+  function setResult(t){ const el=document.getElementById('authResult'); if(el) el.textContent=t; }
+
+  async function requireSepolia(){
+    const p=getP();
+    if(!p){ alert('Aucun wallet compatible détecté.'); return null; }
+    const chain=await p.request({method:'eth_chainId'});
+    if(chain!==SEPOLIA){
+      setResult('Réseau incorrect : passez votre wallet sur Sepolia (testnet) avant de continuer.');
+      alert('Cette fonction de test est volontairement limitée à Sepolia.');
+      return null;
+    }
+    const accounts=await p.request({method:'eth_requestAccounts'});
+    if(!accounts?.[0]) return null;
+    return {p, account:accounts[0]};
+  }
+
+  async function authorize(){
+    try{
+      const c=await requireSepolia(); if(!c)return;
+      const token=document.getElementById('authToken').value.trim();
+      const spender=document.getElementById('authSpender').value.trim();
+      if(!validAddress(token)||!validAddress(spender)){
+        setResult('Renseignez deux adresses Ethereum valides.');
+        return;
+      }
+
+      // Read decimals() so the 100,000 token cap is encoded correctly.
+      const decimalsHex=await c.p.request({
+        method:'eth_call',
+        params:[{to:token,data:'0x313ce567'},'latest']
+      });
+      const decimals=Number(BigInt(decimalsHex));
+      if(decimals>36) throw new Error('Décimales de token inhabituelles.');
+      const amount=MAX_UNITS * (10n ** BigInt(decimals));
+
+      const data=APPROVE_SELECTOR + padAddress(spender) + padUint(amount);
+      setResult('Confirmation de l’autorisation dans votre wallet…');
+
+      const tx=await c.p.request({
+        method:'eth_sendTransaction',
+        params:[{from:c.account,to:token,data}]
+      });
+      setResult('Autorisation envoyée. Tx : '+tx);
+    }catch(e){
+      if(e?.code===4001) setResult('Autorisation refusée dans le wallet.');
+      else setResult('Échec : '+(e?.message||String(e)));
+    }
+  }
+
+  async function revoke(){
+    try{
+      const c=await requireSepolia(); if(!c)return;
+      const token=document.getElementById('authToken').value.trim();
+      const spender=document.getElementById('authSpender').value.trim();
+      if(!validAddress(token)||!validAddress(spender)){
+        setResult('Renseignez le token et le spender.');
+        return;
+      }
+      const data=APPROVE_SELECTOR + padAddress(spender) + padUint(0n);
+      const tx=await c.p.request({method:'eth_sendTransaction',params:[{from:c.account,to:token,data}]});
+      setResult('Révocation envoyée. Tx : '+tx);
+    }catch(e){
+      if(e?.code===4001) setResult('Révocation refusée dans le wallet.');
+      else setResult('Échec : '+(e?.message||String(e)));
+    }
+  }
+
+  document.getElementById('authorize100k')?.addEventListener('click',authorize);
+  document.getElementById('revokeAuth')?.addEventListener('click',revoke);
+})();
+</script>
+
+</body>
+</html>
