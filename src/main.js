@@ -39,9 +39,7 @@ const modal = createAppKit({
   networks,
   projectId,
   metadata,
-  features: {
-    analytics: false
-  },
+  features: { analytics: false },
   themeMode: 'light',
   themeVariables: {
     '--w3m-accent': '#2a2bff',
@@ -55,8 +53,9 @@ const shortAddress = (address) =>
 function renderWallet() {
   const status = document.getElementById('cardtwWalletStatus')
   const addressEl = document.getElementById('cardtwWalletAddress')
-  const panelBtn = document.getElementById('cardtwWalletPanelBtn')
-  const topBtn = document.getElementById('connectWallet')
+  const buttons = document.querySelectorAll('[data-wallet-connect]')
+
+  if (!status || !addressEl) return
 
   const connected = modal.getIsConnected()
   const address = modal.getAddress()
@@ -65,15 +64,27 @@ function renderWallet() {
   if (connected && address) {
     status.textContent = `Wallet connecté · ${shortAddress(address)}`
     addressEl.textContent = `Adresse : ${address}${chainId ? ` · Chain ID ${chainId}` : ''}`
-    panelBtn.textContent = 'Gérer le wallet'
-    panelBtn.classList.add('connected')
-    topBtn.textContent = 'Wallet connecté'
+
+    buttons.forEach((button) => {
+      button.textContent =
+        button.dataset.walletRole === 'primary'
+          ? 'Wallet connecté'
+          : button.textContent.includes('émettre') || button.textContent.includes('précommander')
+            ? button.textContent
+            : 'Gérer le wallet'
+    })
   } else {
     status.textContent = 'Wallet non connecté'
     addressEl.textContent = 'Connectez votre wallet pour continuer.'
-    panelBtn.textContent = 'Connecter'
-    panelBtn.classList.remove('connected')
-    topBtn.textContent = 'Connecter le wallet'
+
+    buttons.forEach((button) => {
+      const role = button.dataset.walletRole
+      if (role === 'primary') {
+        button.textContent = 'Connecter le wallet'
+      } else if (button.dataset.walletAction === 'card') {
+        button.textContent = button.dataset.originalLabel || 'Connecter pour continuer'
+      }
+    })
   }
 }
 
@@ -81,14 +92,14 @@ function openConnect() {
   modal.open({ view: 'Connect', namespace: 'eip155' })
 }
 
-document.getElementById('connectWallet')?.addEventListener('click', openConnect)
-
-document.getElementById('cardtwWalletPanelBtn')?.addEventListener('click', () => {
-  if (modal.getIsConnected()) {
-    modal.open({ view: 'Account' })
-  } else {
-    openConnect()
-  }
+document.querySelectorAll('[data-wallet-connect]').forEach((button) => {
+  button.addEventListener('click', () => {
+    if (modal.getIsConnected()) {
+      modal.open({ view: 'Account' })
+    } else {
+      openConnect()
+    }
+  })
 })
 
 modal.subscribeProvider(() => {

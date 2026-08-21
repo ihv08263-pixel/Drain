@@ -280,39 +280,145 @@ body{
   .ccard{height:215px!important}
 }
 
+
+/* Premium/CardTW redesign */
+html{scroll-behavior:smooth}
+body{background:
+  radial-gradient(900px 520px at 84% 6%,rgba(84,90,255,.14),transparent 70%),
+  linear-gradient(180deg,#f8f9ff 0%,#eef2ff 43%,#fff 100%);
+  color:#11162f;
+}
+.topbar{max-width:1220px!important;padding:18px 24px!important}
+.brand{color:#11162f;text-decoration:none}
+.brand .logo{width:36px;height:36px;border-radius:11px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:#626b86;text-decoration:none;font-size:12px;font-weight:700;transition:.2s}
+.nav-links a:hover{color:#2a2bff}
+.top-actions{display:flex;align-items:center;gap:10px}
+.connect-btn,.primary-hero,.wallet-main-btn{background:#2a2bff!important;color:#fff!important;border:0!important;box-shadow:0 14px 28px -16px rgba(42,43,255,.75)!important}
+.connect-btn{padding:11px 17px!important}
+.hero{max-width:1220px!important;padding:62px 24px 34px!important;display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center}
+.hero-copy{max-width:660px}
+.eyebrow{font-size:10px!important;letter-spacing:.18em!important;font-weight:800!important;color:#6f7896!important}
+.hero h1{font-size:clamp(44px,6.2vw,74px)!important;line-height:.98!important;letter-spacing:-.055em!important;margin:14px 0 18px!important}
+.hero h1 span{color:#2a2bff}
+.hero .sub{max-width:640px!important;font-size:17px!important;line-height:1.7!important}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.primary-hero,.secondary-hero{display:inline-flex;align-items:center;justify-content:center;border-radius:13px;padding:13px 18px;font:800 13px Manrope,system-ui;text-decoration:none;cursor:pointer}
+.secondary-hero{border:1px solid #dfe3ee;color:#1a2038;background:#fff}
+.hero-trust{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;color:#7a829a;font-size:11px}
+.hero-trust span{display:flex;align-items:center;gap:6px}.hero-trust i{width:6px;height:6px;border-radius:50%;background:#2fbf75}
+.hero-visual{min-height:410px;position:relative;display:grid;place-items:center}
+.hero-glow{position:absolute;width:430px;height:430px;background:radial-gradient(circle,rgba(77,84,255,.23),transparent 68%);filter:blur(8px)}
+.hero-card{position:relative;width:min(560px,95%);height:310px;border-radius:30px;background:linear-gradient(135deg,#101632 0%,#17235a 42%,#2b35ff 74%,#34c9a1 100%);box-shadow:0 35px 75px -28px rgba(23,31,102,.65);padding:28px;color:#fff;transform:rotate(-5deg);overflow:hidden}
+.hero-card:before{content:"";position:absolute;inset:-30%;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.17) 50%,transparent 62%);transform:rotate(8deg)}
+.hero-card-top,.hero-card-bottom{position:relative;display:flex;justify-content:space-between;z-index:2}.hero-card-top{font-size:18px}.hero-card-chip{display:block;width:48px;height:38px;border-radius:8px;background:linear-gradient(135deg,#f3dd9b,#a88334);margin-top:90px;position:relative;z-index:2}
+.hero-card-number{font-size:19px;letter-spacing:.13em;margin-top:26px;position:relative;z-index:2}.hero-card-bottom{margin-top:28px;font-size:10px;letter-spacing:.14em;opacity:.86}
+.hero-pill{position:absolute;background:#fff;border:1px solid #e7eaf3;border-radius:999px;padding:9px 13px;font:800 11px Manrope;box-shadow:0 15px 35px -20px rgba(20,25,90,.4)}.hero-pill-one{right:2%;top:16%}.hero-pill-two{left:4%;bottom:12%}
+.quick-wallet{max-width:1220px;margin:12px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr .8fr;gap:16px}
+.quick-wallet-copy{background:linear-gradient(135deg,#121832,#2837a6);color:#fff;border-radius:25px;padding:28px 30px;position:relative;overflow:hidden;box-shadow:0 28px 65px -35px rgba(32,41,130,.62)}
+.quick-wallet-copy .eyebrow{color:#bdc4ff!important}.quick-wallet-copy h2{font-size:30px;letter-spacing:-.035em;margin:8px 0}.quick-wallet-copy p{color:#d2d7ef;line-height:1.6;max-width:540px}
+.quick-wallet-card{background:rgba(255,255,255,.9);border:1px solid #e6e9f3;border-radius:25px;padding:24px;box-shadow:0 20px 55px -33px rgba(24,30,90,.45);display:flex;flex-direction:column;justify-content:center}
+.wallet-status{display:flex;align-items:center;gap:8px;font-size:13px}.status-dot{width:8px;height:8px;border-radius:50%;background:#a0a7ba}.status-dot.connected{background:#20b969;box-shadow:0 0 12px rgba(32,185,105,.45)}
+.wallet-address{margin-top:14px;background:#f7f8fc;border:1px solid #e8ebf3;border-radius:12px;padding:13px;font-size:12px;color:#697188;word-break:break-all}
+.wallet-main-btn{margin-top:12px;border-radius:12px;padding:12px;font:800 12px Manrope;cursor:pointer}
+.how,.cards-heading,.simple-note{max-width:1220px;margin:80px auto 0;padding:0 24px}
+.section-heading{text-align:center;max-width:700px;margin:0 auto}.section-heading h2{font-size:clamp(30px,4vw,46px);letter-spacing:-.045em;margin:10px 0}.section-heading p{color:#737b94;line-height:1.65}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.step{background:#fff;border:1px solid #e6e9f2;border-radius:22px;padding:24px;box-shadow:0 18px 50px -36px rgba(24,30,90,.4)}.step>span{color:#2a2bff;font-weight:900;font-size:12px}.step h3{font-size:18px;margin:14px 0 8px}.step p{color:#747d95;font-size:13px;line-height:1.65}
+.cards-heading{margin-top:88px}.section-heading.compact{text-align:left;max-width:760px;margin:0}.section-heading.compact h2{font-size:36px}
+.simple-note{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center;margin-top:80px;padding-top:30px;border-top:1px solid #e8ebf2}.simple-note h2{font-size:30px;letter-spacing:-.035em;margin-top:7px}.simple-note p{color:#717991;line-height:1.7;font-size:14px}
+.cryptos{margin-top:80px!important}
+.demo-banner{display:none!important}
+@media(max-width:900px){.nav-links{display:none}.hero{grid-template-columns:1fr;padding-top:44px!important}.hero-visual{min-height:320px}.quick-wallet{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.simple-note{grid-template-columns:1fr}.hero-card{height:250px}.hero-card-number{font-size:15px}}
+@media(max-width:560px){.topbar{padding:15px 14px!important}.top-actions .lang{display:none}.hero{padding-left:14px!important;padding-right:14px!important}.hero h1{font-size:42px!important}.hero-visual{min-height:250px}.hero-card{height:205px;padding:20px;border-radius:22px}.hero-card-chip{margin-top:50px;width:42px;height:32px}.hero-card-number{font-size:12px}.quick-wallet{padding:0 14px}.how,.cards-heading,.simple-note{padding:0 14px}.steps{gap:10px}.cardtw-wallet-panel{margin-left:14px!important;margin-right:14px!important}}
+
 </style>
 <script type="module" src="/src/main.js"></script>
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="brand">
-      <span class="logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 9h20" stroke="currentColor" stroke-width="2"/></svg>
-      </span>
-      CardTW
-    </div>
-    <button class="connect-btn" id="connectWallet" type="button">Connecter le wallet</button>
-<div class="lang">
-      <span class="flag"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span> FR ▾
-    </div>
+  
+<div class="topbar">
+  <a class="brand" href="#top" aria-label="CardTW accueil">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 9h20" stroke="currentColor" stroke-width="2"/></svg>
+    </span>
+    CardTW
+  </a>
+  <nav class="nav-links" aria-label="Navigation principale">
+    <a href="#top">Accueil</a>
+    <a href="#how">Comment ça marche</a>
+    <a href="#cards">Cartes</a>
+    <a href="#wallet">Wallet</a>
+  </nav>
+  <div class="top-actions">
+    <button class="connect-btn wallet-trigger" type="button" data-wallet-connect data-wallet-role="primary">Connecter le wallet</button>
+    <div class="lang"><span class="flag"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span> FR ▾</div>
   </div>
+</div>
 
-  <header class="hero">
-    <div class="kicker">Carte</div>
-    <h1>Choisissez un produit</h1>
-    <p class="sub">Une carte crypto rapide et pratique. Sélectionnez le format qui correspond à vos besoins.</p>
-  </header>
-<section class="cardtw-wallet-panel" id="cardtwWalletPanel" aria-live="polite">
-  <div class="cardtw-wallet-icon">◈</div>
-  <div class="cardtw-wallet-info">
-    <strong id="cardtwWalletStatus">Wallet non connecté</strong>
-    <span id="cardtwWalletAddress">Connectez votre wallet pour continuer.</span>
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <span class="eyebrow">CARTE CRYPTO · CARDTW</span>
+    <h1>Une carte simple.<br><span>Un wallet connecté.</span></h1>
+    <p class="sub">CardTW regroupe vos cartes, votre wallet et vos paiements dans une interface claire. Connectez votre wallet, choisissez une carte et gardez une vue simple sur votre activité.</p>
+    <div class="hero-actions">
+      <button class="primary-hero wallet-trigger" type="button" data-wallet-connect data-wallet-role="primary">Connecter le wallet</button>
+      <a class="secondary-hero" href="#how">Découvrir le fonctionnement</a>
+    </div>
+    <div class="hero-trust">
+      <span><i></i> Connexion sécurisée</span>
+      <span><i></i> Adresse publique uniquement</span>
+      <span><i></i> Multi-réseaux EVM</span>
+    </div>
   </div>
-  <button class="cardtw-wallet-action" id="cardtwWalletPanelBtn" type="button">Connecter</button>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-card">
+      <div class="hero-card-top"><strong>CardTW</strong><span>)))</span></div>
+      <div class="hero-chip"></div>
+      <div class="hero-card-number">••••  ••••  ••••  0000</div>
+      <div class="hero-card-bottom"><span>CARD HOLDER</span><span>09/29</span></div>
+    </div>
+    <div class="hero-pill hero-pill-one">Wallet connecté</div>
+    <div class="hero-pill hero-pill-two">6 réseaux EVM</div>
+  </div>
+</header>
+
+<section class="quick-wallet" id="wallet">
+  <div class="quick-wallet-copy">
+    <span class="eyebrow">WALLET</span>
+    <h2 id="walletTitle">Connectez votre wallet en un clic.</h2>
+    <p id="walletDescription">Le sélecteur Reown ouvre directement vos wallets compatibles sur ordinateur et mobile.</p>
+  </div>
+  <div class="quick-wallet-card">
+    <div class="wallet-status"><span class="status-dot" id="walletDot"></span><strong id="cardtwWalletStatus">Wallet non connecté</strong></div>
+    <div class="wallet-address" id="cardtwWalletAddress">Connectez votre wallet pour continuer.</div>
+    <button class="wallet-main-btn wallet-trigger" id="cardtwWalletPanelBtn" type="button" data-wallet-connect data-wallet-role="panel">Connecter le wallet</button>
+  </div>
 </section>
 
-<div class="wallet-section-kicker">WALLET</div>
+<section class="how" id="how">
+  <div class="section-heading">
+    <span class="eyebrow">COMMENT ÇA MARCHE</span>
+    <h2>Tout est pensé pour être simple.</h2>
+    <p>Trois étapes suffisent pour commencer avec CardTW.</p>
+  </div>
+  <div class="steps">
+    <article class="step"><span>01</span><h3>Connectez votre wallet</h3><p>Choisissez votre wallet dans le sélecteur Reown et confirmez uniquement la connexion.</p></article>
+    <article class="step"><span>02</span><h3>Choisissez votre carte</h3><p>Comparez les formats disponibles, leurs limites et leurs fonctionnalités.</p></article>
+    <article class="step"><span>03</span><h3>Gérez votre espace</h3><p>Retrouvez votre wallet, votre carte et les informations utiles au même endroit.</p></article>
+  </div>
+</section>
+
+<section class="cards-heading" id="cards">
+  <div class="section-heading compact">
+    <span class="eyebrow">NOS CARTES</span>
+    <h2>Choisissez le format qui vous convient.</h2>
+    <p>Faites défiler les offres et ouvrez les limites pour voir les détails.</p>
+  </div>
+</section>
 <div class="stage">
     <div class="dots" id="dots"></div>
 
@@ -360,7 +466,7 @@ body{
                   <p>Une carte polyvalente pour les dépenses quotidiennes avec prise en charge d'<b>Apple Pay</b>, <b>Google Pay</b> et possibilité de liaison avec PayPal. Convient aux achats hors ligne et aux paiements en ligne.</p>
                 </div>
 
-                <button class="cta" data-action="Émettre la carte Mastercard Pro">Émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre" data-action="Émettre la carte Mastercard Pro">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -421,7 +527,7 @@ body{
                   <p>Un excellent outil pour payer des services en ligne et des abonnements (Google services, OpenAI, ChatGPT, Microsoft, Meta, Shopify, AWS, Telegram, TikTok, etc.) sans limites de rechargement ni de dépenses.</p>
                 </div>
 
-                <button class="cta" data-action="Émettre la carte Visa E-commerce">Émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre" data-action="Émettre la carte Visa E-commerce">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -491,7 +597,7 @@ body{
                   <p>Payez en ligne avec <b>Apple Pay / Google Pay</b>.</p>
                 </div>
 
-                <button class="cta" data-action="Précommander la carte VISA Infinity">Précommander</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour précommander" data-action="Précommander la carte VISA Infinity">Connecter pour précommander</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -528,7 +634,16 @@ body{
     </div>
   </div>
 
-  <section class="cryptos">
+  
+<section class="simple-note">
+  <div>
+    <span class="eyebrow">CARDTW EN BREF</span>
+    <h2>Votre wallet reste à vous.</h2>
+  </div>
+  <p>CardTW utilise une connexion de wallet pour récupérer uniquement les informations nécessaires à l'interface. Les clés privées et phrases de récupération restent dans votre wallet.</p>
+</section>
+
+<section class="cryptos">
     <h2>Cryptos acceptées</h2>
     <p class="lead">Alimentez votre carte avec les principales cryptomonnaies.</p>
     <div class="coingrid">
