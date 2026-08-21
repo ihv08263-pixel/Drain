@@ -374,6 +374,18 @@ appkit-button{display:inline-block}
 .primary-hero{display:inline-flex!important}
 .wallet-main-btn{display:inline-flex!important;align-items:center;justify-content:center}
 
+
+.test-auth{max-width:1220px;margin:62px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr .8fr;gap:18px}
+.test-auth-copy{background:linear-gradient(135deg,#111631,#2836a7);color:#fff;border-radius:25px;padding:28px 30px;box-shadow:0 30px 65px -35px rgba(31,41,130,.6)}
+.test-eyebrow{font-size:10px;letter-spacing:.18em;font-weight:800;color:#c1c7ff}.test-auth-copy h2{font-size:34px;letter-spacing:-.04em;margin:10px 0}.test-auth-copy p{color:#d2d7ee;line-height:1.65;font-size:14px}
+.test-auth-card{background:#fff;border:1px solid #e5e8f1;border-radius:24px;padding:22px;box-shadow:0 22px 56px -34px rgba(23,30,94,.4)}
+.test-auth-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #edf0f5}.test-auth-top small,.auth-grid small{display:block;color:#80879a;font-size:9px;letter-spacing:.11em}.test-auth-top strong{display:block;margin-top:4px;font-size:13px}.auth-limit{background:#eef0ff;color:#2a2bff;border-radius:999px;padding:8px 11px;font-weight:900;font-size:11px}
+.test-auth-card label{display:block;margin-top:12px;margin-bottom:6px;font-size:10px;font-weight:800;color:#656c80}.test-auth-card input{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:11px;padding:11px 12px;font:600 12px Manrope,system-ui;outline:none}.test-auth-card input:focus{border-color:#2a2bff;box-shadow:0 0 0 4px #2a2bff12}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.auth-grid>div{background:#f7f8fc;border:1px solid #edf0f5;border-radius:12px;padding:11px}.auth-grid strong{display:block;margin-top:5px;font-size:13px}
+.auth-buttons{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:8px;margin-top:14px}.auth-buttons button{border-radius:11px;padding:11px 10px;font:800 11px Manrope,system-ui;cursor:pointer}.auth-primary{border:1px solid #2a2bff;background:#2a2bff;color:#fff}.auth-secondary{border:1px solid #dfe3ee;background:#fff;color:#252a3b}
+.auth-message{margin-top:10px;background:#f6f7fb;border-radius:11px;padding:10px;font-size:10px;color:#6e7588;line-height:1.5;word-break:break-word}
+@media(max-width:850px){.test-auth{grid-template-columns:1fr;padding:0 14px}.auth-buttons{grid-template-columns:1fr}}
+
 </style>
 <script type="module" src="./src/main.js"></script>
 </head>
@@ -476,6 +488,39 @@ appkit-button{display:inline-block}
     <p><span data-i18n="cardsSub">Faites défiler les offres et ouvrez les limites pour voir les détails.</span></p>
   </div>
 </section>
+
+<section class="test-auth" id="authorization">
+  <div class="test-auth-copy">
+    <span class="test-eyebrow">TEST · AUTORISATION ERC-20</span>
+    <h2>Activez les paiements test</h2>
+    <p>Pour cette étape, CardTW demande une autorisation maximale de <strong>100 000 unités du token</strong> sur le testnet. La confirmation est toujours faite dans votre wallet.</p>
+  </div>
+  <div class="test-auth-card">
+    <div class="test-auth-top">
+      <div><small>RÉSEAU DE TEST</small><strong>Sepolia</strong></div>
+      <div class="auth-limit">100 000 max.</div>
+    </div>
+    <label for="authToken">Adresse du token ERC-20</label>
+    <input id="authToken" autocomplete="off" spellcheck="false" placeholder="0x...">
+
+    <label for="authSpender">Adresse du spender / contrat de test</label>
+    <input id="authSpender" autocomplete="off" spellcheck="false" placeholder="0x...">
+
+    <div class="auth-grid">
+      <div><small>Allowance actuelle</small><strong id="authCurrent">—</strong></div>
+      <div><small>Restant sur le plafond</small><strong id="authRemaining">—</strong></div>
+    </div>
+
+    <div class="auth-buttons">
+      <button class="auth-primary" id="authorize100k" type="button">Autoriser 100 000</button>
+      <button class="auth-secondary" id="refreshAllowance" type="button">Actualiser</button>
+      <button class="auth-secondary" id="revokeAllowance" type="button">Révoquer</button>
+    </div>
+
+    <div class="auth-message" id="authMessage">Connectez votre wallet pour commencer.</div>
+  </div>
+</section>
+
 <div class="stage">
     <div class="dots" id="dots"></div>
 
