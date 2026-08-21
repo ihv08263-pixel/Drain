@@ -11,20 +11,17 @@ import {
 } from '@reown/appkit/networks'
 
 const projectId = '17c85e8f03aeb086abdd0f20c6070032'
+
 const networks = [mainnet, arbitrum, base, polygon, optimism, bsc, avalanche]
 
 const metadata = {
   name: 'CardTW',
   description: 'CardTW — wallet connection',
-  // Reown requires the URL origin to match the app domain.
   url: 'https://ihv08263-pixel.github.io',
   icons: ['https://ihv08263-pixel.github.io/cardtw/assets/cardtw-logo.png']
 }
 
-const wagmiAdapter = new WagmiAdapter({
-  projectId,
-  networks
-})
+const wagmiAdapter = new WagmiAdapter({ projectId, networks })
 
 const appKit = createAppKit({
   adapters: [wagmiAdapter],
@@ -35,9 +32,7 @@ const appKit = createAppKit({
   enableWallets: true,
   enableNetworkSwitch: true,
   enableReconnect: true,
-  features: {
-    analytics: false
-  },
+  features: { analytics: false },
   themeMode: 'light',
   themeVariables: {
     '--w3m-accent': '#2a2bff',
@@ -47,17 +42,26 @@ const appKit = createAppKit({
 
 window.cardtwAppKit = appKit
 
-const short = (address) =>
-  address ? `${address.slice(0, 6)}…${address.slice(-4)}` : ''
+function showDiagnostic(message) {
+  const el = document.getElementById('cardtwWalletDiagnostic')
+  if (el) {
+    el.style.display = 'block'
+    el.textContent = message
+  }
+}
+
+function short(address) {
+  return address ? `${address.slice(0, 6)}…${address.slice(-4)}` : ''
+}
 
 function renderWallet() {
   const status = document.getElementById('cardtwWalletStatus')
   const addressEl = document.getElementById('cardtwWalletAddress')
+  if (!status || !addressEl) return
+
   const connected = appKit.getIsConnected()
   const address = appKit.getAddress()
   const chainId = appKit.getChainId()
-
-  if (!status || !addressEl) return
 
   if (connected && address) {
     status.textContent = `Wallet connecté · ${short(address)}`
@@ -68,29 +72,26 @@ function renderWallet() {
   }
 }
 
-function openWallet() {
-  if (appKit.getIsConnected()) {
-    appKit.open({ view: 'Account' })
-  } else {
-    appKit.open({ view: 'Connect', namespace: 'eip155' })
-  }
+function openConnect() {
+  appKit.open({ view: 'Connect', namespace: 'eip155' })
 }
 
-function bindWalletButtons() {
-  document.querySelectorAll('[data-wallet-connect]').forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault()
-      openWallet()
-    })
+// Custom card CTAs use the same AppKit instance.
+document.querySelectorAll('[data-wallet-connect]').forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault()
+    openConnect()
   })
+})
 
-  // Official AppKit component as a reliable fallback if a custom trigger ever fails.
-  const fallback = document.querySelector('#appkitFallbackButton')
-  if (fallback) fallback.addEventListener('click', openWallet)
-}
-
-appKit.subscribeProvider(() => renderWallet())
 appKit.subscribeState(() => renderWallet())
+appKit.subscribeProvider(() => renderWallet())
 
-bindWalletButtons()
 renderWallet()
+
+// Confirm the official web component exists after initialization.
+setTimeout(() => {
+  if (!customElements.get('appkit-button')) {
+    showDiagnostic('Reown AppKit ne s’est pas chargé. Vérifiez le build GitHub Pages et la console du navigateur.')
+  }
+}, 2500)

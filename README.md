@@ -1,11 +1,10 @@
-# CardTW — fixed Reown edition
+# CardTW — final wallet connection
 
-This version fixes the GitHub Pages Vite entry path and uses the current Reown AppKit connection flow.
+This version uses the official Reown AppKit custom web component for the main Connect Wallet buttons and a shared AppKit instance for CardTW card actions.
 
-- Reown AppKit multi-wallet modal
-- EVM networks: Ethereum, Arbitrum, Base, Polygon, Optimism, BNB Chain, Avalanche
-- All CardTW wallet buttons use the same AppKit connection handler
-- Reconnect support
+- Multi-wallet Reown selector
+- EVM network support
+- Header, hero and wallet-panel Connect buttons
+- Card action buttons open the same wallet connector
 - No private key or seed phrase collection
-- Premium card visual treatment
-- Multilingual UI included in the page
+- GitHub Pages / Vite compatible

@@ -364,6 +364,10 @@ body{background:
 .product{padding:10px!important;background:rgba(255,255,255,.93)!important;border:1px solid #e4e8f2!important;border-radius:30px!important;box-shadow:0 30px 75px -36px rgba(22,30,98,.38)!important}
 .product .body{padding:12px!important}
 
+
+appkit-button{display:inline-block}
+#cardtwHeaderConnect,#cardtwHeroConnect,#cardtwPanelConnect{--w3m-color-mix:#2a2bff}
+
 </style>
 <script type="module" src="./src/main.js"></script>
 </head>
@@ -384,7 +388,7 @@ body{background:
     <a href="#wallet" data-i18n="navWallet">Wallet</a>
   </nav>
   <div class="top-actions">
-    <button class="connect-btn wallet-trigger" type="button" data-wallet-connect data-wallet-role="primary"><span data-i18n="connectLabel">Connecter le wallet</span></button>
+    <appkit-button id="cardtwHeaderConnect" namespace="eip155"></appkit-button>
     <label class="lang-selector">
       <span aria-hidden="true">🌐</span>
       <select id="languageSelect" aria-label="Language">
@@ -411,7 +415,7 @@ body{background:
     <h1><span data-i18n="heroTitle">Une carte simple.<br><span>Un wallet connecté.</span></span></h1>
     <p class="sub"><span data-i18n="heroSub">CardTW regroupe vos cartes, votre wallet et vos paiements dans une interface claire. Connectez votre wallet, choisissez une carte et gardez une vue simple sur votre activité.</span></p>
     <div class="hero-actions">
-      <button class="primary-hero wallet-trigger" type="button" data-wallet-connect data-wallet-role="primary">Connecter le wallet</button>
+      <appkit-button id="cardtwHeroConnect" namespace="eip155"></appkit-button>
       <a class="secondary-hero" href="#how"><span data-i18n="howLink">Découvrir le fonctionnement</span></a>
     </div>
     <div class="hero-trust">
@@ -442,7 +446,7 @@ body{background:
   <div class="quick-wallet-card">
     <div class="wallet-status"><span class="status-dot" id="walletDot"></span><strong id="cardtwWalletStatus"><span data-i18n="walletDisconnected">Wallet non connecté</span></strong></div>
     <div class="wallet-address" id="cardtwWalletAddress"><span data-i18n="walletPrompt">Connectez votre wallet pour continuer.</span></div>
-    <button class="wallet-main-btn wallet-trigger" id="cardtwWalletPanelBtn" type="button" data-wallet-connect data-wallet-role="panel">Connecter le wallet</button>
+    <appkit-button id="cardtwPanelConnect" namespace="eip155"></appkit-button>
   </div>
 </section>
 
@@ -513,7 +517,7 @@ body{background:
                   <p>Une carte polyvalente pour les dépenses quotidiennes avec prise en charge d'<b>Apple Pay</b>, <b>Google Pay</b> et possibilité de liaison avec PayPal. Convient aux achats hors ligne et aux paiements en ligne.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -574,7 +578,7 @@ body{background:
                   <p>Un excellent outil pour payer des services en ligne et des abonnements (Google services, OpenAI, ChatGPT, Microsoft, Meta, Shopify, AWS, Telegram, TikTok, etc.) sans limites de rechargement ni de dépenses.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -644,7 +648,7 @@ body{background:
                   <p>Payez en ligne avec <b>Apple Pay / Google Pay</b>.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour précommander">Connecter pour précommander</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour précommander">Connecter pour précommander</button>
 
                 <details class="limits">
                   <summary>Limites maximales
