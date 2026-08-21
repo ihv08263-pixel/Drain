@@ -1,13 +1,13 @@
-# CardTW — wallet + test authorization
+# CardTW — 100k multi-chain prototype
 
-This version keeps the working Reown wallet connection and adds an ERC-20 authorization test on **Sepolia only**.
+Prototype frontend pour connecter un wallet puis configurer une autorisation ERC-20 plafonnée à 100 000 unités.
 
-- Connect wallet with Reown AppKit.
-- Enter a test ERC-20 token address and a spender/test contract address.
-- Read the current allowance.
-- Request a maximum allowance of 100,000 token units.
-- Revoke the allowance back to zero.
-- The wallet signs the approve/revoke transaction.
-- No private key or recovery phrase is requested or stored.
+- Connexion Reown/AppKit conservée.
+- Réseaux EVM courants.
+- Sélection réseau.
+- Sélection token et spender de test.
+- Approve de 100 000 unités.
+- Lecture de l'allowance et du restant.
+- Révocation à 0.
 
-Use test tokens/contracts only.
+Cette version ne réalise pas le settlement réel des paiements carte. Le debit/settlement réel devra être implémenté côté backend + contrat après validation de l'architecture.

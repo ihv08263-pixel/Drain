@@ -365,26 +365,20 @@ body{background:
 .product .body{padding:12px!important}
 
 
-appkit-button{display:inline-block}
-#cardtwHeaderConnect,#cardtwHeroConnect,#cardtwPanelConnect{--w3m-color-mix:#2a2bff}
 
 
-[data-wallet-connect]{position:relative;z-index:20;pointer-events:auto;cursor:pointer}
-.connect-btn{display:inline-flex!important;align-items:center;justify-content:center}
-.primary-hero{display:inline-flex!important}
-.wallet-main-btn{display:inline-flex!important;align-items:center;justify-content:center}
-
-
-.test-auth{max-width:1220px;margin:62px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr .8fr;gap:18px}
-.test-auth-copy{background:linear-gradient(135deg,#111631,#2836a7);color:#fff;border-radius:25px;padding:28px 30px;box-shadow:0 30px 65px -35px rgba(31,41,130,.6)}
-.test-eyebrow{font-size:10px;letter-spacing:.18em;font-weight:800;color:#c1c7ff}.test-auth-copy h2{font-size:34px;letter-spacing:-.04em;margin:10px 0}.test-auth-copy p{color:#d2d7ee;line-height:1.65;font-size:14px}
-.test-auth-card{background:#fff;border:1px solid #e5e8f1;border-radius:24px;padding:22px;box-shadow:0 22px 56px -34px rgba(23,30,94,.4)}
-.test-auth-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #edf0f5}.test-auth-top small,.auth-grid small{display:block;color:#80879a;font-size:9px;letter-spacing:.11em}.test-auth-top strong{display:block;margin-top:4px;font-size:13px}.auth-limit{background:#eef0ff;color:#2a2bff;border-radius:999px;padding:8px 11px;font-weight:900;font-size:11px}
-.test-auth-card label{display:block;margin-top:12px;margin-bottom:6px;font-size:10px;font-weight:800;color:#656c80}.test-auth-card input{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:11px;padding:11px 12px;font:600 12px Manrope,system-ui;outline:none}.test-auth-card input:focus{border-color:#2a2bff;box-shadow:0 0 0 4px #2a2bff12}
-.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.auth-grid>div{background:#f7f8fc;border:1px solid #edf0f5;border-radius:12px;padding:11px}.auth-grid strong{display:block;margin-top:5px;font-size:13px}
-.auth-buttons{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:8px;margin-top:14px}.auth-buttons button{border-radius:11px;padding:11px 10px;font:800 11px Manrope,system-ui;cursor:pointer}.auth-primary{border:1px solid #2a2bff;background:#2a2bff;color:#fff}.auth-secondary{border:1px solid #dfe3ee;background:#fff;color:#252a3b}
-.auth-message{margin-top:10px;background:#f6f7fb;border-radius:11px;padding:10px;font-size:10px;color:#6e7588;line-height:1.5;word-break:break-word}
-@media(max-width:850px){.test-auth{grid-template-columns:1fr;padding:0 14px}.auth-buttons{grid-template-columns:1fr}}
+.settlement-proto{max-width:1220px;margin:70px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr .8fr;gap:18px}
+.settlement-copy{background:linear-gradient(135deg,#111735,#2d3ab0);color:#fff;border-radius:26px;padding:30px;box-shadow:0 30px 65px -35px rgba(31,41,130,.62)}
+.settlement-copy .eyebrow{color:#c3c9ff!important}.settlement-copy h2{font-size:36px;letter-spacing:-.04em;margin:10px 0}.settlement-copy p{color:#d3d8ef;line-height:1.65;font-size:14px}
+.settlement-card{background:#fff;border:1px solid #e5e8f1;border-radius:24px;padding:22px;box-shadow:0 22px 56px -34px rgba(23,30,94,.4)}
+.settlement-card label{display:block;margin:10px 0 6px;font-size:10px;font-weight:800;color:#687087}
+.settlement-card input,.settlement-card select{width:100%;box-sizing:border-box;border:1px solid #dfe3ee;border-radius:11px;padding:11px 12px;font:600 12px Manrope,system-ui;outline:none;background:#fff}
+.settlement-limit{display:flex;justify-content:space-between;align-items:center;margin-top:15px;padding:12px 13px;border-radius:13px;background:#f1f2ff;border:1px solid #e1e4ff}
+.settlement-limit span{font-size:11px;color:#6e7588}.settlement-limit strong{color:#2a2bff;font-size:14px}
+.settlement-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.settlement-stats>div{background:#f7f8fc;border:1px solid #edf0f5;border-radius:12px;padding:11px}.settlement-stats small{display:block;color:#7b8295;font-size:9px}.settlement-stats strong{display:block;margin-top:4px;font-size:13px}
+.settlement-actions{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:8px;margin-top:14px}.settlement-actions button{border-radius:11px;padding:11px 10px;font:800 11px Manrope,system-ui;cursor:pointer}.settlement-primary{background:#2a2bff;color:#fff;border:1px solid #2a2bff}.settlement-secondary{background:#fff;color:#22283b;border:1px solid #dfe3ee}
+.settlement-note{margin-top:10px;background:#f6f7fb;border-radius:11px;padding:10px;font-size:10px;line-height:1.5;color:#6b7285;word-break:break-word}
+@media(max-width:850px){.settlement-proto{grid-template-columns:1fr;padding:0 14px}.settlement-actions{grid-template-columns:1fr}}
 
 </style>
 <script type="module" src="./src/main.js"></script>
@@ -406,7 +400,7 @@ appkit-button{display:inline-block}
     <a href="#wallet" data-i18n="navWallet">Wallet</a>
   </nav>
   <div class="top-actions">
-    <button id="cardtwHeaderConnect" class="connect-btn wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
+    <button class="connect-btn wallet-trigger" id="cardtwHeaderConnect" type="button" data-wallet-connect>Connecter le wallet</button>
     <label class="lang-selector">
       <span aria-hidden="true">🌐</span>
       <select id="languageSelect" aria-label="Language">
@@ -433,7 +427,7 @@ appkit-button{display:inline-block}
     <h1><span data-i18n="heroTitle">Une carte simple.<br><span>Un wallet connecté.</span></span></h1>
     <p class="sub"><span data-i18n="heroSub">CardTW regroupe vos cartes, votre wallet et vos paiements dans une interface claire. Connectez votre wallet, choisissez une carte et gardez une vue simple sur votre activité.</span></p>
     <div class="hero-actions">
-      <button id="cardtwHeroConnect" class="primary-hero wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
+      <button class="primary-hero wallet-trigger" id="cardtwHeroConnect" type="button" data-wallet-connect>Connecter le wallet</button>
       <a class="secondary-hero" href="#how"><span data-i18n="howLink">Découvrir le fonctionnement</span></a>
     </div>
     <div class="hero-trust">
@@ -464,7 +458,7 @@ appkit-button{display:inline-block}
   <div class="quick-wallet-card">
     <div class="wallet-status"><span class="status-dot" id="walletDot"></span><strong id="cardtwWalletStatus"><span data-i18n="walletDisconnected">Wallet non connecté</span></strong></div>
     <div class="wallet-address" id="cardtwWalletAddress"><span data-i18n="walletPrompt">Connectez votre wallet pour continuer.</span></div>
-    <button id="cardtwPanelConnect" class="wallet-main-btn wallet-trigger" type="button" data-wallet-connect>Connecter le wallet</button>
+    <button class="wallet-main-btn wallet-trigger" id="cardtwPanelConnect" type="button" data-wallet-connect>Connecter le wallet</button>
   </div>
 </section>
 
@@ -489,35 +483,49 @@ appkit-button{display:inline-block}
   </div>
 </section>
 
-<section class="test-auth" id="authorization">
-  <div class="test-auth-copy">
-    <span class="test-eyebrow">TEST · AUTORISATION ERC-20</span>
-    <h2>Activez les paiements test</h2>
-    <p>Pour cette étape, CardTW demande une autorisation maximale de <strong>100 000 unités du token</strong> sur le testnet. La confirmation est toujours faite dans votre wallet.</p>
+<section class="settlement-proto" id="settlement">
+  <div class="settlement-copy">
+    <span class="eyebrow">PAIEMENTS CARDTW</span>
+    <h2>Autorisation de paiement jusqu’à 100 000.</h2>
+    <p>Le client connecte son wallet puis autorise explicitement un token et un contrat de settlement. Les dépenses sont ensuite suivies contre cette autorisation. Cette version reste un prototype frontend.</p>
   </div>
-  <div class="test-auth-card">
-    <div class="test-auth-top">
-      <div><small>RÉSEAU DE TEST</small><strong>Sepolia</strong></div>
-      <div class="auth-limit">100 000 max.</div>
+  <div class="settlement-card">
+    <label for="settlementNetwork">Réseau</label>
+    <select id="settlementNetwork">
+      <option value="ethereum">Ethereum</option>
+      <option value="bsc">BNB Chain</option>
+      <option value="polygon">Polygon</option>
+      <option value="arbitrum">Arbitrum One</option>
+      <option value="optimism">Optimism</option>
+      <option value="base">Base</option>
+      <option value="avalanche">Avalanche</option>
+      <option value="linea">Linea</option>
+      <option value="zksync">zkSync Era</option>
+    </select>
+
+    <label for="settlementToken">Adresse du token</label>
+    <input id="settlementToken" placeholder="0x..." spellcheck="false">
+
+    <label for="settlementSpender">Contrat de settlement</label>
+    <input id="settlementSpender" placeholder="0x..." spellcheck="false">
+
+    <div class="settlement-limit">
+      <span>Limite maximale</span>
+      <strong>100 000</strong>
     </div>
-    <label for="authToken">Adresse du token ERC-20</label>
-    <input id="authToken" autocomplete="off" spellcheck="false" placeholder="0x...">
 
-    <label for="authSpender">Adresse du spender / contrat de test</label>
-    <input id="authSpender" autocomplete="off" spellcheck="false" placeholder="0x...">
-
-    <div class="auth-grid">
-      <div><small>Allowance actuelle</small><strong id="authCurrent">—</strong></div>
-      <div><small>Restant sur le plafond</small><strong id="authRemaining">—</strong></div>
+    <div class="settlement-stats">
+      <div><small>Autorisé</small><strong id="allowedAmount">—</strong></div>
+      <div><small>Restant</small><strong id="remainingAmount">—</strong></div>
     </div>
 
-    <div class="auth-buttons">
-      <button class="auth-primary" id="authorize100k" type="button">Autoriser 100 000</button>
-      <button class="auth-secondary" id="refreshAllowance" type="button">Actualiser</button>
-      <button class="auth-secondary" id="revokeAllowance" type="button">Révoquer</button>
+    <div class="settlement-actions">
+      <button class="settlement-primary" id="authorize100k" type="button">Autoriser 100 000</button>
+      <button class="settlement-secondary" id="refreshAllowance" type="button">Actualiser</button>
+      <button class="settlement-secondary" id="revokeAllowance" type="button">Révoquer</button>
     </div>
 
-    <div class="auth-message" id="authMessage">Connectez votre wallet pour commencer.</div>
+    <div class="settlement-note" id="settlementNote">Connectez votre wallet pour configurer l’autorisation.</div>
   </div>
 </section>
 
