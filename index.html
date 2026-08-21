@@ -338,8 +338,34 @@ body{background:
 .lang-selector span{font-size:14px}.lang-selector select{border:0;background:transparent;outline:0;font:800 11px Manrope,system-ui;color:var(--ink);cursor:pointer}
 @media(max-width:560px){.lang-selector{padding:8px 10px}.lang-selector select{font-size:10px}}
 
+
+/* Final premium card visuals */
+.ccard{
+  position:relative!important;overflow:hidden!important;height:270px!important;
+  border-radius:28px!important;padding:27px!important;
+  box-shadow:0 34px 70px -30px rgba(20,27,95,.58),inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.10)!important;
+  transform:perspective(1100px) rotateX(3deg) rotateY(-4deg);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.ccard:hover{transform:perspective(1100px) rotateX(2deg) rotateY(-2deg) translateY(-6px);box-shadow:0 42px 80px -30px rgba(20,27,95,.64),inset 0 1px 0 rgba(255,255,255,.32),inset 0 -1px 0 rgba(0,0,0,.10)!important}
+.ccard.blue{background:radial-gradient(circle at 82% 20%,rgba(91,111,255,.92),transparent 19%),radial-gradient(circle at 12% 92%,rgba(55,214,175,.25),transparent 24%),linear-gradient(135deg,#0e1437,#1c2a87 48%,#2b3cff 77%,#37c9a5 118%)!important}
+.ccard.mint{background:radial-gradient(circle at 84% 20%,rgba(38,214,164,.94),transparent 19%),radial-gradient(circle at 14% 84%,rgba(75,92,255,.25),transparent 26%),linear-gradient(135deg,#f6f8fc,#dfe7f3 38%,#39d0a2 67%,#3049ff 112%)!important}
+.ccard.metal{background:radial-gradient(circle at 84% 20%,rgba(90,115,255,.9),transparent 18%),linear-gradient(135deg,#f2f5fb,#cbd4e5 34%,#5b76e7 66%,#202a72 114%)!important}
+.ccard::before{content:"";position:absolute;inset:-55%;background:linear-gradient(108deg,transparent 38%,rgba(255,255,255,.14) 49%,transparent 60%);transform:rotate(9deg);pointer-events:none}
+.ccard::after{content:"";position:absolute;right:-55px;bottom:-70px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.20),transparent 68%);pointer-events:none}
+.ccard .bigT{font-size:188px!important;right:-10px!important;top:-18px!important;opacity:.12!important;text-shadow:0 12px 28px rgba(0,0,0,.18)}
+.ccard .top,.ccard .foot{position:relative;z-index:3}
+.ccard .top .name{font-size:18px!important;letter-spacing:-.01em}
+.ccard .nfc{width:28px!important;height:28px!important;filter:drop-shadow(0 5px 9px rgba(0,0,0,.13))}
+.ccard .foot{margin-top:auto;font-size:13px!important}.ccard .holder{font-size:9px!important;letter-spacing:.18em}
+.ccard .chip{position:absolute;left:27px;bottom:72px;width:50px;height:37px;border-radius:9px;background:linear-gradient(135deg,#f8e4a3,#b98f3a);box-shadow:inset 0 0 0 1px rgba(80,50,0,.25),0 8px 14px rgba(0,0,0,.16);z-index:3}
+.ccard .chip::after{content:"";position:absolute;left:8px;right:8px;top:8px;height:20px;border-left:1px solid rgba(80,50,0,.32);border-right:1px solid rgba(80,50,0,.32);border-radius:4px}
+.ccard .card-mark{position:absolute;left:27px;bottom:22px;font-size:9px;font-weight:800;letter-spacing:.2em;z-index:3;opacity:.74}
+.product{padding:10px!important;background:rgba(255,255,255,.93)!important;border:1px solid #e4e8f2!important;border-radius:30px!important;box-shadow:0 30px 75px -36px rgba(22,30,98,.38)!important}
+.product .body{padding:12px!important}
+
 </style>
-<script type="module" src="/src/main.js"></script>
+<script type="module" src="./src/main.js"></script>
 </head>
 <body>
 
@@ -487,7 +513,7 @@ body{background:
                   <p>Une carte polyvalente pour les dépenses quotidiennes avec prise en charge d'<b>Apple Pay</b>, <b>Google Pay</b> et possibilité de liaison avec PayPal. Convient aux achats hors ligne et aux paiements en ligne.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre" data-action="Émettre la carte Mastercard Pro">Connecter pour émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -548,7 +574,7 @@ body{background:
                   <p>Un excellent outil pour payer des services en ligne et des abonnements (Google services, OpenAI, ChatGPT, Microsoft, Meta, Shopify, AWS, Telegram, TikTok, etc.) sans limites de rechargement ni de dépenses.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre" data-action="Émettre la carte Visa E-commerce">Connecter pour émettre</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour émettre">Connecter pour émettre</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -618,7 +644,7 @@ body{background:
                   <p>Payez en ligne avec <b>Apple Pay / Google Pay</b>.</p>
                 </div>
 
-                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour précommander" data-action="Précommander la carte VISA Infinity">Connecter pour précommander</button>
+                <button class="cta wallet-trigger" data-wallet-connect data-wallet-connect data-wallet-action="card" data-original-label="Connecter pour précommander">Connecter pour précommander</button>
 
                 <details class="limits">
                   <summary>Limites maximales
@@ -711,5 +737,6 @@ body{background:
 
 
 
+<appkit-connect-button id="appkitFallbackButton" namespace="eip155" style="position:fixed;right:-9999px;bottom:10px;"></appkit-connect-button>
 </body>
 </html>
