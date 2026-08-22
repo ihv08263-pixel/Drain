@@ -2,43 +2,45 @@ import { createAppKit } from '@reown/appkit'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { mainnet, polygon, arbitrum, optimism, base, bsc, avalanche } from '@reown/appkit/networks'
 
-const projectId = '17c85e8f03aeb086abdd0f20c6070032'
-const networks = [mainnet, polygon, arbitrum, optimism, base, bsc, avalanche]
+const PROJECT_ID = '17c85e8f03aeb086abdd0f20c6070032'
+const NETWORKS = [mainnet, polygon, arbitrum, optimism, base, bsc, avalanche]
+const APP_ORIGIN = window.location.origin
 
 const metadata = {
   name: 'CardTW',
   description: 'CardTW premium crypto cards',
-  url: window.location.origin,
-  icons: [`${window.location.origin}/cardtw/assets/cardtw-logo.svg`]
+  // Reown requires the metadata URL to match the app origin.
+  url: APP_ORIGIN,
+  icons: [`${APP_ORIGIN}/cardtw/assets/cardtw-logo.svg`]
 }
 
-const wagmiAdapter = new WagmiAdapter({ projectId, networks })
-
-let modal
+let modal = null
 let initError = null
+
 try {
+  const wagmiAdapter = new WagmiAdapter({
+    projectId: PROJECT_ID,
+    networks: NETWORKS
+  })
+
   modal = createAppKit({
     adapters: [wagmiAdapter],
-    networks,
-    projectId,
-    defaultNetwork: mainnet,
+    networks: NETWORKS,
+    projectId: PROJECT_ID,
     metadata,
-    features: {
-      analytics: false,
-      email: false,
-      socials: false
-    },
+    defaultNetwork: mainnet,
+    features: { analytics: false },
     themeMode: 'dark',
     themeVariables: {
       '--w3m-accent': '#3157ff',
       '--w3m-border-radius-master': '12px',
-      '--w3m-z-index': '1000'
+      '--w3m-z-index': '10000'
     }
   })
   window.cardtwAppKit = modal
-} catch (err) {
-  initError = err
-  console.error('[CardTW] AppKit initialization failed', err)
+} catch (error) {
+  initError = error
+  console.error('[CardTW] AppKit init failed:', error)
 }
 
 const translations = {
@@ -78,109 +80,117 @@ const translations = {
     f1t:'आसान कनेक्शन',f1p:'एक Reown फ्लो।',f2t:'प्रीमियम कार्ड',f2p:'तीन स्तर।',f3t:'पर्सनल स्पेस',f3p:'कनेक्ट करने के बाद डैशबोर्ड।',f4t:'स्केलेबल आर्किटेक्चर',f4p:'API और PostgreSQL के लिए तैयार.',collectionEyebrow:'कार्ड कलेक्शन',collectionTitle:'वास्तव में प्रीमियम कार्ड.',collectionSub:'Royal Blue, Obsidian Black और 24K Gold.',royalCardDesc:'सिंपल और प्रीमियम.',obsidianCardDesc:'ब्लैक ओब्सीडियन.',goldCardDesc:'अल्ट्रा प्रीमियम गोल्ड.',walletEyebrow:'वॉलेट',walletTitle:'वॉलेट कनेक्ट करें.',walletSub:'Reown कनेक्शन संभालता है.',lockedTitle:'डैशबोर्ड लॉक है.',lockedSub:'आगे बढ़ने के लिए वॉलेट कनेक्ट करें.',disconnect:'डिस्कनेक्ट',dashTitle:'वापस स्वागत है 👋',dashSub:'आपका CardTW स्पेस.',connectedWallet:'कनेक्टेड वॉलेट',networkLabel:'नेटवर्क',overview:'ओवरव्यू',access:'एक्सेस',myCards:'मेरे कार्ड',quickActions:'क्विक एक्शन',recent:'हाल की गतिविधि',cardDashboardDesc:'डेमो कार्ड.',logout:'लॉग आउट',footer:'प्रीमियम डेमो.'}
 }
 
-function applyLanguage(lang) {
-  const dict = translations[lang] || translations.fr
-  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = dict[el.dataset.i18n] ?? el.textContent })
-  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = dict[el.dataset.i18nHtml] ?? el.innerHTML })
-  document.documentElement.lang = lang
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
-  localStorage.setItem('cardtw_lang', lang)
+
+function applyCardTWLanguage(lang){
+  const dict=translations[lang]||translations.fr
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent=dict[el.dataset.i18n] ?? el.textContent })
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML=dict[el.dataset.i18nHtml] ?? el.innerHTML })
+  document.documentElement.lang=lang
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr'
 }
+window.applyCardTWLanguage=applyCardTWLanguage
 
-function setupLanguage() {
-  const select = document.getElementById('language')
-  if (!select) return
-  const lang = localStorage.getItem('cardtw_lang') || 'fr'
-  select.value = lang
-  select.addEventListener('change', () => applyLanguage(select.value))
-  applyLanguage(lang)
-}
+const FLAGS = {fr:'🇫🇷',en:'🇬🇧',es:'🇪🇸',de:'🇩🇪',pt:'🇵🇹',ru:'🇷🇺',tr:'🇹🇷',zh:'🇨🇳',ja:'🇯🇵',ko:'🇰🇷',ar:'🇸🇦',hi:'🇮🇳'}
 
-function showWalletError(message) {
-  const el = document.getElementById('walletError')
-  if (el) {
-    el.style.display = 'block'
-    el.textContent = message
-  }
-  console.error('[CardTW]', message)
-}
-
-function clearWalletError() {
-  const el = document.getElementById('walletError')
-  if (el) el.style.display = 'none'
-}
-
-function networkName(chainId) {
-  const map = {'0x1':'Ethereum','0x89':'Polygon','0xa4b1':'Arbitrum','0xa':'Optimism','0x2105':'Base','0x38':'BNB Chain','0xa86a':'Avalanche'}
-  return map[chainId] || `Chain ${chainId || '—'}`
-}
-
-function renderWallet() {
-  if (!modal) return
-  const connected = modal.getIsConnected()
-  const address = modal.getAddress()
-  const chainId = modal.getChainId()
-  const status = document.getElementById('walletStatus')
-  const addressEl = document.getElementById('walletAddress')
-  const dot = document.getElementById('statusDot')
-  const dashAddress = document.getElementById('dashAddress')
-  const dashNetwork = document.getElementById('dashNetwork')
-  const dashboard = document.getElementById('dashboard')
-  const locked = document.getElementById('lockedDash')
-
-  if (connected && address) {
-    if (status) status.textContent = `Wallet connecté · ${address.slice(0,6)}…${address.slice(-4)}`
-    if (addressEl) addressEl.textContent = address
-    if (dot) dot.classList.add('connected')
-    if (dashAddress) dashAddress.textContent = address
-    if (dashNetwork) dashNetwork.textContent = networkName(chainId)
-    if (dashboard) dashboard.style.display = 'block'
-    if (locked) locked.style.display = 'none'
-  } else {
-    if (status) status.textContent = 'Wallet non connecté'
-    if (addressEl) addressEl.textContent = 'Connectez votre wallet pour commencer.'
-    if (dot) dot.classList.remove('connected')
-    if (dashboard) dashboard.style.display = 'none'
-    if (locked) locked.style.display = 'block'
-  }
-}
-
-async function openWallet() {
-  clearWalletError()
-  if (!modal) {
-    showWalletError(`Reown n'a pas pu être initialisé. ${initError?.message || ''}`)
-    return
-  }
-  try {
-    await modal.open({ view: 'Connect', namespace: 'eip155' })
-  } catch (err) {
-    showWalletError(`Impossible d'ouvrir le sélecteur Reown. ${err?.message || err}`)
-  }
-}
-
-function bindWalletButtons() {
-  document.querySelectorAll('[data-wallet-connect]').forEach(btn => {
-    btn.addEventListener('click', (event) => {
-      event.preventDefault()
-      openWallet()
-    })
+function setupLanguage(){
+  const select=document.getElementById('language')
+  const flag=document.getElementById('languageFlag')
+  if(!select) return
+  const lang=localStorage.getItem('cardtw_lang')||'fr'
+  select.value=lang
+  if(flag) flag.textContent=FLAGS[lang]||'🌐'
+  applyCardTWLanguage(lang)
+  select.addEventListener('change',()=>{
+    const next=select.value
+    localStorage.setItem('cardtw_lang',next)
+    if(flag) flag.textContent=FLAGS[next]||'🌐'
+    applyCardTWLanguage(next)
   })
-  const disconnect = document.getElementById('disconnectBtn')
-  if (disconnect) disconnect.addEventListener('click', () => modal?.disconnect())
 }
 
-function addRuntimeErrorBanner() {
-  if (initError) showWalletError(`Erreur Reown : ${initError.message || initError}`)
+function showWalletError(message){
+  const el=document.getElementById('walletError')
+  if(el){ el.style.display='block'; el.textContent=message }
+  console.error('[CardTW]',message)
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function renderWallet(){
+  if(!modal) return
+  const connected=modal.getIsConnected()
+  const address=modal.getAddress()
+  const chainId=modal.getChainId()
+  const short=address?`${address.slice(0,6)}…${address.slice(-4)}`:''
+  const status=document.getElementById('walletStatus')
+  const addressEl=document.getElementById('walletAddress')
+  const dot=document.getElementById('statusDot')
+  const dashAddress=document.getElementById('dashAddress')
+  const dashNetwork=document.getElementById('dashNetwork')
+  const dashboard=document.getElementById('dashboard')
+  const locked=document.getElementById('lockedDash')
+  const map={'0x1':'Ethereum','0x89':'Polygon','0xa4b1':'Arbitrum','0xa':'Optimism','0x2105':'Base','0x38':'BNB Chain','0xa86a':'Avalanche'}
+  if(connected && address){
+    if(status) status.textContent=`Wallet connecté · ${short}`
+    if(addressEl) addressEl.textContent=address
+    if(dot) dot.classList.add('connected')
+    if(dashAddress) dashAddress.textContent=address
+    if(dashNetwork) dashNetwork.textContent=map[chainId]||`Chain ${chainId||'—'}`
+    if(dashboard) dashboard.style.display='block'
+    if(locked) locked.style.display='none'
+  }else{
+    if(status) status.textContent='Wallet non connecté'
+    if(addressEl) addressEl.textContent='Connectez votre wallet pour commencer.'
+    if(dot) dot.classList.remove('connected')
+    if(dashboard) dashboard.style.display='none'
+    if(locked) locked.style.display='block'
+  }
+}
+
+async function openWallet(){
+  const errorBox=document.getElementById('walletError')
+  if(errorBox) errorBox.style.display='none'
+  try{
+    if(!modal) throw initError || new Error('Reown AppKit n’a pas pu être initialisé.')
+    // The current Reown docs recommend modal.open() for the connection view.
+    await modal.open()
+  }catch(error){
+    showWalletError(`Connexion impossible : ${error?.message||String(error)}`)
+    // Desktop fallback for an installed injected EVM wallet.
+    if(window.ethereum?.request){
+      try{
+        const accounts=await window.ethereum.request({method:'eth_requestAccounts'})
+        if(accounts?.[0]){
+          const a=accounts[0]
+          const status=document.getElementById('walletStatus')
+          const addressEl=document.getElementById('walletAddress')
+          if(status) status.textContent=`Wallet connecté · ${a.slice(0,6)}…${a.slice(-4)}`
+          if(addressEl) addressEl.textContent=a
+          const dot=document.getElementById('statusDot'); if(dot) dot.classList.add('connected')
+        }
+      }catch(fallbackError){ console.error('[CardTW] injected wallet fallback failed',fallbackError) }
+    }
+  }
+}
+
+function bindWalletButtons(){
+  document.querySelectorAll('[data-wallet-connect]').forEach(button=>{
+    button.addEventListener('click',(event)=>{event.preventDefault();event.stopPropagation();openWallet()})
+  })
+  const disconnect=document.getElementById('disconnectBtn')
+  if(disconnect) disconnect.addEventListener('click',()=>modal?.disconnect())
+}
+
+window.addEventListener('error',(event)=>{
+  if(String(event?.message||'').includes('AppKit')) showWalletError(String(event.message))
+})
+
+document.addEventListener('DOMContentLoaded',()=>{
   setupLanguage()
   bindWalletButtons()
   renderWallet()
-  if (modal) {
+  if(modal){
     modal.subscribeState(renderWallet)
     modal.subscribeProvider(renderWallet)
-  } else {
-    addRuntimeErrorBanner()
+  }else{
+    showWalletError(`Reown n’a pas démarré. ${initError?.message||''}`)
   }
 })

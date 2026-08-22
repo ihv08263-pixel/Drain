@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reown/appkit": "1.7.20",
-    "@reown/appkit-adapter-wagmi": "1.7.20",
-    "wagmi": "2.15.9",
-    "viem": "2.21.1"
+    "@reown/appkit": "1.8.23",
+    "@reown/appkit-adapter-wagmi": "1.8.23",
+    "wagmi": "^2.0.0",
+    "viem": "latest"
   },
   "devDependencies": {
-    "vite": "7.0.0"
+    "vite": "latest"
   }
 }

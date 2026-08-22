@@ -76,6 +76,10 @@
 @media(max-width:900px){.cards-grid.three-cards{grid-template-columns:1fr}}
 .wallet-error{display:none;margin-top:10px;background:#2a1115;border:1px solid #6d2630;color:#ffb7bf;border-radius:10px;padding:10px;font-size:10px;line-height:1.45;word-break:break-word}
 
+
+.language-wrap{display:flex;align-items:center;gap:7px;background:#0b1120;border:1px solid var(--line);border-radius:999px;padding:6px 10px 6px 8px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.language-flag{font-size:17px;line-height:1} .langselect{border:0;background:transparent;color:#dbe4ff;outline:0;font:800 11px Manrope,system-ui;cursor:pointer;max-width:140px} .langselect option{color:#111;background:#fff}
+.wallet-error{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;background:#35151c;border:1px solid #6b2635;color:#ffb9c4;font-size:11px;line-height:1.5;word-break:break-word}
 </style>
 </head>
 <body>
@@ -89,11 +93,14 @@
       <a href="#wallet" data-i18n="wallet">Wallet</a>
     </nav>
     <div class="navactions">
-      <select id="language" class="langselect" aria-label="Language">
-        <option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="de">DE</option>
-        <option value="pt">PT</option><option value="ru">RU</option><option value="tr">TR</option><option value="zh">中文</option>
-        <option value="ja">日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option>
-      </select>
+      <div class="language-wrap">
+        <span id="languageFlag" class="language-flag" aria-hidden="true">🇫🇷</span>
+        <select id="language" class="langselect" aria-label="Language">
+          <option value="fr">FR · Français</option><option value="en">EN · English</option><option value="es">ES · Español</option><option value="de">DE · Deutsch</option>
+          <option value="pt">PT · Português</option><option value="ru">RU · Русский</option><option value="tr">TR · Türkçe</option><option value="zh">中文 · 简体</option>
+          <option value="ja">日本語 · 日本語</option><option value="ko">한국어 · 한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option>
+        </select>
+      </div>
       <button class="btn primary" data-wallet-connect data-i18n="connect">Connecter le wallet</button>
     </div>
   </div>

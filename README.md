@@ -16,3 +16,6 @@ Production backend/database remains planned for the VPS migration.
 - Royal Blue: 1 USD
 - Obsidian Black: 25 USD
 - 24K Gold: 50 USD
+
+
+Wallet note: add the production origin `https://ihv08263-pixel.github.io` (without `/cardtw`) to Reown Dashboard → Project Domains / Allowed Domains. Reown requires the metadata URL origin to match the allowed origin.
