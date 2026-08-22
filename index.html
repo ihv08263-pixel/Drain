@@ -63,6 +63,19 @@
 .preview-lock{position:absolute;inset:74px 24px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(5,9,18,.62);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.08);border-radius:22px}.lock-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#2846c8,#1a274e);display:grid;place-items:center;color:#b9c8ff;font-size:22px;box-shadow:0 18px 40px rgba(20,35,120,.4)}.preview-lock strong{margin-top:13px;font-size:16px}.preview-lock span{margin:7px 0 15px;color:#7e8ba7;font-size:11px;max-width:390px}
 @media(max-width:900px){.preview-shell{grid-template-columns:1fr}.preview-sidebar{display:none}.preview-main{padding:15px}.preview-lock{inset:64px 15px 15px}.preview-grid{grid-template-columns:1fr}.preview-wide{grid-column:auto}.preview-card-row{flex-direction:column;align-items:flex-start}}
 
+
+.cards-grid.three-cards{grid-template-columns:repeat(3,1fr);gap:18px}
+.card-item{position:relative;overflow:hidden}
+.level-tag{position:absolute;z-index:3;top:24px;right:24px;padding:7px 10px;border-radius:999px;font-size:9px;font-weight:900;letter-spacing:.12em;color:#dce5ff;background:rgba(8,13,27,.72);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(10px)}
+.royal-card .level-tag{color:#a9c8ff}.obsidian-card .level-tag{color:#e4cb84}.gold-card .level-tag{color:#ffe18a}
+.card-item img{aspect-ratio:1.61/1;object-fit:cover}
+.obsidian-card{background:linear-gradient(180deg,#0b0c0f,#060709)}
+.gold-card{background:linear-gradient(180deg,#15110a,#0b0a07)}
+.card-body{min-height:64px}
+.card-body span{display:block;margin-top:4px;line-height:1.35}
+@media(max-width:900px){.cards-grid.three-cards{grid-template-columns:1fr}}
+.wallet-error{display:none;margin-top:10px;background:#2a1115;border:1px solid #6d2630;color:#ffb7bf;border-radius:10px;padding:10px;font-size:10px;line-height:1.45;word-break:break-word}
+
 </style>
 </head>
 <body>
@@ -97,14 +110,14 @@
         <a class="btn ghost" href="#cards" data-i18n="discover">Découvrir les cartes</a>
       </div>
       <div class="stats">
-        <div><strong>4</strong><span data-i18n="statCards">modèles premium</span></div>
-        <div><strong>9+</strong><span data-i18n="statNetworks">réseaux EVM</span></div>
+        <div><strong>3</strong><span data-i18n="statCards">niveaux premium</span></div>
+        <div><strong>7+</strong><span data-i18n="statNetworks">réseaux EVM</span></div>
         <div><strong>24/7</strong><span data-i18n="statAccess">espace personnel</span></div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="orb"></div>
-      <img class="hero-card back" src="./assets/card-gold.svg" alt="">
+      <img class="hero-card back" src="./assets/card-obsidian.svg" alt="">
       <img class="hero-card" src="./assets/card-royal.svg" alt="CardTW premium card">
       <div class="pill one">Reown / WalletConnect</div>
       <div class="pill two">Dashboard privé</div>
@@ -122,13 +135,24 @@
     <div class="section-title">
       <span class="eyebrow" data-i18n="collectionEyebrow">CARD COLLECTION</span>
       <h2 data-i18n="collectionTitle">Des cartes qui font vraiment premium.</h2>
-      <p data-i18n="collectionSub">Obsidian Black, Arctic Silver, Royal Blue et 24K Gold : quatre identités visuelles prêtes à intégrer au parcours utilisateur.</p>
+      <p data-i18n="collectionSub">Royal Blue, Obsidian Black et 24K Gold : trois niveaux de finition, chacun avec une identité visuelle forte.</p>
     </div>
-    <div class="cards-grid">
-      <article class="card-item"><img src="./assets/card-obsidian.svg" alt="Obsidian Black"><div class="card-body"><div><strong>Obsidian Black</strong><span data-i18n="blackDesc">Ultimate</span></div><span>01</span></div></article>
-      <article class="card-item"><img src="./assets/card-arctic.svg" alt="Arctic Silver"><div class="card-body"><div><strong>Arctic Silver</strong><span data-i18n="silverDesc">Timeless</span></div><span>02</span></div></article>
-      <article class="card-item"><img src="./assets/card-royal.svg" alt="Royal Blue"><div class="card-body"><div><strong>Royal Blue</strong><span data-i18n="royalDesc">Signature</span></div><span>03</span></div></article>
-      <article class="card-item"><img src="./assets/card-gold.svg" alt="24K Gold"><div class="card-body"><div><strong>24K Gold</strong><span data-i18n="goldDesc">Exclusive</span></div><span>04</span></div></article>
+    <div class="cards-grid three-cards">
+      <article class="card-item royal-card">
+        <div class="level-tag">NIVEAU 1</div>
+        <img src="./assets/card-royal.svg" alt="Royal Blue">
+        <div class="card-body"><div><strong>Royal Blue</strong><span data-i18n="royalCardDesc">Simple, premium et accessible.</span></div><span>01</span></div>
+      </article>
+      <article class="card-item obsidian-card">
+        <div class="level-tag">NIVEAU 2</div>
+        <img src="./assets/card-obsidian.svg" alt="Obsidian Black">
+        <div class="card-body"><div><strong>Obsidian Black</strong><span data-i18n="obsidianCardDesc">Obsidienne noire, finition signature.</span></div><span>02</span></div>
+      </article>
+      <article class="card-item gold-card">
+        <div class="level-tag">NIVEAU 3</div>
+        <img src="./assets/card-gold.svg" alt="24K Gold">
+        <div class="card-body"><div><strong>24K Gold</strong><span data-i18n="goldCardDesc">Finition or, style ultra premium.</span></div><span>03</span></div>
+      </article>
     </div>
   </section>
 
@@ -143,7 +167,7 @@
       <div class="wallet-panel" id="walletPanel">
         <div class="statusrow"><span><span class="dot" id="statusDot"></span><strong id="walletStatus">Wallet non connecté</strong></span><span class="muted">CardTW</span></div>
         <div class="address" id="walletAddress">Connecte ton wallet pour commencer.</div>
-        <button class="btn ghost" id="walletManage" data-wallet-connect data-i18n="connect">Connecter le wallet</button>
+        <button class="btn ghost" id="walletManage" data-wallet-connect data-i18n="connect">Connecter le wallet</button><div id="walletError" class="wallet-error"></div>
       </div>
     </div>
   </section>

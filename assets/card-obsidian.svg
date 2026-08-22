@@ -1,28 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
-      <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#0b1023"/>
-          <stop offset="1" stop-color="#233cff"/>
-        </linearGradient>
-        <radialGradient id="glow" cx=".8" cy=".2" r=".7">
-          <stop offset="0" stop-color="#5f7cff" stop-opacity=".55"/>
-          <stop offset="1" stop-color="#5f7cff" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect x="6" y="6" width="888" height="548" rx="44" fill="url(#bg)"/>
-      <rect x="6" y="6" width="888" height="548" rx="44" fill="url(#glow)"/>
-      <circle cx="750" cy="150" r="120" fill="none" stroke="#5f7cff" stroke-width="3" opacity=".22"/>
-      <circle cx="750" cy="150" r="165" fill="none" stroke="#5f7cff" stroke-width="1.5" opacity=".14"/>
-      <path d="M610 70c80 70 140 160 180 280" stroke="#5f7cff" stroke-width="6" opacity=".14" fill="none"/>
-      <path d="M510 20c120 110 210 230 250 390" stroke="#fff" stroke-width="2" opacity=".07" fill="none"/>
-      <text x="58" y="86" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="800" fill="#ffffff">CardTW</text>
-      <text x="60" y="138" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="600" fill="#dfe7ff">ULTIMATE</text>
-      <rect x="60" y="212" width="82" height="62" rx="12" fill="#d9e1ef" opacity=".95"/>
-      <path d="M74 230h54M74 246h54M74 262h54" stroke="#6d5520" stroke-width="5" opacity=".55"/>
-      <text x="60" y="365" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700" fill="#ffffff">••••  ••••  ••••  0000</text>
-      <text x="60" y="415" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#b9c5e6">CARD HOLDER</text>
-      <text x="60" y="454" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="700" fill="#ffffff">CARDTW</text>
-      <text x="760" y="470" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="800" fill="#ffffff">BLACK</text>
-      <text x="60" y="505" font-family="Inter,Arial,sans-serif" font-size="12" fill="#b7c1df">PREMIUM CRYPTO CARD · CONTACTLESS</text>
-      <text x="816" y="90" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700" fill="#fff" opacity=".85">)))</text>
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620">
+<defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#040507"/><stop offset=".5" stop-color="#13161d"/><stop offset="1" stop-color="#05070a"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6e5625"/><stop offset=".45" stop-color="#d7ba67"/><stop offset=".65" stop-color="#78602c"/><stop offset="1" stop-color="#f0db8b"/></linearGradient>
+<filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".015" numOctaves="2" seed="11"/><feColorMatrix values=".12 0 0 0 0.15 0 .12 0 0 0.16 0 0 .12 0 0.2 0 0 0 .28 0"/></filter>
+</defs>
+<rect x="8" y="8" width="984" height="604" rx="48" fill="url(#b)"/>
+<rect x="8" y="8" width="984" height="604" rx="48" filter="url(#noise)" opacity=".7"/>
+<path d="M80 500c170-170 120-240 300-300s260 10 510-100M80 80c130 170 260 250 470 250s260-90 390-170" fill="none" stroke="#d8bc72" stroke-opacity=".23" stroke-width="5"/>
+<path d="M110 530c150-130 180-250 310-280s230 30 410-120" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+<rect x="8" y="8" width="984" height="604" rx="48" fill="none" stroke="url(#gold)" stroke-opacity=".45" stroke-width="3"/>
+<text x="70" y="100" font-family="Arial,Inter,sans-serif" font-size="42" font-weight="800" fill="#f7e8ae">CardTW</text>
+<text x="70" y="140" font-family="Arial,Inter,sans-serif" font-size="16" font-weight="700" letter-spacing="4" fill="#d7c88e">OBSIDIAN BLACK · LEVEL 2</text>
+<rect x="70" y="210" width="82" height="60" rx="11" fill="url(#gold)"/>
+<path d="M84 226h54M84 242h54M84 258h54" stroke="#3f3115" stroke-width="5" opacity=".7"/>
+<text x="70" y="365" font-family="Arial,Inter,sans-serif" font-size="32" font-weight="700" letter-spacing="5" fill="#f3e6b2">•••• •••• •••• 0000</text>
+<text x="70" y="420" font-family="Arial,Inter,sans-serif" font-size="12" font-weight="700" letter-spacing="3" fill="#bcae7e">CARD HOLDER</text>
+<text x="70" y="458" font-family="Arial,Inter,sans-serif" font-size="20" font-weight="700" fill="#f7e8ae">CARDTW</text>
+<text x="810" y="450" font-family="Arial,Inter,sans-serif" font-size="48" font-weight="900" fill="url(#gold)">VISA</text>
+<text x="884" y="96" font-family="Arial,Inter,sans-serif" font-size="30" font-weight="800" fill="#e6d59b">)))</text>
+</svg>
