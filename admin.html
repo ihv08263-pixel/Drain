@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CardTW — Admin Dashboard</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#151a32;background:#f5f7ff;--blue:#2a2bff;--line:#e5e8f1;--muted:#70788e}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:1240px;margin:auto;padding:26px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.brand{font-weight:900;font-size:22px}.badge{padding:7px 10px;border-radius:999px;background:#fff4d8;color:#7c6200;font-size:10px;font-weight:900}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 18px 45px -32px rgba(24,30,90,.4)}
+.login{max-width:430px;margin:80px auto}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px}.stat small{display:block;color:var(--muted);font-size:10px}.stat strong{display:block;margin-top:5px;font-size:22px}
+h1{font-size:32px;letter-spacing:-.04em;margin:0 0 5px}h2{font-size:18px;margin:0 0 12px}p{font-size:13px;color:var(--muted);line-height:1.55}
+label{display:block;font-size:10px;font-weight:800;color:#687087;margin:10px 0 6px}input,select{width:100%;padding:11px 12px;border:1px solid #dfe3ee;border-radius:11px;font:600 12px system-ui;background:#fff}
+button{border-radius:11px;padding:11px 13px;font:800 12px system-ui;cursor:pointer}.primary{border:1px solid var(--blue);background:var(--blue);color:#fff}.secondary{border:1px solid #dfe3ee;background:#fff;color:#222a3d}.danger{border:1px solid #f0caca;background:#fff5f5;color:#a03a3a}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.status{margin-top:11px;background:#f7f8fb;border-radius:11px;padding:10px;font-size:11px;color:#687188;word-break:break-word}
+.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 8px;border-bottom:1px solid #eef0f5;text-align:left;font-size:11px}.table th{color:#7c8396}.wallet-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#23b86f;margin-right:6px}
+.hidden{display:none!important}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.empty{padding:30px;text-align:center;color:#7c8497;font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.wrap{padding:16px}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="login" class="card login">
+    <div class="top"><div class="brand">CardTW Admin</div><span class="badge">TEST</span></div>
+    <p>Dashboard de supervision pour les tests du prototype. Les identifiants ci-dessous sont uniquement un verrou visuel côté frontend.</p>
+    <label>Identifiant</label><input id="user" autocomplete="username">
+    <label>Mot de passe</label><input id="pass" type="password" autocomplete="current-password">
+    <button class="primary" style="width:100%;margin-top:14px" id="loginBtn">Connexion</button>
+    <div class="status" id="loginMsg">Test local uniquement.</div>
+  </div>
+
+  <div id="dash" class="hidden">
+    <div class="top">
+      <div><div class="brand">CardTW Admin</div><div style="font-size:12px;color:#737b90">Supervision & test settlement</div></div>
+      <div class="toolbar">
+        <button class="secondary" id="connectOwner">Connecter wallet admin</button>
+        <button class="secondary" id="refreshAll">Actualiser</button>
+        <button class="secondary" id="logout">Quitter</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><small>Wallets connus (sur cet appareil)</small><strong id="knownCount">0</strong></div>
+      <div class="stat"><small>Wallet admin</small><strong id="ownerAddress">—</strong></div>
+      <div class="stat"><small>Réseau</small><strong id="network">—</strong></div>
+      <div class="stat"><small>Dernier test</small><strong id="lastTx">—</strong></div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="top"><h2>Wallets connectés</h2><button class="secondary" id="clearKnown">Effacer local</button></div>
+        <p>Cette liste montre uniquement les wallets qui ont été enregistrés localement par ce navigateur. Pour superviser les connexions de tous les utilisateurs, il faudra un backend.</p>
+        <div id="walletTable"></div>
+      </section>
+
+      <section class="card">
+        <h2>Test de débit</h2>
+        <label>Contrat CardTWTestSettlement</label><input id="contract" placeholder="0x...">
+        <label>Token ERC-20</label><input id="token" placeholder="0x...">
+        <label>Wallet A — source</label><input id="from" placeholder="0x...">
+        <label>Wallet B — réception</label><input id="to" placeholder="0x...">
+        <label>Montant</label><input id="amount" type="number" min="0" step="any" value="1">
+        <div class="actions">
+          <button class="primary" id="debit">Débit test</button>
+          <button class="secondary" id="allowance">Allowance</button>
+          <button class="danger" id="revoke">Révoquer</button>
+        </div>
+        <div class="status" id="testStatus">Prêt.</div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+const AUTH={u:'admin',p:'cardtw-test'};
+const $=id=>document.getElementById(id), P=()=>window.ethereum||null;
+const ADDR=a=>/^0x[a-fA-F0-9]{40}$/.test((a||'').trim());
+const W=a=>a.trim().slice(2).toLowerCase().padStart(64,'0');
+const U=v=>v.toString(16).padStart(64,'0');
+
+function known(){return JSON.parse(localStorage.getItem('cardtw_known_wallets')||'[]')}
+function saveKnown(list){localStorage.setItem('cardtw_known_wallets',JSON.stringify(list.slice(-200)))}
+function renderWallets(){
+  const list=known(); $('knownCount').textContent=list.length;
+  const box=$('walletTable');
+  if(!list.length){box.innerHTML='<div class="empty">Aucun wallet enregistré sur cet appareil.</div>';return}
+  box.innerHTML='<table class="table"><thead><tr><th>Adresse</th><th>Dernière connexion</th><th>Réseau</th></tr></thead><tbody>'+
+    list.slice().reverse().map(x=>`<tr><td><span class="wallet-dot"></span>${x.address}</td><td>${new Date(x.time).toLocaleString()}</td><td>${x.chainId||'—'}</td></tr>`).join('')+
+    '</tbody></table>'
+}
+async function connectOwner(){
+  if(!P()){ $('ownerAddress').textContent='Aucun wallet'; return}
+  try{
+    const a=await P().request({method:'eth_requestAccounts'}), owner=a?.[0]; if(!owner)return;
+    $('ownerAddress').textContent=owner.slice(0,6)+'…'+owner.slice(-4);
+    const chain=await P().request({method:'eth_chainId'}); $('network').textContent=chain;
+    const list=known(); list.push({address:owner,time:Date.now(),chainId:chain}); saveKnown(list); renderWallets();
+  }catch(e){$('testStatus').textContent=e?.message||String(e)}
+}
+async function decimals(token){
+  const r=await P().request({method:'eth_call',params:[{to:token,data:'0x313ce567'},'latest']}); return Number(BigInt(r))
+}
+async function refreshAllowance(){
+  if(!P())return;
+  const token=$('token').value.trim(), contract=$('contract').value.trim(), from=$('from').value.trim();
+  if(!ADDR(token)||!ADDR(contract)||!ADDR(from)){ $('testStatus').textContent='Vérifiez token, contrat et source.';return}
+  try{
+    const d=await decimals(token), data='0xdd62ed3e'+W(from)+W(contract);
+    const r=await P().request({method:'eth_call',params:[{to:token,data},'latest']});
+    $('testStatus').textContent='Allowance : '+(Number(BigInt(r))/(10**d)).toLocaleString();
+  }catch(e){$('testStatus').textContent=e?.message||String(e)}
+}
+async function debit(){
+  if(!P())return;
+  try{
+    const a=await P().request({method:'eth_requestAccounts'}), caller=a?.[0];
+    const token=$('token').value.trim(),contract=$('contract').value.trim(),from=$('from').value.trim(),to=$('to').value.trim(),amount=Number($('amount').value);
+    if(!caller||![token,contract,from,to].every(ADDR)||!(amount>0)){ $('testStatus').textContent='Vérifiez les champs.';return}
+    const d=await decimals(token);
+    const base=BigInt(Math.round(amount*1e6))*(10n**BigInt(d))/1000000n;
+    const settleSelector='0x'+await (async()=>{const k=new Uint8Array();return '1f0f93f2'})();
+    const data='0x1f0f93f2'+W(token)+W(from)+W(to)+U(base);
+    $('testStatus').textContent='Confirmation du débit dans le wallet…';
+    const tx=await P().request({method:'eth_sendTransaction',params:[{from:caller,to:contract,data}]});
+    $('lastTx').textContent=tx.slice(0,8)+'…';localStorage.setItem('cardtw_last_tx',tx);$('testStatus').textContent='Transaction envoyée : '+tx;
+  }catch(e){$('testStatus').textContent=e?.message||String(e)}
+}
+async function revoke(){
+  if(!P())return;
+  try{
+    const a=await P().request({method:'eth_requestAccounts'}), caller=a?.[0], token=$('token').value.trim(),contract=$('contract').value.trim();
+    if(!caller||!ADDR(token)||!ADDR(contract)){ $('testStatus').textContent='Vérifiez token et contrat.';return}
+    const data='0x095ea7b3'+W(contract)+U(0n);
+    const tx=await P().request({method:'eth_sendTransaction',params:[{from:caller,to:token,data}]});
+    $('lastTx').textContent=tx.slice(0,8)+'…';$('testStatus').textContent='Révocation envoyée : '+tx;
+  }catch(e){$('testStatus').textContent=e?.message||String(e)}
+}
+$('loginBtn').onclick=()=>{if($('user').value===AUTH.u&&$('pass').value===AUTH.p){$('login').classList.add('hidden');$('dash').classList.remove('hidden');renderWallets();$('lastTx').textContent=(localStorage.getItem('cardtw_last_tx')||'—').slice(0,8)}else $('loginMsg').textContent='Identifiants incorrects.'}
+$('logout').onclick=()=>location.reload();$('connectOwner').onclick=connectOwner;$('refreshAll').onclick=renderWallets;$('clearKnown').onclick=()=>{saveKnown([]);renderWallets()};$('debit').onclick=debit;$('allowance').onclick=refreshAllowance;$('revoke').onclick=revoke;
+</script>
+</body>
+</html>

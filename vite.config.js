@@ -1,5 +1,2 @@
 import { defineConfig } from 'vite'
-
-export default defineConfig({
-  base: '/cardtw/'
-})
+export default defineConfig({ base: '/cardtw/' })
